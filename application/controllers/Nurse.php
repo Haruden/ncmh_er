@@ -34,4 +34,12 @@ class Nurse extends CI_Controller {
         $this->load->view('nurse/queue/vitals');
 	}
 
+	public function pat_details()
+	{
+		$data['title'] = "Patient Details";
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('nurse/queue/pat_details');
+	}
+
 }
