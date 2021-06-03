@@ -1,0 +1,40 @@
+/*
+@media (max-width: 1920px) {
+ 	CSS that should be displayed if width is equal to or less than 800px goes here
+ 	body
+ 	{
+		zoom: 90%;
+	}
+}
+*/
+
+.dropdown-options {
+    position: absolute;
+    will-change: transform;
+    top: 0px;
+    left: 0px;
+    transform: translate3d(0px, 48px, 0px);
+}
+
+.modal {
+    overflow-y: auto;
+}
+
+.modal-xl {
+    width: 1250px;
+    margin: auto;
+    margin-top: 1em;
+}
+
+
+/* nurse views */
+
+.nurseModalTextarea {
+    padding-top: 10px;
+    padding-bottom: 25px;
+    min-height: 80px !important;
+    display: block;
+}
+
+
+/* end  nurse views */
