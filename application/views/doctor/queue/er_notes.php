@@ -3,9 +3,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php $this->load->view('nurse/navbar'); ?>
-        <?php $this->load->view('nurse/sidebar'); ?>
-        <?php $this->load->view('nurse/modals'); ?>
+        <?php $this->load->view('doctor/navbar'); ?>
+        <?php $this->load->view('doctor/sidebar'); ?>
+        <?php $this->load->view('doctor/modals'); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -36,7 +36,7 @@
                     <div class="row">
 
                         <div class="col-md-2">                            
-                            <?php $this->load->view('nurse/queue/sidemenu'); ?>
+                            <?php $this->load->view('doctor/queue/sidemenu'); ?>
                         </div>
                         <!-- /.col -->
 
