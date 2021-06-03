@@ -34,56 +34,63 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-
                         <div class="col-md-2">                            
                             <?php $this->load->view('doctor/queue/sidemenu'); ?>
                         </div>
                         <!-- /.col -->
 
                         <div class="col-md-10">
-
-                            <h4>Vitals</h4>
-                            <div class="card">
-                                <!-- <div class="col-sm-12 p-3 text-center" style="margin-bottom:-15px !important;">
-                                    <button data-toggle="modal" data-target="#addVitalsModal" class="btn btn-success addVitalsModal mr-2">Add Vitals <i class="ml-1 fas fa-plus"></i></button>
-                                    <button data-toggle="modal" data-target="#add-other-vitals-modal" class="btn btn-success open-other-vitals-modal">Add Other Vitals <i class="ml-1 fas fa-plus"></i></button>
-                                </div> -->
-                                
+                            <div class="card p-3">
+                                <h4>Emergency Notes</h4>
+                                <div class="dropdown-divider"></div>
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                            <div class="mb-3 form-inline" id="transfer_div">
+                                                <label class="" for="">Transfer: </label>
+                                                <select name="" id="" class="form-control ml-2 mr-3">
+                                                    <option value="">In</option>
+                                                    <option value="">Out</option>
+                                                </select>
 
-                                    <div class="dataTables_wrapper dt-bootstrap4">
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Date/Time Ordered</th>
-                                                    <th>Blood Pressure</th>
-                                                    <th>Respiratory Rate</th>
-                                                    <th>Pulse Rate</th>
-                                                    <th>Temperature</th>
-                                                    <th>O2 Sat</th>
-                                                    <th>Others</th>
-                                                    <th>Taken By</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Jan-13-2021 | 11:12 AM</td>
-                                                    <td>140/80</td>
-                                                    <td>15</td>
-                                                    <td>98</td>
-                                                    <td>37.7</td>
-                                                    <td>98%</td>
-                                                    <td></td>
-                                                    <td>B. Herber, RN</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                <label class="" for="">What Pavilion? </label>
+                                                <select name="" id="" class="form-control ml-2 mr-3">
+                                                    <option value="">Pavilion 1</option>
+                                                    <option value="">Pavilion 2</option>
+                                                </select>
+                                            </div>
+
+                                            </div>
+                                            <button class="btn btn-danger mr-2" id="remove_trans_btn"><i class="fas fa-minus"></i> Remove Transfer</button>
+                                            <button class="btn btn-primary mr-2" id="add_trans_btn"><i class="fas fa-plus"></i> Add Transfer</button>
+                                            <hr>
+
+                                            <div class="mb-3">
+                                                <label class="" for="">General Data:</label>
+                                                <textarea name="editordata" id="summernote" class="form-control"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="" for="">History:</label>
+                                                <textarea name="editordata1" id="summernote1" class="form-control"></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-primary dropdown-toggle mb-3" data-toggle="dropdown" aria-expanded="false">
+                                                    Add Section
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">
+                                                    <li class="dropdown-item"><a href="#">Add Subjective Notes</a></li>
+                                                    <li class="dropdown-item"><a href="#">Add Objective Notes</a></li>
+                                                    <li class="dropdown-item"><a href="#">Add Assessment Notes</a></li>
+                                                    <li class="dropdown-item"><a data-toggle="modal" href="#mse-add">Add Mental Status Exam</a></li>
+                                                    <li class="dropdown-item"><a data-toggle="modal" href="#pe-add">Add Physical Exam</a></li>
+                                                    <li class="dropdown-item"><a data-toggle="modal" href="#neuro-add">Add Neurological Exam</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <hr>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /.col -->
                     </div>
@@ -113,28 +120,66 @@
 <script>
     $('[data-widget="pushmenu"]').PushMenu('collapse');
 
-    $("#addOtherVitalsDatePicker, #addVitalsDatePicker").attr("value", moment().format('L LT'));
-    $("#addOtherVitalsDatePicker, #addVitalsDatePicker").click(function() {
-        $("#addOtherVitalsDatePicker, #addVitalsDatePicker").removeAttr("value");
+    var transfer_counter = 0;
+
+    $("#add_trans_btn").on('click', function() {
+        transfer_counter++;
+        var html = '<div class="row mt-2 ml-1" id="transfer_no' + transfer_counter + '">';
+        html += '<label class="" for="">Transfer: </label>';
+        html += '<select name="" id="" class="form-control ml-2 mr-3">';
+        html += '<option value="">In</option>';
+        html += '<option value="">Out</option>';
+        html += '</select>';
+        html += '<label class="" for="">What Pavilion? </label>';
+        html += '<select name="" id="" class="form-control ml-2 mr-3">';
+        html += '<option value="">Pavilion 1</option>';
+        html += '<option value="">Pavilion 2</option>';
+        html += '</select></div>';
+        $("#transfer_div").append(html);
     });
 
-    $("#addVitalsDatePicker, #addVitalsDatePicker").focusout(function() {
-        $('.bootstrap-datetimepicker-widget').hide();
+    $("#remove_trans_btn").on('click', function() {
+        $('#transfer_no' + transfer_counter).remove();
+        transfer_counter--;
     });
 
-    $(function() {
-        $("#example1").DataTable({
-            language: {
-                searchPlaceholder: "Search vitals"
-            },
-            "responsive": true,
-            "autoWidth": false,
+    $('#summernote1, #summernote').each(function() {
+        $(this).summernote({
+            placeholder: this.placeholder,
+            dialogsInBody: true,
+            spellCheck: true,
+            minHeight: 90,
+            minWidth: 430,
+            maxHeight: null,
+            focus: true,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font'],
+                ['fontsize', ['fontsize']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen']],
+            ]
         });
-
-        $("#example1_length").find('label').after(
-            '<button data-toggle="modal" data-target="#addVitalsModal" class="btn btn-success ml-2 btn-sm open-other-vitals-modal"> Add Vitals <i class="ml-1 fas fa-plus"></i></button>'
-        );
     });
+    
+    $('.tabNext').click(function(){
+        $('.nav-tabs > .active').next('a').trigger('click');
+    });
+
+    $('.tabPrevious').click(function(){
+        $('.nav-tabs > .active').prev('a').trigger('click');
+    });
+
+    function change(radio) { 
+        if (radio.checked && radio.id === "durationNum") {+
+            $("#durNumDiv").removeClass("d-none");
+            $("#durRangeDiv").hide();
+        } else  {
+            $("#durNumDiv").addClass("d-none");
+            $("#durRangeDiv").show();
+        }
+    } 
 </script>
 
 </html>
