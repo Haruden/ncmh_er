@@ -6,7 +6,7 @@
     <a class="dropdown-item" href="<?php echo base_url(''); ?>">Patient Details</a>
     <a class="dropdown-item" href="<?php echo base_url('nurse/vitals'); ?>">Vital Signs</a>
     <a class="dropdown-item" href="<?php echo base_url(''); ?>">Patient ID Marks</a>
-    <a class="dropdown-item" href="<?php echo base_url(''); ?>">Nurse's Notes</a>
+    <a class="dropdown-item" href="<?php echo base_url('nurse/nurse_notes'); ?>">Nurse's Notes</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#">Out when called</a>
 </div>
