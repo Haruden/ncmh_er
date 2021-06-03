@@ -70,7 +70,7 @@
                                             <option value="ACIS">ACIS</option>
                                         </select>
                                     </div>
-                                <div class="row">
+                                    <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="focus">Focus:</label>
@@ -92,6 +92,10 @@
                                                 <textarea name="response" placeholder="Add your response here..."  class="form-control addNurseNotesTextArea" rows="2"></textarea>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-primary ml-auto">Save</button>
                                     </div>
                                 </div>
                             </div>
