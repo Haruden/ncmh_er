@@ -43,18 +43,6 @@
                         <!-- /.col -->
 
                         <div class="col-md-10">
-                            <div class="card">
-                                <div class="card-header p-2">
-                                    <ul class="nav nav-pills">
-                                        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('nurse/queue'); ?>">Primary Information</a></li>
-                                        <li class="nav-item"><a class="nav-link active" href="<?php echo base_url('nurse/queue'); ?>">Patient's Identification</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Watcher's Request</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Record of Visitors</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Informed Consent</a></li>
-                                    </ul>
-                                </div><!-- /.card-header -->
-                            </div>
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="card">
