@@ -93,11 +93,16 @@
             <script src="<?php echo base_url(); ?>assets/plugins/<?=$js_plugin?>"></script>
         <?php endforeach;?>
     <?php endif;?>
+
+    <script>
+        var save_endpoint = "http://localhost/ncmh_er/nurse/save"
+    </script>
     
     <!-- Custom JS -->
     <!-- APP -->
     <script src="<?php echo base_url(); ?>assets/js/app.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/forms.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/ui.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/nurse/pat_details.js"></script>
     <!-- Toastr Options -->
     <script>

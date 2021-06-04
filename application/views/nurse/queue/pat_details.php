@@ -882,6 +882,7 @@
                                                                             <strong class="text-red">*</strong>Assign to
                                                                         </label>
                                                                         <select id="assign_to" name="assign_to" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                                                                            <option value="dsaa">dummy</option>
                                                                             <?php
                                                                             foreach ($doctors as $doctor) {
                                                                                 echo '<option value="' .$doctor->employeeid .'">';

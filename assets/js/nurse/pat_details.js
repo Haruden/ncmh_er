@@ -1,7 +1,7 @@
 var phId = phId || "";
 var has_stepper = true; //default: var has_stepper = has_stepper || false;
 var saveAction = "";
-var save_endpoint = save_endpoint || "";
+var save_endpoint = save_endpoint || ""; 
 var currentSelectedPhOption;
 var soiAddressValues = {};
 var $slider;
@@ -1825,7 +1825,7 @@ function savePatientInformation() {
 
 			if (response.redirect) {
 				// success flash message is set within the save endpoint
-				window.location = response.redirect;
+				window.location = save_endpoint; // default: response.redirect;
 			}
 		})
 		.catch(function (xhr) {

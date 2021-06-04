@@ -45,7 +45,8 @@ class Nurse extends CI_Controller {
             'select2/js/select2.full.min.js',
             'bs-stepper/js/bs-stepper.min.js',
             'inputmask/jquery.inputmask.min.js',
-            'bootstrap-slider/bootstrap-slider.min.js'
+            'bootstrap-slider/bootstrap-slider.min.js',
+			'sweetalert2/sweetalert2.min.js',
         ];
 
         $this->css_plugins = [
@@ -53,7 +54,8 @@ class Nurse extends CI_Controller {
             'daterangepicker/daterangepicker.css',
             'select2/css/select2.min.css',
             'select2-bootstrap4-theme/select2-bootstrap4.min.css',
-            'bootstrap-slider/css/bootstrap-slider.min.css'
+            'bootstrap-slider/css/bootstrap-slider.min.css',
+			'sweetalert2/sweetalert2.min.css',
         ];
 		$data['js_plugins'] = $this->js_plugins == [] ? null :  $this->js_plugins;
 		$data['css_plugins'] = $this->css_plugins == [] ? null :  $this->css_plugins;
@@ -71,4 +73,8 @@ class Nurse extends CI_Controller {
         $this->load->view('nurse/queue/pat_details');
 	}
 
+	public function save()
+	{
+		echo 'dsadads';
+	}
 }
