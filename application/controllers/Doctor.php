@@ -34,4 +34,12 @@ class Doctor extends CI_Controller {
         $this->load->view('doctor/queue/er_notes');
 	}
 
+	public function plan()
+	{
+		$data['title'] = "Plan";
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('doctor/queue/plan');
+	}
+
 }
