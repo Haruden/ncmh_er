@@ -895,8 +895,8 @@
                                                             </div>
 
                                                             <button type="button" class="btn btn-danger" id="btn_back_to_second_form">Back</button>
-                                                            <button type="submit" id="btn_save" class="btn btn-warning">Save but don’t add patient to queue</button>
-                                                            <button type="submit" id="btn_save_and_queue" class="btn btn-primary">Add patient to queue</button>
+                                                            <!-- <button type="submit" id="btn_save" class="btn btn-warning">Save but don’t add patient to queue</button> -->
+                                                            <button type="submit" id="btn_save_and_queue" class="btn btn-primary">Save</button>
                                                         </form>
 
                                                     <!-- End - Third form -->
