@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Nurse extends CI_Controller {
 
+	public $js_plugins = [];
+	public $css_plugins = [];
 	/**
 	 * Index Page for this controller.
 	 *
@@ -38,6 +40,35 @@ class Nurse extends CI_Controller {
 	{
 		$data['title'] = "Patient ID Marks";
 
+		$this->js_plugins = [
+            'daterangepicker/daterangepicker.js',
+            'select2/js/select2.full.min.js',
+            'bs-stepper/js/bs-stepper.min.js',
+            'inputmask/jquery.inputmask.min.js',
+            'bootstrap-slider/bootstrap-slider.min.js',
+			'sweetalert2/sweetalert2.min.js',
+        ];
+
+        $this->css_plugins = [
+            'bs-stepper/css/bs-stepper.min.css',
+            'daterangepicker/daterangepicker.css',
+            'select2/css/select2.min.css',
+            'select2-bootstrap4-theme/select2-bootstrap4.min.css',
+            'bootstrap-slider/css/bootstrap-slider.min.css',
+			'sweetalert2/sweetalert2.min.css',
+        ];
+		$data['js_plugins'] = $this->js_plugins == [] ? null :  $this->js_plugins;
+		$data['css_plugins'] = $this->css_plugins == [] ? null :  $this->css_plugins;
+
+		$data['patient_suffixes'] = config_item('patient_suffixes');
+        $data['relationships'] = config_item('relationships');
+        $data['type_of_payments'] = config_item('type_of_payments');
+        $data['genders'] = config_item('genders');
+        $data['civil_statuses'] = config_item('civil_statuses');
+        $data['nationalities'] = config_item('nationalities');
+        $data['consult_types'] = config_item('consult_types');
+        $data['degrees'] = config_item('degrees');
+
         $this->load->view('templates/header', $data);
         $this->load->view('nurse/queue/pat_id_marks');
 	}
@@ -50,4 +81,8 @@ class Nurse extends CI_Controller {
         $this->load->view('nurse/queue/nurse_notes');
 	}
 
+	public function save()
+	{
+		echo 'dsadads';
+	}
 }

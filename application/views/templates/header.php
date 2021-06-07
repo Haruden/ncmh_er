@@ -37,8 +37,17 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.css">
 
+    <?php if(isset($css_plugins)):?>
+        <?php foreach ($css_plugins as $css_plugin): ?>
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/<?=$css_plugin?>">
+        <?php endforeach;?>
+    <?php endif;?>
+
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+     <!-- jQuery -->
+     <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+     <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/additional-methods.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -77,8 +86,25 @@
     <script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
-    <!-- JQVMap -->
+    <!-- Lodash -->
+    <script src="<?php echo base_url(); ?>assets/plugins/lodash/lodash.min.js"></script>
 
+    <?php if(isset($js_plugins)):?>
+        <?php foreach ($js_plugins as $js_plugin): ?>
+            <script src="<?php echo base_url(); ?>assets/plugins/<?=$js_plugin?>"></script>
+        <?php endforeach;?>
+    <?php endif;?>
+
+    <script>
+        var save_endpoint = "http://localhost/ncmh_er/nurse/save"
+    </script>
+    
+    <!-- Custom JS -->
+    <!-- APP -->
+    <script src="<?php echo base_url(); ?>assets/js/app.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/forms.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/ui.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/nurse/pat_details.js"></script>
     <!-- Toastr Options -->
     <script>
         toastr.options = {
