@@ -634,19 +634,19 @@
                                                                             Patient
                                                                         </label>
                                                                     </div>
-                                                                    <div class="form-group icheck-primary d-inline">
+                                                                    <div class="form-group icheck-primary d-inline ml-2">
                                                                         <input type="radio" id="source_family_member" name="source_of_info" value="family-member">
                                                                         <label class="thin-label checkbox-label" for="source_family_member">
                                                                             Family Member
                                                                         </label>
                                                                     </div>
-                                                                    <div class="form-group icheck-primary d-inline">
+                                                                    <div class="form-group icheck-primary d-inline ml-2">
                                                                         <input type="radio" id="source_social_worker" name="source_of_info" value="social-worker">
                                                                         <label class="thin-label checkbox-label" for="source_social_worker">
                                                                             Social Worker
                                                                         </label>
                                                                     </div>
-                                                                    <div class="form-group icheck-primary d-inline">
+                                                                    <div class="form-group icheck-primary d-inline ml-2">
                                                                         <input type="radio" id="source_other" name="source_of_info" value="others">
                                                                         <label class="thin-label checkbox-label" for="source_other">
                                                                             Others
@@ -896,6 +896,7 @@
 
                                                             <button type="button" class="btn btn-danger" id="btn_back_to_second_form">Back</button>
                                                             <!-- <button type="submit" id="btn_save" class="btn btn-warning">Save but don’t add patient to queue</button> -->
+                                                            
                                                             <button type="submit" id="btn_save_and_queue" class="btn btn-primary">Save</button>
                                                         </form>
 
