@@ -48,55 +48,50 @@
                                 </div> -->
 
                                 <div class="card-body">
-                                    <h4>Nurse Notes</h4>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-group">
-                                        <label for="nurseModalDateAndTime">Date & Time:</label>
-                                        <div class="input-group mb-2">
-                                            <input type="text"  id="nurseModalDateAndTime" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker" class="form-control datetimepicker-input" placeholder="Date & Time">
-                                            <div class="input-group-prepend" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker">
-                                                <div class="input-group-text">
-                                                    <i class="fa fa-calendar"></i>
+                                    <div class="tab-content">
+                                            <div class="active tab-pane" id="nurses_notes">
+                                                <!-- Table row -->
+                                                <div class="dataTables_wrapper dt-bootstrap4">
+                                                    <table id="example1" class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Date/Time</th>
+                                                                <th>Pavilion</th>
+                                                                <th>Focus</th>
+                                                                <th>Data</th>
+                                                                <th>Action</th>
+                                                                <th>Response</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
+                                                                <td>Pavilion 1</td>
+                                                                <td>Focus notes</td>
+                                                                <td>Data notes</td>
+                                                                <td>Action notes</td>
+                                                                <td>Response notes</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Date/Time</th>
+                                                                <th>Pavilion</th>
+                                                                <th>Focus</th>
+                                                                <th>Data</th>
+                                                                <th>Action</th>
+                                                                <th>Response</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div> <!-- /.row -->
+                                                <hr>
+                                                <div class="d-flex justify-content-center">
+                                                    <!-- <button data-toggle="modal" id="add-nurse-notes" data-target="#nurse-add-notes-modal" class="btn btn-lg btn-success">Add Notes</button> -->
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="choose-pavilion">Pavilion <i class="fas fa-caret-down"></i></label>
-                                        <select class="form-control" id="choose-pavilion">
-                                            <option selected disabled>Choose Pavillion</option>
-                                            <option value="Pavilion 1">Pavilion 1</option>
-                                            <option value="Pavilion 2">Pavilion 2</option>
-                                            <option value="ACIS">ACIS</option>
-                                        </select>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="focus">Focus:</label>
-                                                <textarea name="focus" placeholder="Add your focus here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="data">Data:</label>
-                                                <textarea name="data" placeholder="Add your data here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
-                                            </div>
-                                        </div>
 
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="action">Action:</label>
-                                                <textarea name="action" placeholder="Add your action here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="response">Response:</label>
-                                                <textarea name="response" placeholder="Add your response here..."  class="form-control addNurseNotesTextArea" rows="2"></textarea>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-primary ml-auto">Save</button>
-                                    </div>
                                 </div>
                             </div>
 
@@ -129,45 +124,57 @@
 <script>
     $(document).ready(function () {
         $('[data-widget="pushmenu"]').PushMenu('collapse');
+
+        $("#example1").DataTable({
+            language: {
+                searchPlaceholder: "Search notes"
+            },
+            "responsive": true,
+            "autoWidth": false,
+        });
+
+        $("#example1_length").find('label').after('<button data-toggle="modal" id="add-nurse-notes" data-target="#nurse-add-notes-modal" class="btn btn-sm btn-success ml-3">Add Nurse Notes <i class="ml-1 fas fa-plus"></i></button>');
+
+
         $(function getCurrentTime () {
-        var datetime = moment().format('L LT');
-        $("#nurseModalDateAndTime").attr("value", datetime);
-            setTimeout(getCurrentTime, 1000);
-        });
-        
-        $("#nurseModalDateAndTime").click(function () {
-            $("#nurseModalDateAndTime").removeAttr("value");
-            clearTimeout(getCurrentTime);
-        });
-
-        $("#nurseModalDateAndTime").focusout(function(){
-            $('.bootstrap-datetimepicker-widget').hide();
-        });
-        
-        $(document).ready(function () {
-            $('.addNurseNotesTextArea').each(function () {
-                $(this).summernote({
-                    placeholder: this.placeholder,
-                    dialogsInBody: true,
-                    spellCheck: true,
-                    minHeight: 100,    
-                    minWidth:430,        
-                    maxHeight: null,   
-                    focus: true,
-                    toolbar: [
-                        ['style', ['bold', 'italic', 'underline', 'clear']],
-                        ['font'],
-                        ['fontsize', ['fontsize']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['height', ['height']],
-                        ['view', ['fullscreen']],
-                    ] 
-                });
-
+            var datetime = moment().format('L LT');
+            $("#nurseModalDateAndTime").attr("value", datetime);
+                setTimeout(getCurrentTime, 1000);
             });
-        });
+            
+            $("#nurseModalDateAndTime").click(function () {
+                $("#nurseModalDateAndTime").removeAttr("value");
+                clearTimeout(getCurrentTime);
+            });
 
-    });
+            $("#nurseModalDateAndTime").focusout(function(){
+                $('.bootstrap-datetimepicker-widget').hide();
+            });
+        
+            $(document).ready(function () {
+                $('.addNurseNotesTextArea').each(function () {
+                    $(this).summernote({
+                        placeholder: this.placeholder,
+                        dialogsInBody: true,
+                        spellCheck: true,
+                        minHeight: 100,    
+                        minWidth:430,        
+                        maxHeight: null,   
+                        focus: true,
+                        toolbar: [
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font'],
+                            ['fontsize', ['fontsize']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['height', ['height']],
+                            ['view', ['fullscreen']],
+                        ] 
+                    });
+
+                });
+            });
+
+        });
 </script>
 
 </html>
