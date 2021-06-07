@@ -36,7 +36,7 @@
                 <a style="color:white;" href="#"> Nurse's Notes </a>
             </div>
         <?php } else { ?>
-            <strong><a href="<?php echo base_url('nurse/nurses_notes');?>"> Nurse's Notes </a> </strong>
+            <strong><a href="<?php echo base_url('nurse/nurse_notes');?>"> Nurse's Notes </a> </strong>
         <?php } ?>
 
     </div>

@@ -178,3 +178,70 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+
+
+
+
+<div class="modal fade" id="nurse-add-notes-modal" data-backdrop="static">
+    <div class="modal-dialog" style="max-width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header" data-dismiss="datetimepicker">
+                <h4 class="modal-title">Add Nurse's Notes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nurseModalDateAndTime">Date & Time:</label>
+                    <div class="input-group mb-2">
+                        <input type="text"  id="nurseModalDateAndTime" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker" class="form-control datetimepicker-input" placeholder="Date & Time">
+                        <div class="input-group-prepend" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker">
+                            <div class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="choose-pavilion">Pavilion <i class="fas fa-caret-down"></i></label>
+                    <select class="form-control" id="choose-pavilion">
+                        <option selected disabled>Choose Pavillion</option>
+                        <option value="Pavilion 1">Pavilion 1</option>
+                        <option value="Pavilion 2">Pavilion 2</option>
+                        <option value="ACIS">ACIS</option>
+                    </select>
+                </div>
+               <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="focus">Focus:</label>
+                            <textarea name="focus" placeholder="Add your focus here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="data">Data:</label>
+                            <textarea name="data" placeholder="Add your data here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="action">Action:</label>
+                            <textarea name="action" placeholder="Add your action here..." class="form-control addNurseNotesTextArea" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="response">Response:</label>
+                            <textarea name="response" placeholder="Add your response here..."  class="form-control addNurseNotesTextArea" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
