@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="shorcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/ncmh_logo.png">
     <title> <?php echo $title; ?> </title>
 
     <!-- Tell the browser to be responsive to screen width -->

@@ -3,7 +3,7 @@
     <div class="login-box">
         <div class="login-logo">
             <div class="row justify-content-center">
-                <img src="<?php echo base_url('assets/img/ncmh_logo.png'); ?>" class="brand-image img-circle elevation-3" style="width: 150px;" />
+                <img src="<?php echo base_url('assets/img/ncmh_logo.png'); ?>" style="width: 150px;" />
             </div>
             <div class="row justify-content-center">
                 <span> <b>NCMH</b> Emergency Room </span>
