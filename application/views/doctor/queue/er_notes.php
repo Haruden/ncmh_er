@@ -40,57 +40,102 @@
                         <!-- /.col -->
 
                         <div class="col-md-10">
-                            <div class="card p-3">
-                                <h4>Emergency Notes</h4>
-                                <div class="dropdown-divider"></div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-6">
-                                            <div class="mb-3 form-inline" id="transfer_div">
-                                                <label class="" for="">Transfer: </label>
-                                                <select name="" id="" class="form-control ml-2 mr-3">
-                                                    <option value="">In</option>
-                                                    <option value="">Out</option>
-                                                </select>
+                            <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="active tab-pane" id="activity">
+                                            <!-- Table row -->
+                                            <div class="dataTables_wrapper dt-bootstrap4">
+                                                <table id="example1" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Date/Time</th>
+                                                            <th>Status</th>
+                                                            <th>General Data</th>
+                                                            <th>History Notes</th>
+                                                            <th>Others</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Jan 24, 2021 <br> 12:10PM <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
+                                                            <td>In: <br> Pavilion 1 - Ward 1</td>
+                                                            <td>Doctors notes about the general data of the patient will be reflected here.</td>
+                                                            <td>History Notes of the patient will be reflected here.</td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li> <a href="#">View Subjective Notes</a></li>
+                                                                    <li> <a href="#">View Objective Notes</a></li>
+                                                                    <li><a href="#">View Assessment Notes</a></li>
+                                                                    <li><a data-toggle="modal" href="#modal-MSE">View Mental Status Exam</a></li>
+                                                                    <li><a href="#">View Physical Exam</a></li>
+                                                                    <li><a href="#">View Neurological Exam</a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Jan 10, 2021 <br> 12:10PM <br> <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada <br> Updated by: <br> Dr. Argamosa<br> Jan 24, 2021 (4:56pm) </i></small> </td>
+                                                            <td>Out: <br> Pavilion 3 - Ward 2 <br><br> In: <br> Pavilion 1 - Ward 2</td>
+                                                            <td>Doctors notes about the general data of the patient will be reflected here.</td>
+                                                            <td>History Notes of the patient will be reflected here.</td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li> <a href="#">View Subjective Notes</a></li>
+                                                                    <li> <a href="#">View Objective Notes</a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Jan 24, 2021 <br> 12:10PM <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
+                                                            <td>In: <br> Pavilion 1 - Ward 1 <br> <br> Out: <br> Pavilion 3 - Ward 2</td>
+                                                            <td>Doctors notes about the general data of the patient will be reflected here.</td>
+                                                            <td>History Notes of the patient will be reflected here.</td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li> <a href="#">View Subjective Notes</a></li>
+                                                                    <li> <a href="#">View Objective Notes</a></li>
+                                                                    <li><a href="#">View Assessment Notes</a></li>
+                                                                    <li><a data-toggle="modal" href="#modal-MSE">View Mental Status Exam</a></li>
+                                                                    <li><a href="#">View Physical Exam</a></li>
+                                                                    <li><a href="#">View Neurological Exam</a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Jan 10, 2021 <br> 12:10PM <br> <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada <br> Updated by: <br> Dr. Argamosa<br> Jan 24, 2021 (4:56pm) </i></small> </td>
+                                                            <td>Out: <br> Pavilion 3 - Ward 2</td>
+                                                            <td>Doctors notes about the general data of the patient will be reflected here.</td>
+                                                            <td>History Notes of the patient will be reflected here.</td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li> <a href="#">View Subjective Notes</a></li>
+                                                                    <li> <a href="#">View Objective Notes</a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Date/Time</th>
+                                                            <th>Pavilion</th>
+                                                            <th>General Data</th>
+                                                            <th>History Notes</th>
 
-                                                <label class="" for="">What Pavilion? </label>
-                                                <select name="" id="" class="form-control ml-2 mr-3">
-                                                    <option value="">Pavilion 1</option>
-                                                    <option value="">Pavilion 2</option>
-                                                </select>
-                                            </div>
-
-                                            </div>
-                                            <button class="btn btn-danger mr-2" id="remove_trans_btn"><i class="fas fa-minus"></i> Remove Transfer</button>
-                                            <button class="btn btn-primary mr-2" id="add_trans_btn"><i class="fas fa-plus"></i> Add Transfer</button>
+                                                            <th>Others</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div> <!-- /.row -->
                                             <hr>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#trans-add">Add Notes</button> -->
+                                            </div>
 
-                                            <div class="mb-3">
-                                                <label class="" for="">General Data:</label>
-                                                <textarea name="editordata" id="summernote" class="form-control"></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="" for="">History:</label>
-                                                <textarea name="editordata1" id="summernote1" class="form-control"></textarea>
-                                            </div>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="button" class="btn btn-primary dropdown-toggle mb-3" data-toggle="dropdown" aria-expanded="false">
-                                                    Add Section
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">
-                                                    <li class="dropdown-item"><a href="#">Add Subjective Notes</a></li>
-                                                    <li class="dropdown-item"><a href="#">Add Objective Notes</a></li>
-                                                    <li class="dropdown-item"><a href="#">Add Assessment Notes</a></li>
-                                                    <li class="dropdown-item"><a data-toggle="modal" href="#mse-add">Add Mental Status Exam</a></li>
-                                                    <li class="dropdown-item"><a data-toggle="modal" href="#pe-add">Add Physical Exam</a></li>
-                                                    <li class="dropdown-item"><a data-toggle="modal" href="#neuro-add">Add Neurological Exam</a></li>
-                                                </ul>
-                                            </div>
                                         </div>
+                                        <!-- /.tab-pane -->
+
                                     </div>
-                                </div>
-                            </div>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
                         </div>
                         <!-- /.col -->
                     </div>
@@ -119,6 +164,25 @@
 
 <script>
     $('[data-widget="pushmenu"]').PushMenu('collapse');
+    $(function() {
+        $("#example1").DataTable({
+            language: {
+                searchPlaceholder: "Search notes"
+            },
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $( "#example1_length" ).find('label').after('<button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#add-er-notes">Add ER Notes <i class="ml-1 fas fa-plus"></i></button>');
+        // $('#example2').DataTable({
+        //     "paging": true,
+        //     "lengthChange": false,
+        //     "searching": false,
+        //     "ordering": true,
+        //     "info": true,
+        //     "autoWidth": false,
+        //     "responsive": true,
+        // });
+    });
 
     var transfer_counter = 0;
 
