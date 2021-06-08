@@ -3,7 +3,7 @@
 </button>
 <div class="dropdown-menu">
     <a class="dropdown-item" href="<?php echo base_url('doctor/er_notes'); ?>">ER Notes</a>
-    <a class="dropdown-item" href="<?php echo base_url(''); ?>">Plan</a>
+    <a class="dropdown-item" href="<?php echo base_url('doctor/plan'); ?>">Plan</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#">Out when called</a>
 </div>
