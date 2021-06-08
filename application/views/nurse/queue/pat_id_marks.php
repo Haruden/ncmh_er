@@ -10,27 +10,8 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h2 class="m-0 text-dark">ROY O. DAHILDAHIL, 28, M</h2>
-                            <p class="mb-0">Date of Admission: December 19, 2020 (3 Days)</p>
-                            <a href="#">View Pavilion History</a>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <div class="d-flex justify-content-end mb-2">
-                                <h1>Pavilion 1</h1>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <p>December 22, 2020</p>
-                            </div>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content-header -->
+            <!-- Patient Header -->
+            <?php $this->load->view("nurse/queue/pat_header"); ?>
 
             <!-- Main content -->
             <section class="content">

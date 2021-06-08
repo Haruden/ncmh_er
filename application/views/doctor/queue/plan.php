@@ -8,27 +8,10 @@
         <?php $this->load->view('doctor/modals'); ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h2 class="m-0 text-dark">ROY O. DAHILDAHIL, 28, M</h2>
-                            <p class="mb-0">Date of Admission: December 19, 2020 (3 Days)</p>
-                            <a href="#">View Pavilion History</a>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <div class="d-flex justify-content-end mb-2">
-                                <h1>Pavilion 1</h1>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <p>December 22, 2020</p>
-                            </div>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content-header -->
+
+            <!-- Patient Header -->
+            <?php $this->load->view('doctor/queue/pat_header'); ?>
+
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -85,13 +68,13 @@
                                                                             <a class="dropdown-item">Separated link</a>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
-                                                                
+
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false" >
-                                                                            View Details
+                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false">
+                                                                    View Details
                                                                 </button>
                                                                 <div class="col-sm-12">
                                                                     <a href="#updateorder" class="text-primary"><small>Update Order</small></a>
@@ -119,15 +102,15 @@
                                                                             <a class="dropdown-item">Separated link</a>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                                 <div class="col-sm-12">
                                                                     <small><i class="small text-muted btn-block">Updated by: Burr Herber, RN </br> Jan 10, 2021 - 12:02 PM</i></small>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false" >
-                                                                            View Details
+                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false">
+                                                                    View Details
                                                                 </button>
                                                                 <div class="col-sm-12">
                                                                     <a href="#updateorder" class="text-primary"><small>Update Order</small></a>
@@ -155,19 +138,17 @@
                                                                             <a class="dropdown-item">Separated link</a>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
-                                                                
+
                                                                 <div class="col-sm-12">
                                                                     <small><i class="small text-muted btn-block">Updated by: Burr Herber, RN </br> Jan 10, 2021 - 12:02 PM</i></small>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false" >
-                                                                            View Details
-                                                                </button>
+                                                                <button class="btn btn-block btn-success" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#medication-modal-doctor">View Details</button>
                                                                 <div class="col-sm-12">
-                                                                    <a href="#updateorder" class="text-primary"><small>Update Order</small></a>
+                                                                    <a href="#updateorder" class="text-primary text-center"><small>Update Order</small></a>
                                                                 </div>
                                                             </td>
 
@@ -193,12 +174,12 @@
                                                                             <a class="dropdown-item">Separated link</a>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
-                                                                
+
                                                             <td>
-                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false" >
-                                                                            View Details
+                                                                <button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false">
+                                                                    View Details
                                                                 </button>
                                                                 <div class="col-sm-12">
                                                                     <a href="#updateorder" class="text-primary"><small>Update Order</small></a>
@@ -254,8 +235,6 @@
         $("#example1_length").find('label').after(' <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>');
 
     });
-
-
 </script>
 
 </html>

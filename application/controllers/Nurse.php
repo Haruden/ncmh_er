@@ -36,9 +36,9 @@ class Nurse extends CI_Controller {
         $this->load->view('nurse/queue/vitals');
 	}
 
-	public function pat_id_marks()
+	public function pat_details()
 	{
-		$data['title'] = "Patient ID Marks";
+		$data['title'] = "Patient Details";
 
 		$this->js_plugins = [
             'daterangepicker/daterangepicker.js',
@@ -68,6 +68,14 @@ class Nurse extends CI_Controller {
         $data['nationalities'] = config_item('nationalities');
         $data['consult_types'] = config_item('consult_types');
         $data['degrees'] = config_item('degrees');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('nurse/queue/pat_details');
+	}
+
+	public function pat_id_marks()
+	{
+		$data['title'] = "Patient ID Marks";
 
         $this->load->view('templates/header', $data);
         $this->load->view('nurse/queue/pat_id_marks');
