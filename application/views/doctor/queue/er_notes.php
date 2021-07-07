@@ -149,7 +149,6 @@
 
 <script>
     $('[data-widget="pushmenu"]').PushMenu('collapse');
-
     $(function() {
         $("#example1").DataTable({
             language: {
@@ -169,10 +168,67 @@
         //     "responsive": true,
         // });
     });
-    $(document).ready(function() {
-        $('#summernote,#summernote1').summernote();
+
+    var transfer_counter = 0;
+
+    $("#add_trans_btn").on('click', function() {
+        transfer_counter++;
+        var html = '<div class="row mt-2 ml-1" id="transfer_no' + transfer_counter + '">';
+        html += '<label class="" for="">Transfer: </label>';
+        html += '<select name="" id="" class="form-control ml-2 mr-3">';
+        html += '<option value="">In</option>';
+        html += '<option value="">Out</option>';
+        html += '</select>';
+        html += '<label class="" for="">What Pavilion? </label>';
+        html += '<select name="" id="" class="form-control ml-2 mr-3">';
+        html += '<option value="">Pavilion 1</option>';
+        html += '<option value="">Pavilion 2</option>';
+        html += '</select></div>';
+        $("#transfer_div").append(html);
     });
 
+    $("#remove_trans_btn").on('click', function() {
+        $('#transfer_no' + transfer_counter).remove();
+        transfer_counter--;
+    });
+
+    $('#summernote1, #summernote').each(function() {
+        $(this).summernote({
+            placeholder: this.placeholder,
+            dialogsInBody: true,
+            spellCheck: true,
+            minHeight: 90,
+            minWidth: 430,
+            maxHeight: null,
+            focus: true,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font'],
+                ['fontsize', ['fontsize']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen']],
+            ]
+        });
+    });
+    
+    $('.tabNext').click(function(){
+        $('.nav-tabs > .active').next('a').trigger('click');
+    });
+
+    $('.tabPrevious').click(function(){
+        $('.nav-tabs > .active').prev('a').trigger('click');
+    });
+
+    function change(radio) { 
+        if (radio.checked && radio.id === "durationNum") {+
+            $("#durNumDiv").removeClass("d-none");
+            $("#durRangeDiv").hide();
+        } else  {
+            $("#durNumDiv").addClass("d-none");
+            $("#durRangeDiv").show();
+        }
+    } 
 </script>
 
 </html>
