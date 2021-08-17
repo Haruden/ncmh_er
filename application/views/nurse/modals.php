@@ -194,9 +194,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group form-inline">
                     <label for="nurseModalDateAndTime">Date & Time:</label>
-                    <div class="input-group mb-2">
+                    <div class="input-group ml-2">
                         <input type="text"  id="nurseModalDateAndTime" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker" class="form-control datetimepicker-input" placeholder="Date & Time">
                         <div class="input-group-prepend" data-target="#nurseModalDateAndTime" data-toggle="datetimepicker">
                             <div class="input-group-text">
@@ -205,13 +205,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="choose-pavilion">Pavilion <i class="fas fa-caret-down"></i></label>
-                    <select class="form-control" id="choose-pavilion">
-                        <option selected disabled>Choose Pavillion</option>
-                        <option value="Pavilion 1">Pavilion 1</option>
-                        <option value="Pavilion 2">Pavilion 2</option>
-                        <option value="ACIS">ACIS</option>
+                <div class="form-group form-inline">
+                    <label for="choose-pavilion">Pavilion:</label>
+                    <select class="form-control ml-2" id="choose-pavilion" disabled>
+                        <option value="" selected>Emergency Room</option>
                     </select>
                 </div>
                <div class="row">
@@ -245,3 +242,35 @@
         </div>
     </div>
 </div>
+
+<!-- Small Modal -->
+<div class="modal fade" id="modal-do_status">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Status?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>Carried</option>
+                        <option>Administered</option>
+                        <option>Request Made</option>
+                        <option>Endorsed</option>
+                        <option>Discontinued</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

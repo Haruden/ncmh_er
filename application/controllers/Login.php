@@ -18,12 +18,21 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	
+	public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
 	public function index()
 	{
 		if(isset($_POST['username'])){
 			if($_POST['username'] == "nurse"){
+				$this->session->set_userdata('role', 'nurse');
 				redirect('/Nurse/');
+
 			} else if($_POST['username'] == "doctor"){
+				$this->session->set_userdata('role', 'doctor');
 				redirect('/Doctor');
 			}
 		}

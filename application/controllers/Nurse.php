@@ -5,6 +5,7 @@ class Nurse extends CI_Controller {
 
 	public $js_plugins = [];
 	public $css_plugins = [];
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,25 +21,30 @@ class Nurse extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
 	public function index()
 	{
 		$data['title'] = "Nurse's Queue";
+		$data['role'] = $this->session->userdata('role');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('nurse/queue');
+        $this->load->view('templates/queue');
 	}
 
-	public function vitals()
+	private function view_patient($page)
 	{
-		$data['title'] = "Vital Signs";
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('nurse/queue/vitals');
+		$data['role'] = $this->session->userdata('role');
+		$this->load->view('patient/header');
+        $this->load->view('patient/'.$page, $data);
+        $this->load->view('patient/footer');
 	}
 
 	public function pat_details()
 	{
-		$data['title'] = "Patient Details";
 
 		$this->js_plugins = [
             'daterangepicker/daterangepicker.js',
@@ -69,24 +75,56 @@ class Nurse extends CI_Controller {
         $data['consult_types'] = config_item('consult_types');
         $data['degrees'] = config_item('degrees');
 
+        $data['title'] = "Patient Details";
+        $data['role'] = $this->session->userdata('role');
+        
         $this->load->view('templates/header', $data);
-        $this->load->view('nurse/queue/pat_details');
+        $this->view_patient('details');
+	}
+
+	public function vitals()
+	{
+		$data['title'] = "Vital Signs";
+		$data['role'] = $this->session->userdata('role');
+
+        $this->load->view('templates/header', $data);
+        $this->view_patient('vitals');
 	}
 
 	public function pat_id_marks()
 	{
 		$data['title'] = "Patient ID Marks";
+		$data['role'] = $this->session->userdata('role');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('nurse/queue/pat_id_marks');
+        $this->view_patient('id_marks');
 	}
 
 	public function nurse_notes()
 	{
 		$data['title'] = "Nurse's Notes";
+		$data['role'] = $this->session->userdata('role');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('nurse/queue/nurse_notes');
+        $this->view_patient('nurse_notes');
+	}
+
+	public function er_notes()
+	{
+		$data['title'] = "ER Notes";
+		$data['role'] = $this->session->userdata('role');
+
+        $this->load->view('templates/header', $data);
+        $this->view_patient('er_notes');
+	}
+
+	public function plan()
+	{
+		$data['title'] = "Plan";
+		$data['role'] = $this->session->userdata('role');
+
+        $this->load->view('templates/header', $data);
+        $this->view_patient('plan');
 	}
 
 	public function save()

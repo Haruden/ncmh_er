@@ -3,9 +3,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php $this->load->view('nurse/navbar'); ?>
-        <?php $this->load->view('nurse/sidebar'); ?>
-        <?php $this->load->view('nurse/modals'); ?>
+        <?php 
+            $this->load->view('templates/navbar');  
+            $this->load->view('templates/sidebar'); 
+            $this->load->view($role.'/modals'); 
+        ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -72,7 +74,7 @@
                                                 <td>Outpatient Department</td>
                                                 <td>Vagrant</td>
                                                 <td>
-                                                    <?php $this->load->view('nurse/queue/action_dropdown'); ?>
+                                                    <?php $this->load->view($role.'/queue/action_dropdown'); ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -83,7 +85,7 @@
                                                 <td>ER Direct</td>
                                                 <td></td>
                                                 <td>
-                                                    <?php $this->load->view('nurse/queue/action_dropdown'); ?>
+                                                    <?php $this->load->view($role.'/queue/action_dropdown'); ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -94,7 +96,7 @@
                                                 <td>Outpatient Department</td>
                                                 <td></td>
                                                 <td>
-                                                    <?php $this->load->view('nurse/queue/action_dropdown'); ?>
+                                                    <?php $this->load->view($role.'/queue/action_dropdown'); ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -105,7 +107,7 @@
                                                 <td>Outpatient Department</td>
                                                 <td></td>
                                                 <td>
-                                                    <?php $this->load->view('nurse/queue/action_dropdown'); ?>
+                                                    <?php $this->load->view($role.'/queue/action_dropdown'); ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -116,7 +118,7 @@
                                                 <td>Outpatient Department</td>
                                                 <td></td>
                                                 <td>
-                                                    <?php $this->load->view('nurse/queue/action_dropdown'); ?>
+                                                    <?php $this->load->view($role.'/queue/action_dropdown'); ?>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -164,7 +166,9 @@
                 "autoWidth": false,
             });
 
-            $("#example1_length").find('label').after('<button class="btn btn-success btn-sm ml-3">Add Patient<i class="ml-1 fas fa-plus"></i></button>');
+            <?php if($role == 'nurse'){ ?>
+                $("#example1_length").find('label').after('<button class="btn btn-success btn-sm ml-3">Add Patient<i class="ml-1 fas fa-plus"></i></button>');
+            <?php } ?>
         });
     </script>
 </body>
