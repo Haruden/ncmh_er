@@ -98,7 +98,7 @@
                                     <span> None </span>
                                 </div>
 
-                                <?php if ($role == 'nurse'){ ?>
+                                <?php if ($role == 'nurse') { ?>
                                     <div class="d-flex justify-content-end">
                                         <a href=""><u>Edit</u></a>
                                     </div>
@@ -111,9 +111,9 @@
                                         <small class="mb-0"><i>Encoded by Burr Herber, RN; </i></small><br>
                                         <small class="mt-0"><i><u><a href="#">View Previous Patient Identifying Marks</a></u></i></small>
                                     </div>
-                                    <?php if ($role == 'nurse'){ ?>
+                                    <?php if ($role == 'nurse') { ?>
                                         <div>
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#modal-marks">Add Patient Identifying Marks
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-marks">Add Patient Identifying Marks
                                                 <i class="ml-1 fas fa-plus"></i>
                                             </button>
                                         </div>
@@ -147,15 +147,15 @@
                                     <span> March 31, 2021 </span>
                                 </div>
 
-                                <?php if ($role == 'nurse'){ ?>
+                                <?php if ($role == 'nurse') { ?>
                                     <div class="d-flex justify-content-end">
                                         <a href=""><u>Edit</u></a>
                                     </div>
 
-                                    <hr>    
+                                    <hr>
 
                                     <div class="d-flex justify-content-end">
-                                        <button class="btn btn-primary">Save
+                                        <button class="btn btn-sm btn-primary">Save
                                         </button>
                                     </div>
                                 <?php } ?>
@@ -175,48 +175,218 @@
     <!-- /.row -->
 </section>
 
-<div class="modal fade" id="modal-marks">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Identifying Marks</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body row">
-
-                <img src="<?php echo base_url(); ?>assets/img/right.png" alt="" class="mb-2" style="width:50%;">
-
-                <button class="btn btn-default btn-lg col-sm" style="height: 50%; width: 50%;">Scan Left Thumb</button>
-                <button class="btn btn-default btn-lg col-sm" style="height: 50%; width: 50%;">Scan Right Thumb</button>
-            </div>
-            <div class="modal-footer justify-content-end">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
 <script>
     $('[data-widget="pushmenu"]').PushMenu('collapse');
 
+    $(document).ready(function() {
 
-    $(function() {
         $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
         });
-        // $('#example2').DataTable({
-        //     "paging": true,
-        //     "lengthChange": false,
-        //     "searching": false,
-        //     "ordering": true,
-        //     "info": true,
-        //     "autoWidth": false,
-        //     "responsive": true,
-        // });
+
+        $("#modal-marks").on('shown.bs.modal', function() {
+
+            // SETTING ALL VARIABLES
+            // Source: https://codepen.io/yananas/pen/rwvZvY
+
+            var isMouseDown = false;
+            var canvas = document.createElement('canvas');
+            var body = document.getElementById("marks-body");
+            var ctx = canvas.getContext('2d');
+            var linesArray = [];
+            currentSize = 1;
+            var currentColor = "rgb(200,20,100)";
+            var currentBg = "white";
+
+            // INITIAL LAUNCH
+
+            createCanvas();
+
+            // BUTTON EVENT HANDLERS
+
+            document.getElementById('canvasUpdate').addEventListener('click', function() {
+                createCanvas();
+                redraw();
+            });
+
+            document.getElementById('colorpicker').addEventListener('change', function() {
+                currentSize = 1;
+                currentColor = this.value;
+            });
+
+            document.getElementById('bgcolorpicker').addEventListener('change', function() {
+                ctx.fillStyle = this.value;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                redraw();
+                currentBg = ctx.fillStyle;
+            });
+
+            document.getElementById('controlSize').addEventListener('change', function() {
+                currentSize = this.value;
+                document.getElementById("showSize").innerHTML = this.value;
+            });
+
+            document.getElementById('saveToImage').addEventListener('click', function() {
+                downloadCanvas(this, 'canvas', 'masterpiece.png');
+            }, false);
+            document.getElementById('eraser').addEventListener('click', eraser);
+            document.getElementById('clear').addEventListener('click', createCanvas);
+            document.getElementById('save').addEventListener('click', save);
+            document.getElementById('load').addEventListener('click', load);
+            document.getElementById('clearCache').addEventListener('click', function() {
+                localStorage.removeItem("savedCanvas");
+                linesArray = [];
+                console.log("Cache cleared!");
+            });
+
+            // REDRAW 
+
+            function redraw() {
+                for (var i = 1; i < linesArray.length; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(linesArray[i - 1].x, linesArray[i - 1].y);
+                    ctx.lineWidth = linesArray[i].size;
+                    ctx.lineCap = "round";
+                    ctx.strokeStyle = linesArray[i].color;
+                    ctx.lineTo(linesArray[i].x, linesArray[i].y);
+                    ctx.stroke();
+                }
+            }
+
+            // DRAWING EVENT HANDLERS
+
+            canvas.addEventListener('mousedown', function() {
+                mousedown(canvas, event);
+            });
+            canvas.addEventListener('mousemove', function() {
+                mousemove(canvas, event);
+            });
+            canvas.addEventListener('mouseup', mouseup);
+
+            // CREATE CANVAS
+
+            function createCanvas() {
+                canvas.id = "canvas";
+                canvas.width = parseInt(document.getElementById("sizeX").value);
+                canvas.height = parseInt(document.getElementById("sizeY").value);
+                canvas.style.zIndex = 8;
+                canvas.style.position = "absolute";
+                canvas.style.border = "1px solid";
+
+                var blueprint_background = new Image();
+                blueprint_background.src = '<?php echo base_url();?>assets/img/body-outline.gif'; 
+                blueprint_background.onload = function(){
+                    var pattern = ctx.createPattern(this, "no-repeat");
+                    ctx.fillStyle = pattern;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    body.appendChild(canvas);
+                    // ctx.fill();
+                };
+
+                // ctx.fillStyle = currentBg;
+                
+            }
+
+            // DOWNLOAD CANVAS
+
+            function downloadCanvas(link, canvas, filename) {
+                link.href = document.getElementById(canvas).toDataURL();
+                link.download = filename;
+            }
+
+            // SAVE FUNCTION
+
+            function save() {
+                localStorage.removeItem("savedCanvas");
+                localStorage.setItem("savedCanvas", JSON.stringify(linesArray));
+                console.log("Saved canvas!");
+            }
+
+            // LOAD FUNCTION
+
+            function load() {
+                if (localStorage.getItem("savedCanvas") != null) {
+                    linesArray = JSON.parse(localStorage.savedCanvas);
+                    var lines = JSON.parse(localStorage.getItem("savedCanvas"));
+                    for (var i = 1; i < lines.length; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(linesArray[i - 1].x, linesArray[i - 1].y);
+                        ctx.lineWidth = linesArray[i].size;
+                        ctx.lineCap = "round";
+                        ctx.strokeStyle = linesArray[i].color;
+                        ctx.lineTo(linesArray[i].x, linesArray[i].y);
+                        ctx.stroke();
+                    }
+                    console.log("Canvas loaded.");
+                } else {
+                    console.log("No canvas in memory!");
+                }
+            }
+
+            // ERASER HANDLING
+
+            function eraser() {
+                currentSize = 25;
+                currentColor = ctx.fillStyle
+            }
+
+            // GET MOUSE POSITION
+
+            function getMousePos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect();
+                return {
+                    x: evt.clientX - rect.left,
+                    y: evt.clientY - rect.top
+                };
+            }
+
+            // ON MOUSE DOWN
+
+            function mousedown(canvas, evt) {
+                var mousePos = getMousePos(canvas, evt);
+                isMouseDown = true
+                var currentPosition = getMousePos(canvas, evt);
+                ctx.moveTo(currentPosition.x, currentPosition.y)
+                ctx.beginPath();
+                ctx.lineWidth = currentSize;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = currentColor;
+
+            }
+
+            // ON MOUSE MOVE
+
+            function mousemove(canvas, evt) {
+
+                if (isMouseDown) {
+                    var currentPosition = getMousePos(canvas, evt);
+                    ctx.lineTo(currentPosition.x, currentPosition.y)
+                    ctx.stroke();
+                    store(currentPosition.x, currentPosition.y, currentSize, currentColor);
+                }
+            }
+
+            // STORE DATA
+
+            function store(x, y, s, c) {
+                var line = {
+                    "x": x,
+                    "y": y,
+                    "size": s,
+                    "color": c
+                }
+                linesArray.push(line);
+            }
+
+            // ON MOUSE UP
+
+            function mouseup() {
+                isMouseDown = false
+                store()
+            }
+
+        });
+
     });
 </script>

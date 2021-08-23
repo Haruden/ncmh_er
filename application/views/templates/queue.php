@@ -166,7 +166,7 @@
                 "autoWidth": false,
             });
 
-            <?php if($role == 'nurse'){ ?>
+            <?php if($role == 'attendant'){ ?>
                 $("#example1_length").find('label').after('<button class="btn btn-success btn-sm ml-3">Add Patient<i class="ml-1 fas fa-plus"></i></button>');
             <?php } ?>
         });

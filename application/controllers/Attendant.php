@@ -1,12 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Doctor extends CI_Controller {
+class Attendant extends CI_Controller {
 
-	public function __construct() {
-        parent::__construct();
-        $this->load->library('session');
-    }
+	public $js_plugins = [];
+	public $css_plugins = [];
 
 	/**
 	 * Index Page for this controller.
@@ -23,9 +21,19 @@ class Doctor extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
 	public function index()
 	{
-		$data['title'] = "Doctor's Queue";
+		redirect('attendant/queue');
+	}
+
+	public function queue()
+	{
+		$data['title'] = "Nursing Attendant's Queue";
 		$data['role'] = $this->session->userdata('role');
 
         $this->load->view('templates/header', $data);
@@ -37,24 +45,6 @@ class Doctor extends CI_Controller {
 		$this->load->view('patient/header');
         $this->load->view('patient/'.$page);
         $this->load->view('patient/footer');
-	}
-
-	public function er_notes()
-	{
-		$data['title'] = "ER Notes";
-		$data['role'] = $this->session->userdata('role');
-
-        $this->load->view('templates/header', $data);
-        $this->view_patient('er_notes');
-	}
-
-	public function plan()
-	{
-		$data['title'] = "Plan";
-		$data['role'] = $this->session->userdata('role');
-
-        $this->load->view('templates/header', $data);
-        $this->view_patient('plan');
 	}
 
 	public function pat_details()
@@ -94,33 +84,6 @@ class Doctor extends CI_Controller {
         
         $this->load->view('templates/header', $data);
         $this->view_patient('details');
-	}
-
-	public function vitals()
-	{
-		$data['title'] = "Vital Signs";
-		$data['role'] = $this->session->userdata('role');
-
-        $this->load->view('templates/header', $data);
-        $this->view_patient('vitals');
-	}
-
-	public function pat_id_marks()
-	{
-		$data['title'] = "Patient ID Marks";
-		$data['role'] = $this->session->userdata('role');
-
-        $this->load->view('templates/header', $data);
-        $this->view_patient('id_marks');
-	}
-
-	public function nurse_notes()
-	{
-		$data['title'] = "Nurse's Notes";
-		$data['role'] = $this->session->userdata('role');
-
-        $this->load->view('templates/header', $data);
-        $this->view_patient('nurse_notes');
 	}
 
 }

@@ -5,8 +5,7 @@
 
             <div class="col-md-2">                            
                 <?php $this->load->view('templates/sidemenu'); ?>
-            </div>                        
-            <!-- /.col -->
+            </div>       
 
             <div class="col-md-10">
 

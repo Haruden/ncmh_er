@@ -26,7 +26,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Jan 24, 2021 <br> 12:10PM <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
-                                                <td>In: <br> Pavilion 1 - Ward 1</td>
+                                                <td>Status</td>
                                                 <td>History Notes of the patient will be reflected here.</td>
                                                 <td>Assessment Plan for the patient will be reflected here.</td>
                                                 <td>
@@ -41,7 +41,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Jan 10, 2021 <br> 12:10PM <br> <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada <br> Updated by: <br> Dr. Argamosa<br> Jan 24, 2021 (4:56pm) </i></small> </td>
-                                                <td>Out: <br> Pavilion 3 - Ward 2 <br><br> In: <br> Pavilion 1 - Ward 2</td>
+                                                <td>Status</td>
                                                 <td>History Notes of the patient will be reflected here.</td>
                                                 <td>Assessment Plan for the patient will be reflected here.</td>
                                                 <td>
@@ -54,7 +54,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Jan 24, 2021 <br> 12:10PM <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
-                                                <td>In: <br> Pavilion 1 - Ward 1 <br> <br> Out: <br> Pavilion 3 - Ward 2</td>
+                                                <td>Status</td>
                                                 <td>History Notes of the patient will be reflected here.</td>
                                                 <td>Assessment Plan for the patient will be reflected here.</td>
                                                 <td>
@@ -69,7 +69,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Jan 10, 2021 <br> 12:10PM <br> <small><i class="small text-muted">Encoded by: <br> Dr. Cruzada <br> Updated by: <br> Dr. Argamosa<br> Jan 24, 2021 (4:56pm) </i></small> </td>
-                                                <td>Out: <br> Pavilion 3 - Ward 2</td>
+                                                <td>Status</td>
                                                 <td>History Notes of the patient will be reflected here.</td>
                                                 <td>Assessment Plan for the patient will be reflected here.</td>
                                                 <td>
@@ -83,7 +83,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Date/Time</th>
-                                                <th>Pavilion</th>
+                                                <th>Status</th>
                                                 <th>History Notes</th>
                                                 <th>Assessment Plan</th>
                                                 <th>Others</th>

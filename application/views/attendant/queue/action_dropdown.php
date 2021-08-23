@@ -2,8 +2,7 @@
     Actions
 </button>
 <div class="dropdown-menu">
-    <a class="dropdown-item" href="<?php echo base_url('doctor/er_notes'); ?>">ER Notes</a>
-    <a class="dropdown-item" href="<?php echo base_url('doctor/plan'); ?>">Plan</a>
+    <a class="dropdown-item" href="<?php echo base_url('attendant/pat_details'); ?>">Patient Details</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#">Cancel Admission</a>
 </div>

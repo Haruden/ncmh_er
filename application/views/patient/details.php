@@ -3,160 +3,161 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-2">                            
-                <?php $this->load->view('templates/sidemenu'); ?>
-            </div>                        
-            <!-- /.col -->
+            <?php if( $role == 'nurse' || $role == 'doctor') { ?>
+                <div class="col-md-2">                            
+                    <?php $this->load->view('templates/sidemenu'); ?>
+                </div>  
+            <?php } ?>
 
-            <?php if($role == 'nurse'){ ?>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-default">
-                            <div class="card-body p-0">
-                                <div class="bs-stepper patient-form">
-                                    <div class="bs-stepper-header" role="tablist">
-                                        <!-- steps here -->
-                                        <div class="step" data-target="#information-part">
-                                            <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
-                                                <span class="bs-stepper-circle">1</span>
-                                                <span class="bs-stepper-label">Sociodemographic</span>
-                                            </button>
+            <?php if ($role == 'attendant') { ?>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-default">
+                                <div class="card-body p-0">
+                                    <div class="bs-stepper patient-form">
+                                        <div class="bs-stepper-header" role="tablist">
+                                            <!-- steps here -->
+                                            <div class="step" data-target="#information-part">
+                                                <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+                                                    <span class="bs-stepper-circle">1</span>
+                                                    <span class="bs-stepper-label">Sociodemographic</span>
+                                                </button>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="step" data-target="#source-of-info-part">
+                                                <button type="button" class="step-trigger" role="tab" aria-controls="source-of-info-part" id="source-of-info-part-trigger">
+                                                    <span class="bs-stepper-circle">2</span>
+                                                    <span class="bs-stepper-label">Source of Information</span>
+                                                </button>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="step" data-target="#queue-part">
+                                                <button type="button" class="step-trigger" role="tab" aria-controls="queue-part" id="queue-part-trigger">
+                                                    <span class="bs-stepper-circle">3</span>
+                                                    <span class="bs-stepper-label">Queue</span>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="line"></div>
-                                        <div class="step" data-target="#source-of-info-part">
-                                            <button type="button" class="step-trigger" role="tab" aria-controls="source-of-info-part" id="source-of-info-part-trigger">
-                                                <span class="bs-stepper-circle">2</span>
-                                                <span class="bs-stepper-label">Source of Information</span>
-                                            </button>
-                                        </div>
-                                        <div class="line"></div>
-                                        <div class="step" data-target="#queue-part">
-                                            <button type="button" class="step-trigger" role="tab" aria-controls="queue-part" id="queue-part-trigger">
-                                                <span class="bs-stepper-circle">3</span>
-                                                <span class="bs-stepper-label">Queue</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="bs-stepper-content">
-                                        <!-- steps content here -->
+                                        <div class="bs-stepper-content">
+                                            <!-- steps content here -->
 
-                                        <!-- Start - First form -->
-                                        <form id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                                            <div class="form-group">
-                                                <label class="checkbox-label">Sociodemographic</label>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_sociodemographic" name="unknown_sociodemographic">
-                                                    <label class="thin-label" for="unknown_sociodemographic">Unknown</label>
-                                                </div>
-                                                <div class="alert alert-danger alert-dismissible" id="sociodemographic_alert" hidden>
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                If you press next, you will go directly to the Source of Information Page
-                                                </div>
-                                            </div>
-
-                                            <!-- Name fields -->
-                                            <div class="form-group-container">
-                                                <label class="checkbox-label">
-                                                    <strong class="text-red">*</strong>Name
-                                                </label>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_name" name="unknown_name">
-                                                    <label class="thin-label" for="unknown_name">Unknown</label>
-                                                </div>
-
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="last_name">
-                                                            Last Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="last_name" name="last_name" placeholder="Last name">
+                                            <!-- Start - First form -->
+                                            <form id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+                                                <div class="form-group">
+                                                    <label class="checkbox-label">Sociodemographic</label>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_sociodemographic" name="unknown_sociodemographic">
+                                                        <label class="thin-label" for="unknown_sociodemographic">Unknown</label>
                                                     </div>
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="first_name">
-                                                            First Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="first_name" name="first_name" placeholder="First name">
-                                                    </div>
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="middle_name">Middle Name</label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="middle_name" name="middle_name" placeholder="Middle name">
-                                                    </div>
-                                                    <div class="form-group col-md-2 mb-3">
-                                                        <label class="thin-label" for="name_suffix">Suffix</label>
-                                                        <select id="name_suffix" name="name_suffix" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
-                                                            <?php
-                                                            foreach ($patient_suffixes as $suffix) {
-                                                                echo '<option value="' .$suffix['val'] .'">';
-                                                                echo $suffix['name'];
-                                                                echo '</option>';
-                                                            } ?>
-                                                        </select>
+                                                    <div class="alert alert-danger alert-dismissible" id="sociodemographic_alert" hidden>
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                        If you press next, you will go directly to the Source of Information Page
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Alias -->
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="alias">Alias</label>
-                                                    <input type="text" class="form-control" id="alias" name="alias" placeholder="Alias">
-                                                </div>
-                                            </div>
-
-                                            <!-- Contact Number -->
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="contact_number">Contact Number</label>
-                                                    <input type="text" class="form-control" id="contact_number" name="contact_number" placeholder="Contact Number">
-                                                </div>
-                                            </div>
-
-                                            <!-- Mother's maiden name fields -->
-                                            <div class="form-group-container">
-                                                <label class="checkbox-label">
-                                                    <strong class="text-red">*</strong>Mother's Maiden Name
-                                                </label>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_mm_name" name="unknown_mm_name">
-                                                    <label class="thin-label" for="unknown_mm_name">Unknown</label>
-                                                </div>
-
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="mm_last_name">
-                                                            Last Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="mm_last_name" name="mm_last_name" placeholder="Last name">
+                                                <!-- Name fields -->
+                                                <div class="form-group-container">
+                                                    <label class="checkbox-label">
+                                                        <strong class="text-red">*</strong>Name
+                                                    </label>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_name" name="unknown_name">
+                                                        <label class="thin-label" for="unknown_name">Unknown</label>
                                                     </div>
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="mm_first_name">
-                                                            First Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="mm_first_name" name="mm_first_name" placeholder="First name">
-                                                    </div>
-                                                    <div class="form-group col-md-3 mb-3">
-                                                        <label class="thin-label" for="mm_middle_name">
-                                                            Middle Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="mm_middle_name" name="mm_middle_name" placeholder="Middle name">
-                                                    </div>
-                                                    <div class="form-group col-md-2 mb-3">
-                                                        <label class="thin-label" for="mm_name_suffix">Suffix</label>
-                                                        <select id="mm_name_suffix" name="mm_name_suffix" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
-                                                            <?php
-                                                            foreach ($patient_suffixes as $suffix) {
-                                                                echo '<option value="' .$suffix['val'] .'">';
-                                                                echo $suffix['name'];
-                                                                echo '</option>';
-                                                            } ?>
-                                                        </select>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="last_name">
+                                                                Last Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="last_name" name="last_name" placeholder="Last name">
+                                                        </div>
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="first_name">
+                                                                First Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="first_name" name="first_name" placeholder="First name">
+                                                        </div>
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="middle_name">Middle Name</label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="middle_name" name="middle_name" placeholder="Middle name">
+                                                        </div>
+                                                        <div class="form-group col-md-2 mb-3">
+                                                            <label class="thin-label" for="name_suffix">Suffix</label>
+                                                            <select id="name_suffix" name="name_suffix" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                                                                <?php
+                                                                foreach ($patient_suffixes as $suffix) {
+                                                                    echo '<option value="' . $suffix['val'] . '">';
+                                                                    echo $suffix['name'];
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Philhealth Eligibility -->
-                                            <!--
+                                                <!-- Alias -->
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="alias">Alias</label>
+                                                        <input type="text" class="form-control" id="alias" name="alias" placeholder="Alias">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Contact Number -->
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="contact_number">Contact Number</label>
+                                                        <input type="text" class="form-control" id="contact_number" name="contact_number" placeholder="Contact Number">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Mother's maiden name fields -->
+                                                <div class="form-group-container">
+                                                    <label class="checkbox-label">
+                                                        <strong class="text-red">*</strong>Mother's Maiden Name
+                                                    </label>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_mm_name" name="unknown_mm_name">
+                                                        <label class="thin-label" for="unknown_mm_name">Unknown</label>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="mm_last_name">
+                                                                Last Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="mm_last_name" name="mm_last_name" placeholder="Last name">
+                                                        </div>
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="mm_first_name">
+                                                                First Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="mm_first_name" name="mm_first_name" placeholder="First name">
+                                                        </div>
+                                                        <div class="form-group col-md-3 mb-3">
+                                                            <label class="thin-label" for="mm_middle_name">
+                                                                Middle Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="mm_middle_name" name="mm_middle_name" placeholder="Middle name">
+                                                        </div>
+                                                        <div class="form-group col-md-2 mb-3">
+                                                            <label class="thin-label" for="mm_name_suffix">Suffix</label>
+                                                            <select id="mm_name_suffix" name="mm_name_suffix" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                                                                <?php
+                                                                foreach ($patient_suffixes as $suffix) {
+                                                                    echo '<option value="' . $suffix['val'] . '">';
+                                                                    echo $suffix['name'];
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Philhealth Eligibility -->
+                                                <!--
                                             <div class="form-group-container">
                                                 <label class="checkbox-label">
                                                     <strong class="text-red">*</strong>PhilHealth Eligibility
@@ -196,219 +197,22 @@
                                             </div>
                                             -->
 
-                                            <!-- Current Address -->
-                                            <div class="form-group-container">
-                                                <label class="checkbox-label">
-                                                    <strong class="text-red">*</strong>Current Address
-                                                </label>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_current_address" name="unknown_current_address">
-                                                    <label class="thin-label" for="unknown_current_address">Unknown</label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="ca_region">Region</label>
-                                                        <select id="ca_region" name="ca_region" class="form-control select2bs4" style="width: 100%;">
-                                                            <?php
-                                                            foreach ($regions as $region) {
-                                                                echo '<option value="' .$region->regcode .'">';
-                                                                echo $region->regname;
-                                                                echo '</option>';
-                                                            } ?>
-                                                        </select>
+                                                <!-- Current Address -->
+                                                <div class="form-group-container">
+                                                    <label class="checkbox-label">
+                                                        <strong class="text-red">*</strong>Current Address
+                                                    </label>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_current_address" name="unknown_current_address">
+                                                        <label class="thin-label" for="unknown_current_address">Unknown</label>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="ca_province">Province</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_ca_province" name="unknown_ca_province" disabled>
-                                                            <label class="thin-label" for="unknown_ca_province">Unknown</label>
-                                                        </div>
-                                                        <select id="ca_province" name="ca_province" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="ca_muninicipality_city">Municipality/City</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_ca_muninicipality_city" name="unknown_ca_muninicipality_city" disabled>
-                                                            <label class="thin-label" for="unknown_ca_muninicipality_city">Unknown</label>
-                                                        </div>
-                                                        <select id="ca_muninicipality_city" name="ca_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="ca_barangay">Barangay</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_ca_barangay" name="unknown_ca_barangay" disabled>
-                                                            <label class="thin-label" for="unknown_ca_barangay">Unknown</label>
-                                                        </div>
-                                                        <select id="ca_barangay" name="ca_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="ca_street_number">Street Number</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_ca_street_number" name="unknown_ca_street_number">
-                                                            <label class="thin-label" for="unknown_ca_street_number">Unknown</label>
-                                                        </div>
-                                                        <input type="text" class="form-control" id="ca_street_number" name="ca_street_number" placeholder="Street Number">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Permanent Address -->
-                                            <div class="form-group-container">
-                                                <label class="checkbox-label">
-                                                    <strong class="text-red">*</strong>Permanent Address
-                                                </label>
-                                                <div class="icheck-primary d-inline checkbox-label">
-                                                    <input type="checkbox" id="same_as_ca_address" name="same_as_ca_address">
-                                                    <label class="thin-label" for="same_as_ca_address">Same as current address</label>
-                                                </div>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_permanent_address" name="unknown_permanent_address">
-                                                    <label class="thin-label" for="unknown_permanent_address">Unknown</label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pa_region">Region</label>
-                                                        <select id="pa_region" name="pa_region" class="form-control select2bs4" style="width: 100%;">
-                                                            <?php
-                                                            foreach ($regions as $region) {
-                                                                echo '<option value="' .$region->regcode .'">';
-                                                                echo $region->regname;
-                                                                echo '</option>';
-                                                            } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pa_province">Province</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_pa_province" name="unknown_pa_province" disabled>
-                                                            <label class="thin-label" for="unknown_pa_province">Unknown</label>
-                                                        </div>
-                                                        <select id="pa_province" name="pa_province" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pa_muninicipality_city">Municipality/City</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_pa_muninicipality_city" name="unknown_pa_muninicipality_city" disabled>
-                                                            <label class="thin-label" for="unknown_pa_muninicipality_city">Unknown</label>
-                                                        </div>
-                                                        <select id="pa_muninicipality_city" name="pa_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pa_barangay">Barangay</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_pa_barangay" name="unknown_pa_barangay" disabled>
-                                                            <label class="thin-label" for="unknown_pa_barangay">Unknown</label>
-                                                        </div>
-                                                        <select id="pa_barangay" name="pa_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pa_street_number">Street Number</label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_pa_street_number" name="unknown_pa_street_number">
-                                                            <label class="thin-label" for="unknown_pa_street_number">Unknown</label>
-                                                        </div>
-                                                        <input type="text" class="form-control" id="pa_street_number" name="pa_street_number" placeholder="Street Number">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- First form button -->
-                                            <button type="submit" class="btn btn-primary">Next</button>
-                                        </form>
-                                        <!-- End - First form -->
-
-                                        <!-- Start - Second form -->
-                                        <form id="source-of-info-part" class="content" role="tabpanel" aria-labelledby="source-of-info-part-trigger">
-
-                                            <!-- Date of Birth & Age -->
-                                            <div class="row">
-                                                <!-- Date of Birth -->
-                                                <div class="col-md-4 col-sm-6 mb-3">
-                                                    <div class="form-group-container">
-                                                        <label class="checkbox-label">
-                                                            <strong class="text-red">*</strong>Date of Birth
-                                                        </label>
-                                                        <div class="icheck-primary d-inline">
-                                                            <input type="checkbox" id="unknown_date_of_birth" name="unknown_date_of_birth">
-                                                            <label class="thin-label" for="unknown_date_of_birth">Unknown</label>
-                                                        </div>
-
-                                                        <div class="form-group col-md-12 mb-3">
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend input-group-align">
-                                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                                </div>
-                                                                <input type="text" class="form-control mb-2 mr-sm-2" id="date_of_birth" name="date_of_birth" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Age -->
-                                                <div class="col-md-3 col-sm-6 mb-3">
-                                                    <div class="form-group-container">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label for="age">Age</label>
-                                                                <input type="text" class="form-control" id="age" name="age" placeholder="Age" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Place of Birth -->
-                                            <div class="form-group-container">
-                                                <label class="checkbox-label">
-                                                    <strong class="text-red">*</strong>Place of Birth
-                                                </label>
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" id="unknown_place_of_birth" name="unknown_place_of_birth">
-                                                    <label class="thin-label" for="unknown_place_of_birth">Unknown</label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="thin-label" for="pob_country">Country</label>
-                                                        <select id="pob_country" name="pob_country" class="form-control select2bs4" style="width: 100%;">
-                                                            <?php
-                                                            foreach ($countries as $country) {
-                                                                echo '<option value="' .$country->countrycode .'">';
-                                                                echo $country->country_desc;
-                                                                echo '</option>';
-                                                            } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="pob-ph animate__animated">
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
-                                                            <label class="thin-label" for="pob_region">Region</label>
-                                                            <select id="pob_region" name="pob_region" class="form-control select2bs4" style="width: 100%;">
+                                                            <label class="thin-label" for="ca_region">Region</label>
+                                                            <select id="ca_region" name="ca_region" class="form-control select2bs4" style="width: 100%;">
                                                                 <?php
                                                                 foreach ($regions as $region) {
-                                                                    echo '<option value="' .$region->regcode .'">';
+                                                                    echo '<option value="' . $region->regcode . '">';
                                                                     echo $region->regname;
                                                                     echo '</option>';
                                                                 } ?>
@@ -417,179 +221,380 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
-                                                            <label class="thin-label" for="pob_province">Province</label>
+                                                            <label class="thin-label" for="ca_province">Province</label>
                                                             <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="unknown_pob_province" name="unknown_pob_province" disabled>
-                                                                <label class="thin-label" for="unknown_pob_province">Unknown</label>
+                                                                <input type="checkbox" id="unknown_ca_province" name="unknown_ca_province" disabled>
+                                                                <label class="thin-label" for="unknown_ca_province">Unknown</label>
                                                             </div>
-                                                            <select id="pob_province" name="pob_province" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            <select id="ca_province" name="ca_province" class="form-control select2bs4" style="width: 100%;" disabled>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
-                                                            <label class="thin-label" for="pob_muninicipality_city">Municipality/City</label>
+                                                            <label class="thin-label" for="ca_muninicipality_city">Municipality/City</label>
                                                             <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="unknown_pob_muninicipality_city" name="unknown_pob_muninicipality_city" disabled>
-                                                                <label class="thin-label" for="unknown_pob_muninicipality_city">Unknown</label>
+                                                                <input type="checkbox" id="unknown_ca_muninicipality_city" name="unknown_ca_muninicipality_city" disabled>
+                                                                <label class="thin-label" for="unknown_ca_muninicipality_city">Unknown</label>
                                                             </div>
-                                                            <select id="pob_muninicipality_city" name="pob_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            <select id="ca_muninicipality_city" name="ca_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="ca_barangay">Barangay</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_ca_barangay" name="unknown_ca_barangay" disabled>
+                                                                <label class="thin-label" for="unknown_ca_barangay">Unknown</label>
+                                                            </div>
+                                                            <select id="ca_barangay" name="ca_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="ca_street_number">Street Number</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_ca_street_number" name="unknown_ca_street_number">
+                                                                <label class="thin-label" for="unknown_ca_street_number">Unknown</label>
+                                                            </div>
+                                                            <input type="text" class="form-control" id="ca_street_number" name="ca_street_number" placeholder="Street Number">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="pob-non-ph animate__animated" hidden>
+
+                                                <!-- Permanent Address -->
+                                                <div class="form-group-container">
+                                                    <label class="checkbox-label">
+                                                        <strong class="text-red">*</strong>Permanent Address
+                                                    </label>
+                                                    <div class="icheck-primary d-inline checkbox-label">
+                                                        <input type="checkbox" id="same_as_ca_address" name="same_as_ca_address">
+                                                        <label class="thin-label" for="same_as_ca_address">Same as current address</label>
+                                                    </div>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_permanent_address" name="unknown_permanent_address">
+                                                        <label class="thin-label" for="unknown_permanent_address">Unknown</label>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
-                                                            <label class="thin-label" for="pob_text_address">
-                                                                Address
+                                                            <label class="thin-label" for="pa_region">Region</label>
+                                                            <select id="pa_region" name="pa_region" class="form-control select2bs4" style="width: 100%;">
+                                                                <?php
+                                                                foreach ($regions as $region) {
+                                                                    echo '<option value="' . $region->regcode . '">';
+                                                                    echo $region->regname;
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="pa_province">Province</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_pa_province" name="unknown_pa_province" disabled>
+                                                                <label class="thin-label" for="unknown_pa_province">Unknown</label>
+                                                            </div>
+                                                            <select id="pa_province" name="pa_province" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="pa_muninicipality_city">Municipality/City</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_pa_muninicipality_city" name="unknown_pa_muninicipality_city" disabled>
+                                                                <label class="thin-label" for="unknown_pa_muninicipality_city">Unknown</label>
+                                                            </div>
+                                                            <select id="pa_muninicipality_city" name="pa_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="pa_barangay">Barangay</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_pa_barangay" name="unknown_pa_barangay" disabled>
+                                                                <label class="thin-label" for="unknown_pa_barangay">Unknown</label>
+                                                            </div>
+                                                            <select id="pa_barangay" name="pa_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="pa_street_number">Street Number</label>
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_pa_street_number" name="unknown_pa_street_number">
+                                                                <label class="thin-label" for="unknown_pa_street_number">Unknown</label>
+                                                            </div>
+                                                            <input type="text" class="form-control" id="pa_street_number" name="pa_street_number" placeholder="Street Number">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- First form button -->
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Next</button>
+                                                </div>
+                                            </form>
+                                            <!-- End - First form -->
+
+                                            <!-- Start - Second form -->
+                                            <form id="source-of-info-part" class="content" role="tabpanel" aria-labelledby="source-of-info-part-trigger">
+
+                                                <!-- Date of Birth & Age -->
+                                                <div class="row">
+                                                    <!-- Date of Birth -->
+                                                    <div class="col-md-4 col-sm-6 mb-3">
+                                                        <div class="form-group-container">
+                                                            <label class="checkbox-label">
+                                                                <strong class="text-red">*</strong>Date of Birth
                                                             </label>
-                                                            <input type="text" class="form-control" id="pob_text_address" name="pob_text_address" placeholder="Address">
+                                                            <div class="icheck-primary d-inline">
+                                                                <input type="checkbox" id="unknown_date_of_birth" name="unknown_date_of_birth">
+                                                                <label class="thin-label" for="unknown_date_of_birth">Unknown</label>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12 mb-3">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend input-group-align">
+                                                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control mb-2 mr-sm-2" id="date_of_birth" name="date_of_birth" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Age -->
+                                                    <div class="col-md-3 col-sm-6 mb-3">
+                                                        <div class="form-group-container">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <label for="age">Age</label>
+                                                                    <input type="text" class="form-control" id="age" name="age" placeholder="Age" disabled>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Sex/Gender -->
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label for="sex">Sex</label>
-                                                    <select id="sex" name="sex" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
-                                                        <?php
-                                                        foreach ($genders as $gender) {
-                                                            echo '<option value="' .$gender['val'] .'">';
-                                                            echo $gender['name'];
-                                                            echo '</option>';
-                                                        } ?>
-                                                    </select>
+                                                <!-- Place of Birth -->
+                                                <div class="form-group-container">
+                                                    <label class="checkbox-label">
+                                                        <strong class="text-red">*</strong>Place of Birth
+                                                    </label>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="unknown_place_of_birth" name="unknown_place_of_birth">
+                                                        <label class="thin-label" for="unknown_place_of_birth">Unknown</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="thin-label" for="pob_country">Country</label>
+                                                            <select id="pob_country" name="pob_country" class="form-control select2bs4" style="width: 100%;">
+                                                                <?php
+                                                                foreach ($countries as $country) {
+                                                                    echo '<option value="' . $country->countrycode . '">';
+                                                                    echo $country->country_desc;
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pob-ph animate__animated">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="thin-label" for="pob_region">Region</label>
+                                                                <select id="pob_region" name="pob_region" class="form-control select2bs4" style="width: 100%;">
+                                                                    <?php
+                                                                    foreach ($regions as $region) {
+                                                                        echo '<option value="' . $region->regcode . '">';
+                                                                        echo $region->regname;
+                                                                        echo '</option>';
+                                                                    } ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="thin-label" for="pob_province">Province</label>
+                                                                <div class="icheck-primary d-inline">
+                                                                    <input type="checkbox" id="unknown_pob_province" name="unknown_pob_province" disabled>
+                                                                    <label class="thin-label" for="unknown_pob_province">Unknown</label>
+                                                                </div>
+                                                                <select id="pob_province" name="pob_province" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="thin-label" for="pob_muninicipality_city">Municipality/City</label>
+                                                                <div class="icheck-primary d-inline">
+                                                                    <input type="checkbox" id="unknown_pob_muninicipality_city" name="unknown_pob_muninicipality_city" disabled>
+                                                                    <label class="thin-label" for="unknown_pob_muninicipality_city">Unknown</label>
+                                                                </div>
+                                                                <select id="pob_muninicipality_city" name="pob_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pob-non-ph animate__animated" hidden>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="thin-label" for="pob_text_address">
+                                                                    Address
+                                                                </label>
+                                                                <input type="text" class="form-control" id="pob_text_address" name="pob_text_address" placeholder="Address">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Civil Status -->
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label for="civil_status">Civil Status</label>
-                                                    <select id="civil_status" name="civil_status" class="form-control select2bs4" style="width: 100%;">
-                                                        <?php
-                                                        foreach ($civil_statuses as $civil_status) {
-                                                            echo '<option value="' .$civil_status['val'] .'">';
-                                                            echo $civil_status['name'];
-                                                            echo '</option>';
-                                                        } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- Religion -->
-                                            <div class="form-group-container">
+                                                <!-- Sex/Gender -->
                                                 <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="religion">Religion</label>
-                                                        <select id="religion" name="religion" class="form-control select2bs4" style="width: 100%;">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="sex">Sex</label>
+                                                        <select id="sex" name="sex" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
                                                             <?php
-                                                            foreach ($religions as $religion) {
-                                                                echo '<option value="' .$religion->relcode .'">';
-                                                                echo $religion->reldesc;
+                                                            foreach ($genders as $gender) {
+                                                                echo '<option value="' . $gender['val'] . '">';
+                                                                echo $gender['name'];
                                                                 echo '</option>';
                                                             } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Nationality -->
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="nationality">Nationality</label>
-                                                    <select id="nationality" name="nationality" class="form-control select2bs4" style="width: 100%;">
-                                                        <?php
-                                                        foreach ($nationalities as $nationality) {
-                                                            echo '<option value="' .$nationality['val'] .'">';
-                                                            echo $nationality['name'];
-                                                            echo '</option>';
-                                                        } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- Ethnic Group -->
-                                            <div class="form-group-container">
+                                                <!-- Civil Status -->
                                                 <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="ethnic_group">Ethnic Group</label>
-                                                        <select id="ethnic_group" name="ethnic_group" class="form-control select2bs4" style="width: 100%;">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="civil_status">Civil Status</label>
+                                                        <select id="civil_status" name="civil_status" class="form-control select2bs4" style="width: 100%;">
                                                             <?php
-                                                            foreach ($ethnic_groups as $ethnic_group) {
-                                                                echo '<option value="' .$ethnic_group->ipcode .'">';
-                                                                echo $ethnic_group->ipdesc;
+                                                            foreach ($civil_statuses as $civil_status) {
+                                                                echo '<option value="' . $civil_status['val'] . '">';
+                                                                echo $civil_status['name'];
                                                                 echo '</option>';
                                                             } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Citizenship -->
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="citizenship">Citizenship</label>
-                                                    <select id="citizenship" name="citizenship" class="form-control select2bs4" style="width: 100%;">
-                                                        <?php
-                                                        foreach ($nationalities as $nationality) {
-                                                            echo '<option value="' .$nationality['val'] .'">';
-                                                            echo $nationality['name'];
-                                                            echo '</option>';
-                                                        } ?>
-                                                    </select>
+                                                <!-- Religion -->
+                                                <div class="form-group-container">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="religion">Religion</label>
+                                                            <select id="religion" name="religion" class="form-control select2bs4" style="width: 100%;">
+                                                                <?php
+                                                                foreach ($religions as $religion) {
+                                                                    echo '<option value="' . $religion->relcode . '">';
+                                                                    echo $religion->reldesc;
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Highest Educational Attainment -->
-                                            <div class="form-group-container">
+                                                <!-- Nationality -->
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
-                                                        <label for="highest_ed_at">Highest Educational Attainment</label>
-                                                        <select id="highest_ed_at" name="highest_ed_at" class="form-control select2bs4" style="width: 100%;">
+                                                        <label for="nationality">Nationality</label>
+                                                        <select id="nationality" name="nationality" class="form-control select2bs4" style="width: 100%;">
                                                             <?php
-                                                            foreach ($degrees as $degree) {
-                                                                echo '<option value="' .$degree['val'] .'">';
-                                                                echo $degree['name'];
+                                                            foreach ($nationalities as $nationality) {
+                                                                echo '<option value="' . $nationality['val'] . '">';
+                                                                echo $nationality['name'];
                                                                 echo '</option>';
                                                             } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Literacy Rate -->
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label for="literacy_rate">Literacy Rate</label>
-                                                    <select id="literacy_rate" name="literacy_rate" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
-                                                        <option value="literate">Literate</option>
-                                                        <option value="illiterate">Illiterate</option>
-                                                    </select>
+                                                <!-- Ethnic Group -->
+                                                <div class="form-group-container">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="ethnic_group">Ethnic Group</label>
+                                                            <select id="ethnic_group" name="ethnic_group" class="form-control select2bs4" style="width: 100%;">
+                                                                <?php
+                                                                foreach ($ethnic_groups as $ethnic_group) {
+                                                                    echo '<option value="' . $ethnic_group->ipcode . '">';
+                                                                    echo $ethnic_group->ipdesc;
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Upload Photo -->
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label for="photo">Upload Photo</label>
-                                                    <input type="file" id="photo" name="photo"  accept=".jpg,.jpeg,.png" />
+                                                <!-- Citizenship -->
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="citizenship">Citizenship</label>
+                                                        <select id="citizenship" name="citizenship" class="form-control select2bs4" style="width: 100%;">
+                                                            <?php
+                                                            foreach ($nationalities as $nationality) {
+                                                                echo '<option value="' . $nationality['val'] . '">';
+                                                                echo $nationality['name'];
+                                                                echo '</option>';
+                                                            } ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Second form buttons -->
-                                            <button type="button" class="btn btn-danger" id="btn_back_to_first_form">Back</button>
-                                            <button type="submit" class="btn btn-primary">Next</button>
-                                        </form>
-                                        <!-- End - Second form -->
+                                                <!-- Highest Educational Attainment -->
+                                                <div class="form-group-container">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="highest_ed_at">Highest Educational Attainment</label>
+                                                            <select id="highest_ed_at" name="highest_ed_at" class="form-control select2bs4" style="width: 100%;">
+                                                                <?php
+                                                                foreach ($degrees as $degree) {
+                                                                    echo '<option value="' . $degree['val'] . '">';
+                                                                    echo $degree['name'];
+                                                                    echo '</option>';
+                                                                } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
+                                                <!-- Literacy Rate -->
+                                                <div class="row">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="literacy_rate">Literacy Rate</label>
+                                                        <select id="literacy_rate" name="literacy_rate" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                                                            <option value="literate">Literate</option>
+                                                            <option value="illiterate">Illiterate</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
 
-                                        <!-- Start - Third form -->
-                                        <form id="queue-part" class="content patient-form" role="tabpanel" aria-labelledby="queue-part-trigger">
-                                                <input type="hidden" id="patient_id"/>
+                                                <!-- Upload Photo -->
+                                                <div class="row">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="photo">Upload Photo</label>
+                                                        <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Second form buttons -->
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-sm btn-danger" id="btn_back_to_first_form">Back</button>
+                                                    <button type="submit" class="btn btn-sm btn-primary">Next</button>
+                                                </div>
+
+                                            </form>
+                                            <!-- End - Second form -->
+
+                                            <!-- Start - Third form -->
+                                            <form id="queue-part" class="content patient-form" role="tabpanel" aria-labelledby="queue-part-trigger">
+                                                <input type="hidden" id="patient_id" />
 
                                                 <!-- Source of Information -->
                                                 <div class="form-group-container">
@@ -638,8 +643,7 @@
                                                         <div class="form-group slider-blue">
                                                             <label for="soi_reliability_of_info">Reliability of Information</label>
                                                             <div class="col-xl-12 form-inline">
-                                                                <input type="text" id="soi_reliability_of_info" name="soi_reliability_of_info" value="" class="slider form-control" data-slider-min="0"
-                                                                    data-slider-max="100" data-slider-step="25" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" />
+                                                                <input type="text" id="soi_reliability_of_info" name="soi_reliability_of_info" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" data-slider-step="25" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" />
                                                                 <div class="col-xl-4 col-sm-2">
                                                                     <input type="text" class="form-control soi-reliability-percent" id="soi_reliability_percent" name="soi_reliability_percent" placeholder="0%" disabled>
                                                                 </div>
@@ -688,7 +692,7 @@
                                                             <select id="soi_relationship" name="soi_relationship" class="form-control select2bs4" style="width: 100%;">
                                                                 <?php
                                                                 foreach ($relationships as $relationship) {
-                                                                    echo '<option value="' .$relationship['val'] .'">';
+                                                                    echo '<option value="' . $relationship['val'] . '">';
                                                                     echo $relationship['name'];
                                                                     echo '</option>';
                                                                 } ?>
@@ -719,7 +723,7 @@
                                                                 <select id="soi_region" name="soi_region" class="form-control select2bs4" style="width: 100%;">
                                                                     <?php
                                                                     foreach ($regions as $region) {
-                                                                        echo '<option value="' .$region->regcode .'">';
+                                                                        echo '<option value="' . $region->regcode . '">';
                                                                         echo $region->regname;
                                                                         echo '</option>';
                                                                     } ?>
@@ -782,7 +786,7 @@
                                                             <select id="type_of_payment" name="type_of_payment" class="form-control select2bs4" style="width: 100%;">
                                                                 <?php
                                                                 foreach ($type_of_payments as $payment) {
-                                                                    echo '<option value="' .$payment['val'] .'">';
+                                                                    echo '<option value="' . $payment['val'] . '">';
                                                                     echo $payment['name'];
                                                                     echo '</option>';
                                                                 } ?>
@@ -801,7 +805,7 @@
                                                             <select id="type_of_consult" name="type_of_consult" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity">
                                                                 <?php
                                                                 foreach ($consult_types as $consult_type) {
-                                                                    echo '<option value="' .$consult_type['val'] .'">';
+                                                                    echo '<option value="' . $consult_type['val'] . '">';
                                                                     echo $consult_type['name'];
                                                                     echo '</option>';
                                                                 } ?>
@@ -854,8 +858,8 @@
                                                                 <option value="dsaa">dummy</option>
                                                                 <?php
                                                                 foreach ($doctors as $doctor) {
-                                                                    echo '<option value="' .$doctor->employeeid .'">';
-                                                                    echo $doctor->postitle.' '.$doctor->firstname.' '.$doctor->lastname;
+                                                                    echo '<option value="' . $doctor->employeeid . '">';
+                                                                    echo $doctor->postitle . ' ' . $doctor->firstname . ' ' . $doctor->lastname;
                                                                     echo '</option>';
                                                                 } ?>
                                                             </select>
@@ -863,272 +867,277 @@
                                                     </div>
                                                 </div>
 
-                                                <button type="button" class="btn btn-danger" id="btn_back_to_second_form">Back</button>
-                                                <!-- <button type="submit" id="btn_save" class="btn btn-warning">Save but don’t add patient to queue</button> -->
-                                                
-                                                <button type="submit" id="btn_save_and_queue" class="btn btn-primary">Save</button>
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-sm btn-danger" id="btn_back_to_second_form">Back</button>
+                                                    <!-- <button type="submit" id="btn_save" class="btn btn-warning">Save but don’t add patient to queue</button> -->
+                                                    <button type="submit" id="btn_save_and_queue" class="btn btn-sm btn-primary">Save</button>
+                                                </div>
                                             </form>
 
-                                        <!-- End - Third form -->
+                                            <!-- End - Third form -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <?php } ?>
+
+            <?php if ($role == 'nurse' || $role == 'doctor') { ?>
+                <div class="col-md-10">
+                    <div class="card card-info card-tabs socio-demog-card">
+                        <div class="card-body p-0">
+                            <div class="tab-content" id="tab_content">
+                                <div class="tab-pane fade show active not-editable" id="socio-demog-tab" role="tabpanel">
+                                    <div id="patient-socio-demog-content">
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs" id="socio-demog-tab-list" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="primary-information" data-toggle="pill" href="#primary-information-tab" role="tab">Socio Demographic Data</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="more-information" data-toggle="pill" href="#more-information-tab" role="tab">More</a>
+                                                </li>
+                                            </ul>
+                                            <br />
+                                            <div class="tab-content" id="socio-demog-tab-content">
+                                                <div class="tab-pane fade show active" id="primary-information-tab" role="tabpanel">
+                                                    <form>
+                                                        <!-- Name - if view mode -->
+                                                        <div class="form-group col-12 mb-3">
+                                                            <label for="patient_name_inc">
+                                                                Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="patient_name_inc" name="patient_name_inc" value="Monica Latte" disabled>
+                                                        </div>
+
+                                                        <!-- Alias -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="alias">
+                                                                Alias
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="alias" name="alias" value="Mollatte" disabled>
+                                                        </div>
+
+                                                        <!-- Contact Number -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="contact_number">
+                                                                Contact Number
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="contact_number" name="contact_number" value="4444" disabled>
+                                                        </div>
+
+                                                        <!-- Mother's Maiden Name - if view mode -->
+                                                        <div class="form-group col-12 mb-3">
+                                                            <label for="mm_name">
+                                                                Mother's Maiden Name
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="mm_name" name="mm_name" value="Carla Salem Coffee" disabled>
+                                                        </div>
+
+                                                        <hr />
+
+                                                        <!-- Addresses -->
+                                                        <div class="row">
+                                                            <div class="col-12 display-flex">
+
+                                                                <!-- Current Address -->
+                                                                <div class="col-sm-6">
+                                                                    <label class="checkbox-label">
+                                                                        Current Address
+                                                                    </label>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="ca_region">Region</label>
+                                                                        <select id="ca_region" name="ca_region" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>CAR</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="ca_province">Province</label>
+                                                                        <select id="ca_province" name="ca_province" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Benguet</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="ca_muninicipality_city">Municipality/City</label>
+                                                                        <select id="ca_muninicipality_city" name="ca_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Baguio</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="ca_barangay">Barangay</label>
+                                                                        <select id="ca_barangay" name="ca_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Ambiong</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="ca_street_number">Street Number</label>
+                                                                        <input type="text" class="form-control" id="ca_street_number" name="ca_street_number" value="4040" disabled>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Permanent Address -->
+                                                                <div class="col-sm-6 vertical-rule">
+                                                                    <label class="checkbox-label">
+                                                                        Permanent Address
+                                                                    </label>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="pa_region">Region</label>
+                                                                        <select id="pa_region" name="pa_region" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>CAR</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="pa_province">Province</label>
+                                                                        <select id="pa_province" name="pa_province" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Benguet</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="pa_muninicipality_city">Municipality/City</label>
+                                                                        <select id="pa_muninicipality_city" name="pa_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Baguio</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="pa_barangay">Barangay</label>
+                                                                        <select id="pa_barangay" name="pa_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
+                                                                            <option selected value>Ambiong</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-xs-12">
+                                                                        <label class="label-90" for="pa_street_number">Street Number</label>
+                                                                        <input type="text" class="form-control" id="pa_street_number" name="pa_street_number" value="4040" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr />
+
+                                                        <!-- Date of Birth -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="date_of_birth">
+                                                                Date of Birth
+                                                            </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend input-group-align" hidden>
+                                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                                </div>
+                                                                <input type="text" class="form-control mb-2 mr-sm-2" id="date_of_birth" name="date_of_birth" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask value="04/04/1950" disabled>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Place of Birth -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="place_of_birth">
+                                                                Place of Birth
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="place_of_birth" name="place_of_birth" value="Baguio City" disabled>
+                                                        </div>
+
+                                                        <!-- Age -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="age">
+                                                                Age
+                                                            </label>
+                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="age" name="age" value="71" disabled>
+                                                        </div>
+
+                                                        <!-- Sex -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="sex">Sex</label>
+                                                            <select id="sex" name="sex" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Female</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Civil Status -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="civil_status">Civil Status</label>
+                                                            <select id="civil_status" name="civil_status" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Married</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Religion -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="religion">Religion</label>
+                                                            <select id="religion" name="religion" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Catholic</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Nationality -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="nationality">Nationality</label>
+                                                            <select id="nationality" name="nationality" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Filipino</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Ethnic Group -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="ethnic_group">Ethnic Group</label>
+                                                            <select id="ethnic_group" name="ethnic_group" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Igorot</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Citizenship -->
+                                                        <div class="form-group col-sm-6 mb-3">
+                                                            <label for="citizenship">Citizenship</label>
+                                                            <select id="citizenship" name="citizenship" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>Filipino</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!-- Highest Educational Attainment -->
+                                                        <div class="form-group col-md-6 mb-3">
+                                                            <label for="highest_ed_at">Highest Educational Attainment</label>
+                                                            <select id="highest_ed_at" name="highest_ed_at" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
+                                                                <option selected value>College Graduate</option>
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane fade" id="more-information-tab" role="tabpanel">
+                                                    <div class="form-group col-12 mb-3">
+                                                        <label for="source_patient">
+                                                            Source of Information Details
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.card -->
+
 
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.card -->
                     </div>
+                <?php } ?>
+
                 </div>
                 <!-- /.row -->
-            </div>
-            <?php } ?>
-
-            <?php if($role == 'doctor'){ ?>
-            <div class="col-md-10" >
-                <div class="card card-info card-tabs socio-demog-card" >
-                    <div class="card-body p-0">
-                        <div class="tab-content" id="tab_content">
-                            <div class="tab-pane fade show active not-editable" id="socio-demog-tab" role="tabpanel">
-                                <div id="patient-socio-demog-content">
-                                    <div class="card-body">
-                                        <ul class="nav nav-tabs" id="socio-demog-tab-list" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="primary-information" data-toggle="pill" href="#primary-information-tab" role="tab">Socio Demographic Data</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="more-information" data-toggle="pill" href="#more-information-tab" role="tab">More</a>
-                                            </li>
-                                        </ul>
-                                        <br/>
-                                        <div class="tab-content" id="socio-demog-tab-content">
-                                            <div class="tab-pane fade show active" id="primary-information-tab" role="tabpanel">
-                                                <form>
-                                                    <!-- Name - if view mode -->
-                                                    <div class="form-group col-12 mb-3">
-                                                        <label for="patient_name_inc">
-                                                            Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="patient_name_inc" name="patient_name_inc" value="Monica Latte" disabled>
-                                                    </div>
-
-                                                    <!-- Alias -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="alias">
-                                                            Alias
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="alias" name="alias" value="Mollatte" disabled>
-                                                    </div>
-
-                                                    <!-- Contact Number -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="contact_number">
-                                                            Contact Number
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="contact_number" name="contact_number" value="4444" disabled>
-                                                    </div>
-
-                                                    <!-- Mother's Maiden Name - if view mode -->
-                                                    <div class="form-group col-12 mb-3">
-                                                        <label for="mm_name">
-                                                            Mother's Maiden Name
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="mm_name" name="mm_name" value="Carla Salem Coffee" disabled>
-                                                    </div>
-
-                                                    <hr/>
-
-                                                    <!-- Addresses -->
-                                                    <div class="row">
-                                                        <div class="col-12 display-flex">
-
-                                                            <!-- Current Address -->
-                                                            <div class="col-sm-6">
-                                                                <label class="checkbox-label">
-                                                                    Current Address
-                                                                </label>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="ca_region">Region</label>
-                                                                    <select id="ca_region" name="ca_region" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>CAR</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="ca_province">Province</label>
-                                                                    <select id="ca_province" name="ca_province" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Benguet</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="ca_muninicipality_city">Municipality/City</label>
-                                                                    <select id="ca_muninicipality_city" name="ca_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Baguio</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="ca_barangay">Barangay</label>
-                                                                    <select id="ca_barangay" name="ca_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Ambiong</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="ca_street_number">Street Number</label>
-                                                                    <input type="text" class="form-control" id="ca_street_number" name="ca_street_number" value="4040" disabled>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Permanent Address -->
-                                                            <div class="col-sm-6 vertical-rule">
-                                                                <label class="checkbox-label">
-                                                                    Permanent Address
-                                                                </label>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="pa_region">Region</label>
-                                                                    <select id="pa_region" name="pa_region" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>CAR</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="pa_province">Province</label>
-                                                                    <select id="pa_province" name="pa_province" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Benguet</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="pa_muninicipality_city">Municipality/City</label>
-                                                                    <select id="pa_muninicipality_city" name="pa_muninicipality_city" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Baguio</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="pa_barangay">Barangay</label>
-                                                                    <select id="pa_barangay" name="pa_barangay" class="form-control select2bs4" style="width: 100%;" disabled>
-                                                                        <option selected value>Ambiong</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-xs-12">
-                                                                    <label class="label-90" for="pa_street_number">Street Number</label>
-                                                                    <input type="text" class="form-control" id="pa_street_number" name="pa_street_number" value="4040" disabled>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <hr/>
-
-                                                    <!-- Date of Birth -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="date_of_birth">
-                                                            Date of Birth
-                                                        </label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend input-group-align" hidden>
-                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                            </div>
-                                                            <input type="text" class="form-control mb-2 mr-sm-2" id="date_of_birth" name="date_of_birth" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask value="04/04/1950" disabled>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Place of Birth -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="place_of_birth">
-                                                            Place of Birth
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="place_of_birth" name="place_of_birth" value="Baguio City" disabled>
-                                                    </div>
-
-                                                    <!-- Age -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="age">
-                                                            Age
-                                                        </label>
-                                                        <input type="text" class="form-control mb-2 mr-sm-2" id="age" name="age" value="71" disabled>
-                                                    </div>
-
-                                                    <!-- Sex -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="sex">Sex</label>
-                                                        <select id="sex" name="sex" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Female</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Civil Status -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="civil_status">Civil Status</label>
-                                                        <select id="civil_status" name="civil_status" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Married</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Religion -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="religion">Religion</label>
-                                                        <select id="religion" name="religion" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Catholic</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Nationality -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="nationality">Nationality</label>
-                                                        <select id="nationality" name="nationality" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Filipino</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Ethnic Group -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="ethnic_group">Ethnic Group</label>
-                                                        <select id="ethnic_group" name="ethnic_group" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Igorot</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Citizenship -->
-                                                    <div class="form-group col-sm-6 mb-3">
-                                                        <label for="citizenship">Citizenship</label>
-                                                        <select id="citizenship" name="citizenship" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>Filipino</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- Highest Educational Attainment -->
-                                                    <div class="form-group col-md-6 mb-3">
-                                                        <label for="highest_ed_at">Highest Educational Attainment</label>
-                                                        <select id="highest_ed_at" name="highest_ed_at" class="form-control select2bs4" style="width: 100%;" data-minimum-results-for-search="Infinity" disabled>
-                                                            <option selected value>College Graduate</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane fade" id="more-information-tab" role="tabpanel">
-                                                <div class="form-group col-12 mb-3">
-                                                    <label for="source_patient">
-                                                        Source of Information Details
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card -->
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-            <?php } ?>
-
-        </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 
 <script>
     $('[data-widget="pushmenu"]').PushMenu('collapse');
+
+    document.getElementById("btn_save_and_queue").onclick = function () {
+        location.href = "queue";
+    };
 
     // $(document).ready(function () {
     //     var stepper = new Stepper($('.bs-stepper')[0])

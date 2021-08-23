@@ -27,7 +27,10 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		if(isset($_POST['username'])){
-			if($_POST['username'] == "nurse"){
+			if($_POST['username'] == "attendant"){
+				$this->session->set_userdata('role', 'attendant');
+				redirect('/Attendant');
+			} else if($_POST['username'] == "nurse"){
 				$this->session->set_userdata('role', 'nurse');
 				redirect('/Nurse/');
 

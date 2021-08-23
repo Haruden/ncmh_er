@@ -24,7 +24,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Date/Time</th>
-                                                    <th>Pavilion</th>
                                                     <th>Focus</th>
                                                     <th>Data</th>
                                                     <th>Action</th>
@@ -34,7 +33,6 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
-                                                    <td>Pavilion 1</td>
                                                     <td>Focus notes</td>
                                                     <td>Data notes</td>
                                                     <td>Action notes</td>
@@ -44,7 +42,6 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>Date/Time</th>
-                                                    <th>Pavilion</th>
                                                     <th>Focus</th>
                                                     <th>Data</th>
                                                     <th>Action</th>
