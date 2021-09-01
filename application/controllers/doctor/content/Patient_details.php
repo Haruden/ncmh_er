@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Patient_details extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,30 +18,25 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	
 	public function __construct() {
         parent::__construct();
-        $this->load->library('session');
     }
 
 	public function index()
 	{
-		if(isset($_POST['username'])){
-			if($_POST['username'] == "attendant"){
-				$this->session->set_userdata('role', 'attendant');
-				redirect('/Attendant');
-			} else if($_POST['username'] == "nurse"){
-				$this->session->set_userdata('role', 'nurse');
-				redirect('/Nurse/');
+        $this->set_view('patient/details');
+        $this->title = "Patient Details";
+        $this->page_active = "Patient Details";
+        $this->component = true;
+        $this->sidebar_collapse = true;
 
-			} else if($_POST['username'] == "doctor"){
-				$this->session->set_userdata('role', 'doctor');
-				redirect('/Doctor');
-			}
-		}
+		$this->javascript_plugins = [
+            'moment/moment.min.js',
+		];
 
-		$data['title'] = "Login";
-		$this->load->view('templates/header', $data);
-		$this->load->view('login');
+        $data['title'] =  $this->title;
+
+        $this->build_content($data);
+        $this->render_page();
 	}
 }

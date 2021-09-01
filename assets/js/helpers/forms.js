@@ -1,24 +1,24 @@
 /**
-* APP - Forms
-* - Generic listeners related to user inputs/forms
-*/
+ * APP - Forms
+ * - Generic listeners related to user inputs/forms
+ */
 var APP = APP || {};
 var _ALLFIELDS = [];
 
-(function () {
+(function() {
     APP.Forms = {
         defaultOpts: {
             rules: null,
             messages: null,
             errorElement: 'span',
-            errorPlacement: function (error, element) {
+            errorPlacement: function(error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function (element, errorClass, validClass) {
+            highlight: function(element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function (element, errorClass, validClass) {
+            unhighlight: function(element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
             normalizer: function(value) {
@@ -27,7 +27,7 @@ var _ALLFIELDS = [];
             }
         },
 
-        init: function () {
+        init: function() {
             APP.Forms.trimInputs();
         },
 
@@ -37,7 +37,7 @@ var _ALLFIELDS = [];
          *
          */
         trimInputs: function() {
-            $(document).on('blur', ':input[type="text"]', function (e) {
+            $(document).on('blur', ':input[type="text"]', function(e) {
                 $(this).val(($(this).val() || '').trim());
             });
         },
@@ -134,7 +134,7 @@ var _ALLFIELDS = [];
          *     {"id":"end_date","label":"End Date","type":"file","extension":"pdf|jpg|jpeg" }
          * @return {String} constructed error message for date before
          */
-         getExtensionMessage: function(_field) {
+        getExtensionMessage: function(_field) {
             var field = _field || {};
             var fieldName = field.label;
             var extension = field.extension;
@@ -146,7 +146,7 @@ var _ALLFIELDS = [];
             var fieldLabel = fieldName.charAt(0).toUpperCase() + fieldName.slice(1).toLowerCase();
             return fieldLabel + ' must be ' + extension + ' file.';
         },
-                
+
 
         /**
          * @function initFormValidations
@@ -166,7 +166,7 @@ var _ALLFIELDS = [];
             }
 
             forms.forEach(function(field) {
-                if (['text', 'textarea',  'radio', 'select', 'file', 'checkbox'].includes(field.type)) {
+                if (['text', 'textarea', 'radio', 'select', 'file', 'checkbox'].includes(field.type)) {
                     var name = (field.type === 'radio') ? field.name : field.id;
 
                     formOpts.rules[name] = { required: field.required || false };
@@ -299,7 +299,7 @@ var _ALLFIELDS = [];
                     _form[field.name] = $('input[name="' + field.name + '"]:checked').val();
                 }
 
-				if (field.type === 'file' && $('#' + field.id)[0]){
+                if (field.type === 'file' && $('#' + field.id)[0]) {
                     _form[field.id] = $('#' + field.id)[0].files[0];
                 }
             });
@@ -335,14 +335,14 @@ var _ALLFIELDS = [];
             };
 
             if (opts.noProcessData) {
-              requestOpts.processData = false;
+                requestOpts.processData = false;
             }
 
             if (opts.noContentType) {
-              requestOpts.contentType = false;
+                requestOpts.contentType = false;
             }
 
-            $.ajax(requestOpts).then(function (_response) {
+            $.ajax(requestOpts).then(function(_response) {
                 if (typeof callback === 'function') {
                     return callback(null, _response);
                 }
@@ -366,10 +366,10 @@ var _ALLFIELDS = [];
                 }
 
                 if (response.redirect) {
-                  // success flash message is set within the save endpoint
-                  window.location = response.redirect;
+                    // success flash message is set within the save endpoint
+                    window.location = response.redirect;
                 }
-            }).catch(function (xhr) {
+            }).catch(function(xhr) {
                 if (typeof callback === 'function') {
                     return callback(xhr);
                 }
@@ -411,9 +411,14 @@ var _ALLFIELDS = [];
             if (!formId) {
                 return;
             }
+            var $form = $('#' + formId);
 
-            $('#' + formId).trigger('reset');
-            $('#' + formId).validate().resetForm();
+            $form.trigger('reset');
+            $form.validate().resetForm();
+            $form.find('input[type="text"]').val('');
+            $form.find(':checkbox, :radio').prop('checked', false);
+            $form.find(':checkbox[data-default], :radio[data-default]').prop('checked', true);
+            $form.find('textarea').val('');
             $('.modal select').val(null).trigger('change');
             $('.is-invalid').removeClass('is-invalid');
         },
@@ -430,7 +435,7 @@ var _ALLFIELDS = [];
         *     @sampleParam {Object} field:
         *         {"id":"last_name","label":"Last Name","type":"text","required":true}
         */
-        updateRequired: function(_formOpts,required, field) {
+        updateRequired: function(_formOpts, required, field) {
             var formOpts = _formOpts || {};
 
             if (!field) {
@@ -449,12 +454,83 @@ var _ALLFIELDS = [];
             if (formOpts && formOpts.rules[key]) {
                 formOpts.rules[key].required = required;
             }
+        },
+
+        /**
+         * @function bindMonthUpdates
+         * - Updates options for a day field, depending on year and month value
+         
+        * @params {String} yearSelectId - id of year select field
+        * @params {String} monthSelectId - id of month select field
+        * @params {String} daySelectId - id of day select field
+        * NOTE: parameters should include "#" as indicator for id selector
+        */
+        bindMonthUpdates: function(yearSelectId, monthSelectId, daySelectId) {
+            if (!yearSelectId || !monthSelectId || !daySelectId) return;
+
+            $(monthSelectId + ',' + yearSelectId).on('change', function() {
+                var year = $(yearSelectId).val();
+                var month = $(monthSelectId).val();
+                if (!year || !month) return;
+
+                $(daySelectId).empty();
+
+                var daysInMonth = moment(year + '-' + month).daysInMonth();
+                for (var day = 1; day <= daysInMonth; day++) {
+                    var dayStr = day;
+                    if (day < 10) {
+                        dayStr = '0' + dayStr;
+                    }
+
+                    $(daySelectId).append('<option value="' + dayStr + '">' + dayStr + '</option>');
+                }
+
+                $(daySelectId).val(null).trigger('change');
+            });
+        },
+
+        /**
+         * @function bindUnknownFields
+         * - Generic form listener for fields with unknown checkboxes
+         * - Disables child fields and resets its value
+         * 
+         * @params {Array} _fields - fields in a form
+         *     @sampleParam {Array} _fields:
+         *     [{ id: 'unknown_notes', label: 'Unknown', type: 'unknown-checkbox', 
+         *        children: [ { id: 'notes', label: 'Notes', type: 'textarea', required: true } ] }]
+         */
+        bindUnknownFields: function(_fields) {
+            if (!Array.isArray(_fields)) return;
+
+            var unknownCheckboxes = _fields.filter(function(field) {
+                return field.type === 'unknown-checkbox';
+            });
+
+            unknownCheckboxes.forEach(function(field) {
+                $('#' + field.id).on('change', function() {
+                    var checked = this.checked;
+                    var children = field.children || [];
+
+                    children.forEach(function(child) {
+                        $('#' + child.id).prop('disabled', checked);
+
+                        if (!checked) return;
+
+                        if (['checkbox', 'radio'].includes(child.type)) {
+                            $('#' + child.id).prop('checked', false);
+                        }
+
+                        if (['text', 'textarea', 'select', 'file'].includes(child.type)) {
+                            $('#' + child.id).val(null).change();
+                        }
+                    });
+                });
+            });
         }
 
     };
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         APP.Forms.init();
     });
 })();
-

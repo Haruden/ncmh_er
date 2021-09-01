@@ -1,10 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Attendant extends CI_Controller {
+class Attendant extends MY_Controller {
 
-	public $js_plugins = [];
-	public $css_plugins = [];
+	// protected $middleware = ['permission'];
 
 	/**
 	 * Index Page for this controller.
@@ -23,12 +22,43 @@ class Attendant extends CI_Controller {
 	 */
 	public function __construct() {
         parent::__construct();
-        $this->load->library('session');
     }
 
 	public function index()
 	{
-		redirect('attendant/queue');
+		// redirect('attendant/queue');
+
+		$this->set_view('patient/queue');
+		$this->title = "Admission";
+		$this->page_active = "Admission";
+		$this->component = true; //temporary becuase no sidebar func yet
+		$this->sidebar_collapse = false;
+        $this->css_plugins = [
+            'datatables-bs4/css/dataTables.bootstrap4.min.css',
+            'datatables-responsive/css/responsive.bootstrap4.min.css',
+            'datatables-buttons/css/buttons.bootstrap4.min.css'
+        ];
+		$this->javascript_plugins = [
+            'moment/moment.min.js',
+            'datatables/jquery.dataTables.min.js',
+            'datatables-bs4/js/dataTables.bootstrap4.min.js',
+            'datatables-responsive/js/dataTables.responsive.min.js',
+            'datatables-responsive/js/responsive.bootstrap4.min.js',
+            'datatables-buttons/js/dataTables.buttons.min.js',
+            'datatables-buttons/js/buttons.bootstrap4.min.js',
+            'datatables-buttons/js/buttons.html5.min.js',
+            'datatables-buttons/js/buttons.print.min.js',
+            'datatables-buttons/js/buttons.colVis.min.js'
+            
+		];
+		$this->custom_javascript = [
+			'records/admission.js'
+		];
+		
+        $data['title'] = $this->title;
+
+		$this->build_content($data);
+        $this->render_page();
 	}
 
 	public function queue()
@@ -69,7 +99,6 @@ class Attendant extends CI_Controller {
         ];
 		$data['js_plugins'] = $this->js_plugins == [] ? null :  $this->js_plugins;
 		$data['css_plugins'] = $this->css_plugins == [] ? null :  $this->css_plugins;
-
 		$data['patient_suffixes'] = config_item('patient_suffixes');
         $data['relationships'] = config_item('relationships');
         $data['type_of_payments'] = config_item('type_of_payments');

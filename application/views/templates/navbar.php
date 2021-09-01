@@ -1,10 +1,16 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light shadow-sm">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars text-secondary"></i></a>
         </li>
+        <!-- <li class="nav-item m-0">
+            <div class="text-wrap m-0">
+                <h5 class="m-0 font-weight-normal">InPatient</h5>
+                <p class="text-truncate m-0" style="margin-top: -8px !important;"><small>National Center for Mental Health</small></p>
+            </div>
+        </li> -->
         <!-- <li class="nav-item d-none d-sm-inline-block">
             <a href="index3.html" class="nav-link">Home</a>
         </li>
@@ -126,9 +132,8 @@
             </li>
         </ul> -->
         <ul class="navbar-nav ml-auto">
-            <!-- Notifications Dropdown Menu -->
-            <a href="<?php echo base_url('login'); ?>" class="dropdown-item">
-                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            <a id="logout" style="cursor: pointer;" class="dropdown-item rounded bg-gradient-red border-0 text-white">
+                <i class="fas fa-sign-out-alt mr-1"></i> Log Out
             </a>
         </ul>
     </ul>

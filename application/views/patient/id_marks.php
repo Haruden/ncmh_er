@@ -1,189 +1,189 @@
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
-            <div class="col-md-2">
-                <?php $this->load->view('templates/sidemenu'); ?>
-            </div>
-            <!-- /.col -->
+    <?= view(auth('role') . '/modals'); ?>
+    <?= view('patient/components/content_header'); ?>
 
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="<?php echo base_url(); ?>assets/img/person_clipart.png" alt="" class="mb-2" style="width:100%;">
-                                <h4>28, Male</h4>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-                                <div class="form-group">
-                                    <!-- <div class="col-md-7">
+                <div class="col-md-2">
+                    <?= view('patient/components/sub_sidebar', $title); ?>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="<?php echo base_url(); ?>assets/img/person_clipart.png" alt="" class="mb-2" style="width:100%;">
+                                    <h4>28, Male</h4>
+
+                                    <div class="form-group">
+                                        <!-- <div class="col-md-7">
                                             <label for="">Date of First Admission: </label>
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" value="2020/01/01" disabled>
                                         </div> -->
-                                    <label for="">Date of First Admission: </label>
-                                    <input type="text" class="form-control" value="2020/01/01" disabled>
-                                </div>
+                                        <label for="">Date of First Admission: </label>
+                                        <input type="text" class="form-control" value="2020/01/01" disabled>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="">Number of Admission: </label>
-                                    <input type="text" class="form-control" value="2" disabled>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="">Number of Admission: </label>
+                                        <input type="text" class="form-control" value="2" disabled>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="">Date of Last Admission: </label>
-                                    <input type="text" class="form-control" value="2020/01/01" disabled>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="">Date of Last Admission: </label>
+                                        <input type="text" class="form-control" value="2020/01/01" disabled>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="">Active Court Case: </label>
-                                    <input type="text" class="form-control mb-2" value="Yes/No" disabled>
-                                    <a href=""><u>View Court Case</u></a>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="">Active Court Case: </label>
+                                        <input type="text" class="form-control mb-2" value="Yes/No" disabled>
+                                        <a href=""><u>View Court Case</u></a>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body" style="font-size:large;">
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-body" style="font-size:large;">
 
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Height: </label>
-                                    <span> 5'7" </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Weight: </label>
-                                    <span> 120 lbs </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Built: </label>
-                                    <span> Medium </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Hair: </label>
-                                    <span> Black </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Eyes: </label>
-                                    <span> Black </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Mustache/Beard: </label>
-                                    <span> Pedro Gil, Manila </span>
-                                </div>
-
-                                <br>
-                                <br>
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Identifying Marks: </label>
-                                    <span> (Scars, Tattoos, Moles, etc.)</span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Physical Pecculiarities: </label>
-                                    <span> N/A </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Remarks: </label>
-                                    <span> None </span>
-                                </div>
-
-                                <?php if ($role == 'nurse') { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <a href=""><u>Edit</u></a>
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Height: </label>
+                                        <span> 5'7" </span>
                                     </div>
-                                <?php } ?>
 
-                                <hr>
-
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <small class="mb-0"><i>Encoded by Burr Herber, RN; </i></small><br>
-                                        <small class="mt-0"><i><u><a href="#">View Previous Patient Identifying Marks</a></u></i></small>
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Weight: </label>
+                                        <span> 120 lbs </span>
                                     </div>
-                                    <?php if ($role == 'nurse') { ?>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Built: </label>
+                                        <span> Medium </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Hair: </label>
+                                        <span> Black </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Eyes: </label>
+                                        <span> Black </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Mustache/Beard: </label>
+                                        <span> Pedro Gil, Manila </span>
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Identifying Marks: </label>
+                                        <span> (Scars, Tattoos, Moles, etc.)</span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Physical Pecculiarities: </label>
+                                        <span> N/A </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Remarks: </label>
+                                        <span> None </span>
+                                    </div>
+
+                                    <?php if (auth('role') == 'nurse') { ?>
+                                        <div class="d-flex justify-content-end">
+                                            <a href=""><u>Edit</u></a>
+                                        </div>
+                                    <?php } ?>
+
+                                    <hr>
+
+                                    <div class="d-flex justify-content-between">
                                         <div>
-                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-marks">Add Patient Identifying Marks
-                                                <i class="ml-1 fas fa-plus"></i>
+                                            <small class="mb-0"><i>Encoded by Burr Herber, RN; </i></small><br>
+                                            <small class="mt-0"><i><u><a href="#">View Previous Patient Identifying Marks</a></u></i></small>
+                                        </div>
+                                        <?php if (auth('role') == 'nurse') { ?>
+                                            <div>
+                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-marks">Add Patient Identifying Marks
+                                                    <i class="ml-1 fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        <?php } ?>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body" style="font-size:large;">
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Relative/Escort: </label>
+                                        <span> Relative/Escort Name </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Contact Number: </label>
+                                        <span> +63917 5999 883 </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Admitting Nurse: </label>
+                                        <span> Burr Herber, RN </span>
+                                    </div>
+
+                                    <div class="form-inline mb-2">
+                                        <label for="" class="mr-2">Date: </label>
+                                        <span> March 31, 2021 </span>
+                                    </div>
+
+                                    <?php if (auth('role') == 'nurse') { ?>
+                                        <div class="d-flex justify-content-end">
+                                            <a href=""><u>Edit</u></a>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn btn-sm btn-primary">Save
                                             </button>
                                         </div>
                                     <?php } ?>
 
                                 </div>
-
                             </div>
                         </div>
 
-                        <div class="card">
-                            <div class="card-body" style="font-size:large;">
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Relative/Escort: </label>
-                                    <span> Relative/Escort Name </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Contact Number: </label>
-                                    <span> +63917 5999 883 </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Admitting Nurse: </label>
-                                    <span> Burr Herber, RN </span>
-                                </div>
-
-                                <div class="form-inline mb-2">
-                                    <label for="" class="mr-2">Date: </label>
-                                    <span> March 31, 2021 </span>
-                                </div>
-
-                                <?php if ($role == 'nurse') { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <a href=""><u>Edit</u></a>
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn btn-sm btn-primary">Save
-                                        </button>
-                                    </div>
-                                <?php } ?>
-
-                            </div>
-                        </div>
                     </div>
 
                 </div>
 
+
             </div>
-
-
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</section>
+        <!-- /.row -->
+    </section>
+
+</div>
 
 <script>
-    $('[data-widget="pushmenu"]').PushMenu('collapse');
-
     $(document).ready(function() {
-
-        $("#example1").DataTable({
-            "responsive": true,
-            "autoWidth": false,
-        });
 
         $("#modal-marks").on('shown.bs.modal', function() {
 
@@ -275,8 +275,8 @@
                 canvas.style.border = "1px solid";
 
                 var blueprint_background = new Image();
-                blueprint_background.src = '<?php echo base_url();?>assets/img/body-outline.gif'; 
-                blueprint_background.onload = function(){
+                blueprint_background.src = '<?php echo base_url(); ?>assets/img/body-outline.gif';
+                blueprint_background.onload = function() {
                     var pattern = ctx.createPattern(this, "no-repeat");
                     ctx.fillStyle = pattern;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -285,7 +285,7 @@
                 };
 
                 // ctx.fillStyle = currentBg;
-                
+
             }
 
             // DOWNLOAD CANVAS

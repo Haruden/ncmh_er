@@ -5,7 +5,7 @@
 
         <?php $this->load->view('templates/navbar'); ?>
         <?php $this->load->view('templates/sidebar'); ?>
-        <?php $this->load->view($role.'/modals'); ?>
+        <?php $this->load->view($role . '/modals'); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -30,4 +30,3 @@
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content-header -->
-

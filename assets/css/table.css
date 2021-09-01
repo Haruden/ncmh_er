@@ -1,0 +1,16 @@
+.invoice {
+	border-radius: 8px !important;
+}
+
+.patient-table-img {
+	max-width: 32px !important;
+	min-width: 32px !important;
+	max-height: 32px !important;
+	min-height: 32px !important;
+	border-radius: 50%;
+	background: linear-gradient(rgb(38, 143, 255), rgb(0, 123, 255)) !important;
+	font-size: 15px;
+	color: #fff;
+	text-align: center;
+	line-height:32px;
+}

@@ -21,8 +21,11 @@
                             <h4 class="m-0 text-dark">Patient Queue</h4>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
-                            <div class="d-flex justify-content-end mb-2">
+                            <!-- <div class="d-flex justify-content-end mb-2">
                                 <h5 class="m-0 text-dark">March 1, 2020 | 11:08 AM&nbsp;&nbsp;</h5>
+                            </div> -->
+                            <div class="d-flex justify-content-end m-0">
+                                <h4 class="userDateAndTime mt-1 mb-1 text-dark font-weight-light"></h4>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <span style="color:red;"> Average Queue Time: 4 Hours 10 mins </span>

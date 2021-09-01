@@ -1,12 +1,12 @@
 /**
-* APP - UI
-*/
+ * APP - UI
+ */
 var APP = APP || {};
 var loader;
 
-(function () {
+(function() {
     APP.UI = {
-        init: function () {
+        init: function() {
             // session alert checker
             APP.UI.loadSessionAlert();
 
@@ -19,7 +19,7 @@ var loader;
          * - Checks if an alert is present in session, alerts if found
          *
          */
-        loadSessionAlert: function () {
+        loadSessionAlert: function() {
             var sessionAlert = sessionStorage.getItem('alert');
             if (!sessionAlert || sessionAlert === 'null') {
                 return;
@@ -50,7 +50,7 @@ var loader;
                 title: message || 'Processing...',
                 allowOutsideClick: false,
                 timerProgressBar: true,
-                didOpen: function () {
+                didOpen: function() {
                     Swal.showLoading();
                 }
             });
@@ -77,17 +77,18 @@ var loader;
             var type = opts.type || 'error';
             var message = opts.msg || 'Something went wrong while processing your request.';
             var position = opts.position || 'top-end';
-
+            var timer = opts.noTimer ? undefined : 5000;
             var Toast = Swal.mixin({
                 toast: true,
                 position: position,
                 showConfirmButton: false,
-                showCloseButton: true
+                showCloseButton: true,
+                timer: timer
             });
 
             Toast.fire({
-              icon: type,
-              title: message
+                icon: type,
+                title: message
             });
         },
 
@@ -112,7 +113,7 @@ var loader;
                 '<span>' + messages + '</span>' +
                 '</div>';
 
-           $('.content-wrapper').prepend(alertContent);
+            $('.content-wrapper').prepend(alertContent);
         },
 
         /**
@@ -137,7 +138,7 @@ var loader;
                 '<div class="scroller scroller-left"><h4 class="fa fa-angle-left"></h4></div>' +
                 '&nbsp;' +
                 '<div class="scroller scroller-right"><h4 class="fa fa-angle-right"></h4></div>' +
-            '</div>';
+                '</div>';
             $('.nav-tabs-wrapper').append(tabNavigations);
 
             var currentPosition = 0;
@@ -184,10 +185,16 @@ var loader;
             $(window).on('resize', function(e) {
                 APP.UI.resizeNavTabs();
             });
+        },
+
+        hideSidebar: function() {
+            if (!$('body').hasClass('sidebar-collapse')) {
+                $('#navbar-pushmenu').click();
+            }
         }
     };
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         APP.UI.init();
     });
 })();

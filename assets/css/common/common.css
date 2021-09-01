@@ -1,0 +1,106 @@
+.w-100 {
+  width: 100%;
+}
+
+.required {
+  border: 2px solid red;
+}
+
+.button-dropdown {
+  z-index: 9999 !important;
+}
+
+/*
+@media (max-width: 1920px) {
+ 	CSS that should be displayed if width is equal to or less than 800px goes here
+ 	body
+ 	{
+		zoom: 90%;
+	}
+}
+*/
+.dropdown-options {
+  position: absolute;
+  will-change: transform;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translate3d(0px, 48px, 0px);
+          transform: translate3d(0px, 48px, 0px);
+}
+
+.modal {
+  overflow-y: auto;
+}
+
+.modal-xl {
+  width: 1250px;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.thin-label {
+  font-weight: 500 !important;
+  font-size: 90%;
+}
+
+table {
+  font-size: 90%;
+}
+
+/* nurse views */
+.nurseModalTextarea {
+  padding-top: 10px;
+  padding-bottom: 25px;
+  min-height: 80px !important;
+  display: block;
+}
+
+/* end  nurse views */
+/* For ID Marks Modal */
+/* .colorButtons {
+    display: block;
+    margin: 20px 0;
+} */
+canvas {
+  cursor: crosshair;
+}
+
+/*div#canvas_controls {
+     position: absolute; 
+     left: 0;
+    width: 150px;
+    padding: 20px 20px;
+    top: 0; 
+}*/
+canvas#canvas {
+  /* left: 200px;
+    top: 200px; */
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/* .btn {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+} */
+.input-group {
+  margin-bottom: 10px;
+}
+
+/* .toolsButtons .btn {
+    width: 48%;
+} */
+.sizeButtons .btn {
+  width: 48%;
+}
+
+.colorpicker {
+  background: transparent;
+  height: 20px;
+}
+/*# sourceMappingURL=common.css.map */

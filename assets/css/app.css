@@ -1,0 +1,57 @@
+/* Global CSS */
+
+/* Helpers */
+@import "helpers/width.css"; 
+
+/* Scrollbar */
+@import "scrollbar.css"; 
+
+/* Table */
+@import "table.css"; 
+
+
+/* AVATAR */
+.primary-information-picture {
+    /* background: rgb(152, 152, 152); */
+	color: #ffffff;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    font-size: 6.2rem;
+    border-style: solid;
+    border-width:thick;
+}
+
+.profile-picture{
+    /* background: rgb(152, 152, 152); */
+	color: #ffffff;
+    border-radius: 50%;
+    height: 38px;
+    width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+    font-size: 1.0rem;
+    border-style: solid;
+    border-width:thin;
+
+}
+/* END OF AVATAR */
+
+
+.btn-group .dropdown-menu a:hover {
+    color: #000 !important;
+}
+.btn-group .dropdown-menu a:active {
+    color: #fff !important;
+}
+
+.userDateAndTime {
+    font-size: 26px !important;
+    margin-top: -1px !important;
+}

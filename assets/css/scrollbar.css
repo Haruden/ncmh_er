@@ -1,0 +1,23 @@
+/* SCROLLBAR CUSTOM DESIGN */
+
+::-webkit-scrollbar-track   {
+    box-shadow: none;
+	background-color: #f8f9fa;
+}
+
+::-webkit-scrollbar     {
+	width: 9px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb   {
+	background-color: rgb(162, 162, 162);
+    border-radius: 20px;
+}
+
+/* USE THIS IF YOU WANNA HIDE SCROLLBAR */
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+/* END OF SCROLLBAR CUSTOM DESIGN */
