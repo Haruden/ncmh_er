@@ -310,7 +310,7 @@
                                 <div class="dropdown-divider"></div>
                             </div>
                             <div class="col-sm-3">
-                                <button class="btn btn-sm  btn-success btn-block"><i class="fas fa-folder-plus mr-2"></i>Add Medication</button>
+                                <button id="add-med-btn" class="btn btn-sm  btn-success btn-block"><i class="fas fa-folder-plus mr-2"></i>Add Medication</button>
                             </div>
                         </div>
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ER_notes extends MY_Controller {
+class Er_notes extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.

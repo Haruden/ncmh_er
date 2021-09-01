@@ -220,6 +220,8 @@
             $("#planTable_length").find('label').after(' <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>');
         <?php } ?>
 
+        // General Order Functions - START
+
         $("#diet-select").on("change", function() {
             if ($(this).val() == "Others") {
                 $('#others-diet').slideDown();
@@ -342,6 +344,9 @@
         });
 
         $('#gen_or_mor_routine').attr('checked', true);
+
+        // General Order Functions - END
+
         $('#durationRange').attr('checked', true);
 
         $('input[name="Duration"]').change(function() {
@@ -352,6 +357,17 @@
                 $("#durNumDiv").addClass("d-none");
                 $("#durRangeDiv").show();
             }
+        });
+
+        $('#add-diet-btn').on('click', function() {
+            var mor = $('input[name="gen_or_mor"]:checked').val();
+            var diet = $('#diet-select').val();
+            if (diet == "Others") {
+                diet = diet + ': ' + $('#others-diet').val();
+            }
+            var gen_or_data = '<b>DIETARY ORDERS: </b><br>' + diet;
+            var remarks = $('#diet-remarks').val();
+            addGenOrder(mor, gen_or_data, remarks, 'diet-remarks');
         });
 
         $('.tabNext').click(function() {
