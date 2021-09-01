@@ -83,4 +83,45 @@ class Plan extends MY_Controller {
 		$plan_gen_order = $this->session->userdata('plan_gen_order');
 		echo json_encode($plan_gen_order);
 	}
+
+	public function add_med_order()
+	{
+		$postData = $this->input->post();
+		$mor = $postData['mor'];
+		$name = $postData['name'];
+		$dosage = $postData['dosage'];
+		$prep = $postData['prep'];
+		$route = $postData['route'];
+		$frequency = $postData['frequency'];
+		$duration = $postData['duration'];
+
+		$plan_med_order = $this->session->userdata('plan_med_order');
+		if(isset($plan_med_order)){
+			$c = count($plan_med_order);
+		} else {
+			$c = 0;
+		}
+
+        $format = "%Y-%m-%d %H:%i:%s";
+
+		$plan_med_order[$c] = array(
+			"datetime" => mdate($format),
+			"mor" => $mor,
+			"name" => $name,
+			"dosage" => $dosage,
+			"prep" => $prep,
+			"route" => $route,
+			"frequency" => $frequency,
+			"duration" => $duration,
+		);
+
+		$this->session->set_userdata('plan_med_order', $plan_med_order);
+		echo json_encode($plan_med_order[$c]);
+	}
+
+	public function med_or_table()
+	{
+		$plan_med_order = $this->session->userdata('plan_med_order');
+		echo json_encode($plan_med_order);
+	}
 }

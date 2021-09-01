@@ -185,6 +185,24 @@
 
     $(function() {
 
+        // Common
+
+        $('.tabNext').click(function() {
+            $('.nav-tabs > .active').next('a').trigger('click');
+        });
+
+        $('.tabPrevious').click(function() {
+            $('.nav-tabs > .active').prev('a').trigger('click');
+        });
+
+        $('.btn-update').click(function() {
+            $(this).closest('tr').find('input,select,textarea').prop('disabled', false);
+        });
+
+        $('.btn-remove').click(function() {
+            $(this).closest('tr').remove();
+        });
+
         if (patient_id != "" && Number(patient_id) > 0) {
             setTimeout(function() {
                 $('#add-doctor-order').modal('show');
@@ -221,6 +239,8 @@
         <?php } ?>
 
         // General Order Functions - START
+
+        $('#gen_or_mor_routine').attr('checked', true);
 
         $("#diet-select").on("change", function() {
             if ($(this).val() == "Others") {
@@ -319,7 +339,7 @@
             }
         });
 
-        $("#gen_or_data").keyup(function(){
+        $("#gen_or_data").keyup(function() {
             $("#gen_or_data").removeClass('required');
         });
 
@@ -343,22 +363,6 @@
             addGenOrder(mor, gen_or_data, remarks, 'referral-reason');
         });
 
-        $('#gen_or_mor_routine').attr('checked', true);
-
-        // General Order Functions - END
-
-        $('#durationRange').attr('checked', true);
-
-        $('input[name="Duration"]').change(function() {
-            if (this.id === "durationNum") {
-                $("#durNumDiv").removeClass("d-none");
-                $("#durRangeDiv").hide();
-            } else {
-                $("#durNumDiv").addClass("d-none");
-                $("#durRangeDiv").show();
-            }
-        });
-
         $('#add-diet-btn').on('click', function() {
             var mor = $('input[name="gen_or_mor"]:checked').val();
             var diet = $('#diet-select').val();
@@ -370,20 +374,114 @@
             addGenOrder(mor, gen_or_data, remarks, 'diet-remarks');
         });
 
-        $('.tabNext').click(function() {
-            $('.nav-tabs > .active').next('a').trigger('click');
+        // General Order Functions - END
+
+        // Medication Order START
+
+        $('#med-mor-routine').attr('checked', true);
+
+        $('#durationRange').attr('checked', true);
+
+        $('input[name="med-duration"]').change(function() {
+            if (this.id === "durationNum") {
+                $("#durNumDiv").removeClass("d-none");
+                $("#durRangeDiv").hide();
+            } else {
+                $("#durNumDiv").addClass("d-none");
+                $("#durRangeDiv").show();
+            }
         });
 
-        $('.tabPrevious').click(function() {
-            $('.nav-tabs > .active').prev('a').trigger('click');
+        var medOrderTable = $('#medOrderTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/med-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data !== undefined && data !== null && data !== "") {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+                            medOrderTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['name'] + ' ' + data[i]['dosage'] + ' ' + data[i]['prep'],
+                                data[i]['route'],
+                                data[i]['frequency'],
+                                data[i]['duration'],
+                                data[i]['mor'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
+                            ]).draw(false);
+                        }
+                    } else {
+                        medOrderTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
         });
 
-        $('.btn-update').click(function() {
-            $(this).closest('tr').find('input,select,textarea').prop('disabled', false);
-        });
+        $('#add-med-btn').on('click', function() {
+            var mor = $('input[name="med-mor"]:checked').val();
+            var name = $('#med-name').val();
+            var dosage = $('#med-dosage').val();
+            var prep = $('#med-prep').val();
+            var route = $('#med-route').val();
+            var frequency = $('#med-frequency').val();
+            var duration = $('input[name="med-duration"]:checked').val();
+            if (duration == 'Number') {
+                duration = $('#med-days').val() + ' days';
+            } else if (duration == 'Range') {
+                duration = 'From ' + $('#med-range-from').val() + ' to ' + $('#med-range-to').val();
+            }
 
-        $('.btn-remove').click(function() {
-            $(this).closest('tr').remove();
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/add-med-order',
+                type: 'POST',
+                data: {
+                    mor: mor,
+                    name: name,
+                    dosage: dosage,
+                    prep: prep,
+                    route: route,
+                    frequency: frequency,
+                    duration: duration
+                },
+                dataType: 'json',
+                success: function(data) {
+                    medOrderTable.row.add([
+                        data['datetime'],
+                        data['name'] + ' ' + data['dosage'] + ' ' + data['prep'],
+                        data['route'],
+                        data['frequency'],
+                        data['duration'],
+                        data['mor'],
+                        '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
+                        '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
+                    ]).draw(false);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Submitted',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    $('#' + clear).val('');
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
         });
 
     });

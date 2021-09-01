@@ -1,6 +1,6 @@
 <!-- add-doctors-order -->
 <div class="modal fade" id="add-doctor-order" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New Order</h4>
@@ -232,8 +232,8 @@
 
                         <div class="form-inline">
                             Mode of Request:
-                            <input type="radio" name="med_mor" id="" class="ml-2 mr-1"> STAT
-                            <input type="radio" name="med_mor" id="" class="ml-2 mr-1"> Routine
+                            <input type="radio" name="med-mor" id="med-mor-stat" class="ml-2 mr-1" value="STAT"> STAT
+                            <input type="radio" name="med-mor" id="med-mor-routine" class="ml-2 mr-1" value="Routine"> Routine
                         </div>
                         <label for="" class="text-left">Medication Order Entry:</label>
                         <table class="table table-striped table-bordered" style="width:100%;">
@@ -246,40 +246,40 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><textarea class="form-control"></textarea></td>
-                                    <td><textarea class="form-control"></textarea></td>
-                                    <td><select name="" id="" class="form-control">
-                                            <option> Tablet </option>
-                                            <option>Orodispersible tab</option>
-                                            <option>Ampule</option>
-                                            <option>Vial</option>
-                                            <option>Cream</option>
-                                            <option>Ointment</option>
-                                            <option>Bottle</option>
-                                            <option>Suppository</option>
-                                            <option> Suspension</option>
-                                            <option>Syrup</option>
-                                            <option>Solution</option>
-                                            <option>Lozenges</option>
-                                            <option>Spray</option>
-                                            <option>Lotion</option>
-                                            <option>Capsule</option>
-                                            <option> Gel</option>
-                                            <option> Powder</option>
-                                            <option> Nebule</option>
-                                            <option> Inhaler</option>
-                                            <option> Emulsion</option>
-                                            <option> Shampoo</option>
-                                            <option> Eye drop</option>
-                                            <option> Ear drop</option>
-                                            <option> Eye ointment</option>
+                                    <td><textarea id="med-name" name="med-name" class="form-control"></textarea></td>
+                                    <td><textarea id="med-dosage" name="med-dosage" class="form-control"></textarea></td>
+                                    <td><select name="med-prep" id="med-prep" class="form-control">
+                                            <option value="Tablet"> Tablet </option>
+                                            <option value="Orodispersible tab"> Orodispersible tab </option>
+                                            <option value="Ampule"> Ampule </option>
+                                            <option value="Vial"> Vial </option>
+                                            <option value="Cream"> Cream </option>
+                                            <option value="Ointment"> Ointment </option>
+                                            <option value="Bottle"> Bottle </option>
+                                            <option value="Suppository"> Suppository </option>
+                                            <option value="Suspension"> Suspension </option>
+                                            <option value="Syrup"> Syrup </option>
+                                            <option value="Solution"> Solution </option>
+                                            <option value="Lozenges"> Lozenges </option>
+                                            <option value="Spray"> Spray </option>
+                                            <option value="Lotion"> Lotion </option>
+                                            <option value="Capsule"> Capsule </option>
+                                            <option value="Gel"> Gel </option>
+                                            <option value="Powder"> Powder </option>
+                                            <option value="Nebule"> Nebule </option>
+                                            <option value="Inhaler"> Inhaler </option>
+                                            <option value="Emulsion"> Emulsion </option>
+                                            <option value="Shampoo"> Shampoo </option>
+                                            <option value="Eye drop"> Eye drop </option>
+                                            <option value="Ear drop"> Ear drop </option>
+                                            <option value="Eye ointment"> Eye ointment </option>
                                         </select></td>
 
-                                    <td><textarea class="form-control"></textarea></td>
-                                    <td><select name="" id="" class="form-control">
-                                            <option> 1</option>
-                                            <option> 2</option>
-                                            <option> 3</option>
+                                    <td><textarea name="med-route" id="med-route" class="form-control"></textarea></td>
+                                    <td><select name="med-frequency" id="med-frequency" class="form-control">
+                                            <option value="1"> 1</option>
+                                            <option value="2"> 2</option>
+                                            <option value="3"> 3</option>
                                         </select></td>
                                     <!-- <td> <button class="rounded btn btn-success"><i class="fas fa-plus"></i></button></td> -->
                                 </tr>
@@ -287,19 +287,19 @@
                                     <td colspan="2">
                                         <div class="form-inline">
                                             <label>Duration: </label>
-                                            <input type="radio" id="durationNum" class="form-control ml-2 mr-1" name="Duration"> Number
-                                            <input type="radio" id="durationRange" class="form-control ml-2 mr-1" name="Duration"> Range
+                                            <input type="radio" id="durationNum" class="form-control ml-2 mr-1" name="med-duration" value="Number"> Number
+                                            <input type="radio" id="durationRange" class="form-control ml-2 mr-1" name="med-duration" value="Range"> Range
                                         </div>
                                     </td>
 
                                     <td colspan="3">
                                         <div id="durNumDiv" class="form-inline d-none">
-                                            <input type="number" class="form-control mx-1" style="width: 40%">
+                                            <input type="number" class="form-control mx-1 w-40" id="med-days" name="med-days" />
                                             <label>Days</label>
                                         </div>
                                         <div id="durRangeDiv" class="form-inline">
-                                            From: <input type="date" class="form-control mx-1" style="width:40%" />
-                                            To: <input type="date" class="form-control ml-1" style="width:40%" />
+                                            From: <input type="date" class="form-control mx-1 w-40" id="med-range-from" name="med-range-from" />
+                                            To: <input type="date" class="form-control ml-1 w-40"  id="med-range-to" name="med-range-to"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -315,7 +315,7 @@
                         </div>
 
                         <h5>Medication Order Summary</h5>
-                        <table class="table table-striped table-bordered">
+                        <table id="medOrderTable" class="table table-striped table-bordered">
                             <thead>
                                 <th>Date/Time Ordered</th>
                                 <th>Medication Details</th>
@@ -323,9 +323,9 @@
                                 <th>Frequency</th>
                                 <th>Duration</th>
                                 <th>Priority</th>
-                                <th></th>
+                                <th>Actions</th>
                             </thead>
-                            <tbody>
+                            <!-- <tbody>
                                 <tr>
                                     <td>1/10/2021 | 1:51PM</td>
                                     <td>Paracetamol 500 mg tablet</td>
@@ -333,15 +333,10 @@
                                     <td>Once a day</td>
                                     <td>7 days</td>
                                     <td>STAT
-                                        <!-- <select name="" id="" disabled>
-                                            <option value="">STAT</option>
-                                            <option value="">Routine</option>
-                                        </select> -->
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-primary m-1">UPDATE</button>
                                         <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                        <!-- <button class="rounded btn btn-danger"><i class="fas fa-times"></i></button> -->
                                     </td>
                                 </tr>
                                 <tr>
@@ -351,19 +346,24 @@
                                     <td>Once a day</td>
                                     <td>7 days</td>
                                     <td>STAT
-                                        <!-- <select name="" id="" disabled>
-                                            <option value="">STAT</option>
-                                            <option value="">Routine</option>
-                                        </select> -->
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-primary m-1">UPDATE</button>
                                         <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                        <!-- <button class="rounded btn btn-danger"><i class="fas fa-times"></i></button> -->
                                     </td>
                                 </tr>
-                            </tbody>
+                            </tbody> -->
+                            <tfoot>
+                                <th>Date/Time Ordered</th>
+                                <th>Medication Details</th>
+                                <th>Route</th>
+                                <th>Frequency</th>
+                                <th>Duration</th>
+                                <th>Priority</th>
+                                <th>Actions</th>
+                            </tfoot>
                         </table>
+
                         <!-- <button class="btn btn-sm btn-primary tabPrevious">Go to Orders</button> -->
                         <div class="row">
                             <div class="col-sm-6">
