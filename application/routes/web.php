@@ -29,6 +29,7 @@ $route['doctor/plan/add-gen-order'] = 'doctor/content/plan/add_gen_order';
 $route['doctor/plan/gen-or-table'] = 'doctor/content/plan/gen_or_table';
 $route['doctor/plan/add-med-order'] = 'doctor/content/plan/add_med_order';
 $route['doctor/plan/med-or-table'] = 'doctor/content/plan/med_or_table';
+$route['doctor/special-instructions'] = 'doctor/content/special_instructions';
 
 // # Doctor Routes
 // $route['doctor/queue'] = 'doctor/queue';

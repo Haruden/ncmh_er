@@ -59,6 +59,16 @@
             <strong><a href="<?php echo base_url($role.'/plan');?>"> Plan </a> </strong>
         <?php } ?>
 
+        <hr>
+
+        <?php if($title== "Special Instructions"){ ?>
+            <div style="background-color:#7A3B69;" class="p-2 rounded">
+                <a style="color:white;" href="#"> Special Instructions </a>
+            </div>
+        <?php } else { ?>
+            <strong><a href="<?php echo base_url($role.'/special_instructions');?>"> Special Instructions </a> </strong>
+        <?php } ?>
+
     </div>
     <!-- /.card-body -->
 </div>

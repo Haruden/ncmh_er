@@ -123,4 +123,12 @@ class Doctor extends CI_Controller {
         $this->view_patient('nurse_notes');
 	}
 
+	public function special_instructions()
+	{
+		$data['title'] = "Special Instructions";
+		$data['role'] = $this->session->userdata('role');
+
+        $this->load->view('templates/header', $data);
+        $this->view_patient('special_instructions');
+	}
 }

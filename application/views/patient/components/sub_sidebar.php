@@ -29,6 +29,11 @@
             Plan
         </a>
     </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link <?php echo $title === 'Special Instructions' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/special-instructions'); ?>">
+            Special Instructions
+        </a>
+    </li>
 </ul>
 
 <script>
