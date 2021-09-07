@@ -14,27 +14,36 @@
 
                 <div class="col-md-10">
                     <div class="card">
-                        <!-- <div class="col-sm-12 p-2 text-center"  style="margin-bottom:-15px !important;">
-                        <button class="btn btn-md btn-success mr-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>
-                    </div> -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="active tab-pane" id="doctors_orders">
-                                    <div>
-                                        <h4>SPECIAL INSTRUCTIONS <span class="badge badge-pill badge-success right">4</span></h4>
+                                <div class="active tab-pane" id="special_instructions">
+                                    <div style="white-space: nowrap; overflow: hidden; margin: 0; padding: 0;">
+                                        <div class="float-left" style="display: inline-block;">
+                                            <h4>SPECIAL INSTRUCTIONS <span class="badge badge-pill badge-success center">4</span></h4>
+                                        </div>
+                                        <div class="float-right" style="display: inline-block;">
+                                            <div class="btn btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-sm btn-default">
+                                                   <input type="radio" name="options" id="option1" autocomplete="off">ACTIVE
+                                                </label>
+                                                <label class="btn btn-sm btn-default">
+                                                    <input type="radio" name="options" id="option2" autocomplete="off">DONE
+                                                </label>
+                                                <label class="btn btn-sm btn-default">
+                                                    <input type="radio" name="options" id="option3" autocomplete="off">ALL
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <br>
-
-                                    <!-- Table row -->
-                                    <div class="dtaTables_wrappaer dt-bootstrap4">
+                                    <div id="button" class="dataTables_wrapper dt-bootstrap4">
                                         <table id="special_instructions_Table" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th width="20">
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </th>
                                                     <th>Instruction</th>
                                                     <th width="140">Date/Time Instructed</th>
@@ -45,20 +54,20 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
                                                     <td>Sample instruction here.</td>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
+                                                    <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
                                                     <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
                                                             <div class="dropdown-menu" style="">
                                                                 <a class="dropdown-item" href="#">Update</a>
-                                                                <a class="dropdown-item" href="#">Compelte</a>
+                                                                <a class="dropdown-item" href="#">Complete</a>
                                                             </div>
                                                         </div>  
                                                     </td>
@@ -66,20 +75,20 @@
                                 
                                                 <tr>
                                                     <td>
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
                                                     <td>Sample instruction here.</td>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
+                                                    <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
                                                     <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
                                                             <div class="dropdown-menu" style="">
                                                                 <a class="dropdown-item" href="#">Update</a>
-                                                                <a class="dropdown-item" href="#">Compelte</a>
+                                                                <a class="dropdown-item" href="#">Complete</a>
                                                             </div>
                                                         </div>  
                                                     </td>
@@ -87,20 +96,20 @@
 
                                                 <tr>
                                                     <td>
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
                                                     <td>Sample instruction here.</td>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
+                                                    <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
                                                     <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
                                                             <div class="dropdown-menu" style="">
                                                                 <a class="dropdown-item" href="#">Update</a>
-                                                                <a class="dropdown-item" href="#">Compelte</a>
+                                                                <a class="dropdown-item" href="#">Complete</a>
                                                             </div>
                                                         </div>  
                                                     </td>
@@ -108,20 +117,20 @@
 
                                                 <tr>
                                                     <<td>
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
                                                     <td>Sample instruction here.</td>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
-                                                    <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
+                                                    <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
+                                                    <td><button type="button" class="btn btn-xs btn-block bg-gradient-secondary disabled">DONE</button></td>
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
                                                             <div class="dropdown-menu" style="">
                                                                 <a class="dropdown-item" href="#">Update</a>
-                                                                <a class="dropdown-item" href="#">Compelte</a>
+                                                                <a class="dropdown-item" href="#">Complete</a>
                                                             </div>
                                                         </div>  
                                                     </td>
@@ -129,24 +138,33 @@
 
                                                 <tr>
                                                     <td>
-                                                        <div class="form-check">
+                                                        <!-- <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div>
+                                                        </div> -->
                                                     </td>
                                                     <td>Sample instruction here.</td>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
-                                                    <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
+                                                    <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
+                                                    <td><button type="button" class="btn btn-xs btn-block bg-gradient-secondary disabled">DONE</button></td>
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
                                                             <div class="dropdown-menu" style="">
                                                                 <a class="dropdown-item" href="#">Update</a>
-                                                                <a class="dropdown-item" href="#">Compelte</a>
+                                                                <a class="dropdown-item" href="#">Complete</a>
                                                             </div>
                                                         </div>  
                                                     </td>
                                                 </tr>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th width="20"></th>
+                                                        <th>Instruction</th>
+                                                        <th width="140">Date/Time Instructed</th>
+                                                        <th width="100">Status</th>
+                                                        <th width="100">Action</th>
+                                                    </tr>
+                                                </tfoot>
                                             </tbody>
                                         </table>
                                     </div> <!-- End of Table -->
@@ -168,11 +186,37 @@
 </div>
 
 <script>
+
+    var table;
+
     $(function() {
-        $(document).ready(function () {
-        $('#special_instructions_Table').DataTable();
-        $('.dataTables_length').addClass('bs-select');
+    
+        table = $('#special_instructions_Table').DataTable({
+            language: {
+                searchPlaceholder: "Search Instruction"
+            },
+            columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+            }],
+            select: {
+                style:    'os',
+                selector: 'td:first-child',
+            },
+            "responsive": true,
+            "autoWidth": false,
+            order: [[ 1, 'asc' ]]
         });
+
     });
+
+    // $('#special_instructions_Table tbody').on('click', 'tr', function () {
+    //     $(this).toggleClass('selected');
+    // } );
+        
+    // $('#button').click( function () {
+    //     alert(table.rows('.selected').data().length +' row(s) selected' );
+    // } );
 
 </script>
