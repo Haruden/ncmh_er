@@ -10,6 +10,11 @@
   z-index: 9999 !important;
 }
 
+#update-diagproc-order,
+#update-med-order {
+  z-index: 9999 !important;
+}
+
 /*
 @media (max-width: 1920px) {
  	CSS that should be displayed if width is equal to or less than 800px goes here

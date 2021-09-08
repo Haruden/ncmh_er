@@ -261,7 +261,8 @@
                 type: "POST",
                 dataType: 'json',
                 success: function(data) {
-                    if (data !== undefined && data !== null && data !== "") {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        console.log(data);
                         var length = Object.keys(data).length;
                         for (var i = 0; i < length; i++) {
                             genOrderTable.row.add([
@@ -270,7 +271,7 @@
                                 data[i]['mor'],
                                 data[i]['remarks'],
                                 '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                                '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
                     } else {
@@ -297,13 +298,14 @@
                 },
                 dataType: 'json',
                 success: function(data) {
+                    var index = genOrderTable.rows().count();
                     genOrderTable.row.add([
                         data['datetime'],
                         data['gen_or_data'],
                         data['mor'],
                         data['remarks'],
                         '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                        '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
+                        '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + index + '">DELETE</button>'
                     ]).draw(false);
                     Swal.fire({
                         position: 'center',
@@ -319,6 +321,11 @@
                     if (!err) return;
                 }
             });
+        }
+
+        function clearDataTable(dataTable) {
+            dataTable.clear().draw();
+            dataTable.ajax.reload();
         }
 
         $('#add-gen-order-btn').on('click', function(e) {
@@ -363,23 +370,315 @@
             addGenOrder(mor, gen_or_data, remarks, 'referral-reason');
         });
 
-        $('#add-diet-btn').on('click', function() {
-            var mor = $('input[name="gen_or_mor"]:checked').val();
-            var diet = $('#diet-select').val();
-            if (diet == "Others") {
-                diet = diet + ': ' + $('#others-diet').val();
-            }
-            var gen_or_data = '<b>DIETARY ORDERS: </b><br>' + diet;
-            var remarks = $('#diet-remarks').val();
-            addGenOrder(mor, gen_or_data, remarks, 'diet-remarks');
+        $("#genOrderTable").on("click", ".gen-order-delete", function(event) {
+            var index = $(this).data('index');
+            // var row = $(this).parents('tr');
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-gen-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    clearDataTable(genOrderTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
         });
 
-        // General Order Functions - END
+        // DIAGNOSTIC PROCEDURE
+        $('#diag-mor-routine').attr('checked', true);
+
+        var diagProcTable = $('#diagProcTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/diagproc-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+
+                            for (var i = 0; i < length; i++) {
+                                diagProcTable.row.add([
+                                    data[i]['datetime'],
+                                    data[i]['req'],
+                                    data[i]['mor'],
+                                    data[i]['remarks'],
+                                    '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
+                                    '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
+                                ]).draw(false);
+                            }
+
+                        }
+                    } else {
+                        diagProcTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
+        });
+
+        $('#submit-diagproc-btn').on('click', function() {
+            var mor = $('input[name="diag-mor"]:checked').val();
+
+            var lab_req = [];
+            $("input:checkbox[name=lab_req]:checked").each(function() {
+                lab_req.push($(this).val());
+                $(this).prop('checked', false);
+            });
+
+            var rad_req = [];
+            $("input:checkbox[name=rad_req]:checked").each(function() {
+                rad_req.push($(this).val());
+                $(this).prop('checked', false);
+            });
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/add-diagproc-order',
+                type: 'POST',
+                data: {
+                    mor: mor,
+                    lab_req: lab_req,
+                    rad_req: rad_req,
+                },
+                dataType: 'json',
+                success: function(data) {
+
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Submitted',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            width: 400,
+                        });
+
+                        // var length = Object.keys(data).length;
+
+                        clearDataTable(diagProcTable);
+                        clearDataTable(diagProcSummaryTable);
+
+                    } else {
+                        diagProcTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $('#add-diagproc-btn').on('click', function() {
+            var mor = $('input[name="diag-mor"]:checked').val();
+            var lab_req = [$('#diagproc-text').val()];
+            var rad_req = [];
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/add-diagproc-order',
+                type: 'POST',
+                data: {
+                    mor: mor,
+                    lab_req: lab_req,
+                    rad_req: rad_req,
+                },
+                dataType: 'json',
+                success: function(data) {
+
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        // var length = Object.keys(data).length;
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Submitted',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            width: 400,
+                        });
+
+                        clearDataTable(diagProcTable);
+                        clearDataTable(diagProcSummaryTable);
+
+                        $('#diagproc-text').val('');
+                    } else {
+                        diagProcTable.draw(false);
+                    }
+
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $('#update-diagproc-order').on('show.bs.modal', function() {
+            var index = $(event.target).closest('.diagproc-order-update').data('index');
+            var datetime = $(event.target).closest('tr').find('td:eq(0)').html();
+            var diagproc = $(event.target).closest('tr').find('td:eq(1)').html();
+            var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            var remarks = $(event.target).closest('tr').find('td:eq(3)').html();
+
+            //make your ajax call populate items or what even you need
+            // $(this).find('#orderDetails').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'));
+            $(this).find('#dpu-index').val(index);
+            $(this).find('#dpu-datetime').val(datetime);
+            $(this).find('#dpu-diagproc').val(diagproc);
+            $(this).find('#dpu-priority').val(priority);
+            $(this).find('#dpu-remarks').val(remarks);
+        });
+
+        $('#dpu-update-btn').on('click', function() {
+            var index = $('#dpu-index').val();
+            var diagproc = $('#dpu-diagproc').val();
+            var priority = $('#dpu-priority').val();
+            var remarks = $('#dpu-remarks').val();
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/update-diagproc-order',
+                type: 'POST',
+                data: {
+                    index: index,
+                    diagproc: diagproc,
+                    priority: priority,
+                    remarks: remarks,
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#update-diagproc-order').modal('toggle');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Updated',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(diagProcTable);
+                    clearDataTable(diagProcSummaryTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $("#diagProcTable").on("click", ".diagproc-order-delete", function(event) {
+            var index = $(this).data('index');
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-diagproc-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(diagProcTable);
+                    clearDataTable(diagProcSummaryTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        diagProcSummaryTable = $('#diagProcSummaryTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            bInfo: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/diagproc-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+
+                            for (var i = 0; i < length; i++) {
+                                diagProcSummaryTable.row.add([
+                                    data[i]['datetime'],
+                                    data[i]['req'],
+                                    data[i]['mor'],
+                                    data[i]['remarks'],
+                                    '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
+                                    '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
+                                ]).draw(false);
+                            }
+
+                        }
+                    } else {
+                        diagProcSummaryTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
+        });
+
+        $("#diagProcSummaryTable").on("click", ".diagproc-order-delete", function(event) {
+            var index = $(this).data('index');
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-diagproc-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(diagProcSummaryTable);
+                    clearDataTable(diagProcTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
 
         // Medication Order START
 
         $('#med-mor-routine').attr('checked', true);
-
         $('#durationRange').attr('checked', true);
 
         $('input[name="med-duration"]').change(function() {
@@ -389,6 +688,16 @@
             } else {
                 $("#durNumDiv").addClass("d-none");
                 $("#durRangeDiv").show();
+            }
+        });
+
+        $('input[name="mou-duration"]').change(function() {
+            if (this.id === "mouDurationNum") {
+                $("#mouDurNumDiv").removeClass("d-none");
+                $("#mouDurRangeDiv").hide();
+            } else {
+                $("#mouDurNumDiv").addClass("d-none");
+                $("#mouDurRangeDiv").show();
             }
         });
 
@@ -403,7 +712,7 @@
                 type: "POST",
                 dataType: 'json',
                 success: function(data) {
-                    if (data !== undefined && data !== null && data !== "") {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
                         for (var i = 0; i < length; i++) {
                             medOrderTable.row.add([
@@ -413,8 +722,8 @@
                                 data[i]['frequency'],
                                 data[i]['duration'],
                                 data[i]['mor'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                                '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
+                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove med-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
                     } else {
@@ -458,16 +767,7 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    medOrderTable.row.add([
-                        data['datetime'],
-                        data['name'] + ' ' + data['dosage'] + ' ' + data['prep'],
-                        data['route'],
-                        data['frequency'],
-                        data['duration'],
-                        data['mor'],
-                        '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                        '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
-                    ]).draw(false);
+
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -476,7 +776,288 @@
                         timer: 1000,
                         width: 400,
                     });
-                    $('#' + clear).val('');
+                    clearDataTable(medOrderTable);
+                    clearDataTable(medSummaryTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $('#update-med-order').on('show.bs.modal', function() {
+            var index = $(event.target).closest('.med-order-update').data('index');
+            var datetime = $(event.target).closest('tr').find('td:eq(0)').html();
+            var route = $(event.target).closest('tr').find('td:eq(2)').html();
+            var frequency = $(event.target).closest('tr').find('td:eq(3)').html();
+            var duration = $(event.target).closest('tr').find('td:eq(4)').html();
+            var priority = $(event.target).closest('tr').find('td:eq(5)').html();
+
+            var durationType;
+            if (duration.includes('days')) {
+                $('#mouDurationNum').prop('checked', true);
+                $("#mouDurNumDiv").removeClass("d-none");
+                $("#mouDurRangeDiv").hide();
+                duration = duration.replace('days', '');
+                duration = duration.trim();
+                $(this).find("#mou-days").val(duration);
+            }
+            else if (duration.includes('From') && duration.includes('to')) {
+                $('#mouDurationRange').prop('checked', true);
+                $("#mouDurNumDiv").addClass("d-none");
+                $("#mouDurRangeDiv").show();
+                console.log();
+                var firstIndex = duration.indexOf('From') + 5;
+                var secondIndex = firstIndex + 10;
+                var fromDate = duration.substring(firstIndex, secondIndex);
+                firstIndex = duration.indexOf('to') + 3;
+                secondIndex = firstIndex + 10;
+                var toDate = duration.substring(firstIndex, secondIndex);
+                $(this).find("#mou-range-from").val(fromDate);
+                $(this).find("#mou-range-to").val(toDate);
+            }
+
+            var name = $(event.target).closest('.med-order-update').data('name');
+            var dosage = $(event.target).closest('.med-order-update').data('dosage');
+            var prep = $(event.target).closest('.med-order-update').data('prep');
+
+            //make your ajax call populate items or what even you need
+            // $(this).find('#orderDetails').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'));
+            $(this).find('#mou-index').val(index);
+            $(this).find('#mou-datetime').val(datetime);
+            $(this).find('#mou-name').val(name);
+            $(this).find('#mou-dosage').val(dosage);
+            $(this).find('#mou-prep').val(prep);
+            $(this).find('#mou-route').val(route);
+            $(this).find('#mou-frequency').val(frequency);
+            $(this).find('#mou-priority').val(priority);
+        });
+
+        $('#mou-update-btn').on('click', function() {
+            var index = $('#mou-index').val();
+            var mor = $('#mou-priority').val();
+            var name = $('#mou-name').val();
+            var dosage = $('#mou-dosage').val();
+            var prep = $('#mou-prep').val();
+            var route = $('#mou-route').val();
+            var frequency = $('#mou-frequency').val();
+            var duration = $('input[name="mou-duration"]:checked').val();
+            if (duration == 'Number') {
+                duration = $('#mou-days').val() + ' days';
+            } else if (duration == 'Range') {
+                duration = 'From ' + $('#mou-range-from').val() + ' to ' + $('#mou-range-to').val();
+            }
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/update-med-order',
+                type: 'POST',
+                data: {
+                    index: index,
+                    mor: mor,
+                    name: name,
+                    dosage: dosage,
+                    prep: prep,
+                    route: route,
+                    frequency: frequency,
+                    duration: duration
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#update-med-order').modal('toggle');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Updated',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(medOrderTable);
+                    clearDataTable(medSummaryTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $("#medOrderTable").on("click", ".med-order-delete", function(event) {
+            var index = $(this).data('index');
+
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-med-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(medOrderTable);
+                    clearDataTable(medSummaryTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        var medSummaryTable = $('#medSummaryTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            bInfo: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/med-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+                            medSummaryTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['name'] + ' ' + data[i]['dosage'] + ' ' + data[i]['prep'],
+                                data[i]['route'],
+                                data[i]['frequency'],
+                                data[i]['duration'],
+                                data[i]['mor'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove med-order-delete" data-index="' + i + '">DELETE</button>'
+                            ]).draw(false);
+                        }
+                    } else {
+                        medSummaryTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
+        });
+
+        $("#medSummaryTable").on("click", ".med-order-delete", function(event) {
+            var index = $(this).data('index');
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-med-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
+                    clearDataTable(medSummaryTable);
+                    clearDataTable(medOrderTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        // Summary modal
+
+        genOrderSummaryTable = $('#genOrderSummaryTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            bInfo: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/gen-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+                            genOrderSummaryTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['gen_or_data'],
+                                data[i]['mor'],
+                                data[i]['remarks'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
+                            ]).draw(false);
+                        }
+                    } else {
+                        genOrderSummaryTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
+        });
+
+        $("#genOrderSummaryTable").on("click", ".gen-order-delete", function(event) {
+            var index = $(this).data('index');
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/delete-gen-order',
+                type: 'POST',
+                data: {
+                    index: index
+                },
+                dataType: 'json',
+                success: function(data) {
+                    clearDataTable(genOrderSummaryTable);
+                    clearDataTable(genOrderTable);
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            });
+        });
+
+        $('#order-summary-modal').on('shown.bs.modal', function() {
+            clearDataTable(genOrderSummaryTable);
+            // clearDataTable(medSummaryTable);
+            // clearDataTable(diagProcSummaryTable);
+        });
+
+        $('#finalize-btn').on('click', function() {
+            $.ajax({
+                url: '/ncmh_er/doctor/plan/finalize',
+                type: 'POST',
+                data: {},
+                dataType: 'json',
+                success: function(data) {
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Orders Saved',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        width: 400,
+                    }).then(function() {
+                        location.reload();
+                    });
+
                 },
                 error: function(err) {
                     if (!err) return;

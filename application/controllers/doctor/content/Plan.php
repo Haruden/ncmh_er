@@ -84,6 +84,12 @@ class Plan extends MY_Controller {
 		echo json_encode($plan_gen_order);
 	}
 
+	public function med_or_table()
+	{
+		$plan_med_order = $this->session->userdata('plan_med_order');
+		echo json_encode($plan_med_order);
+	}
+
 	public function add_med_order()
 	{
 		$postData = $this->input->post();
@@ -119,9 +125,145 @@ class Plan extends MY_Controller {
 		echo json_encode($plan_med_order[$c]);
 	}
 
-	public function med_or_table()
+	public function update_med_order()
 	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+		$mor = $postData['mor'];
+		$name = $postData['name'];
+		$dosage = $postData['dosage'];
+		$prep = $postData['prep'];
+		$route = $postData['route'];
+		$frequency = $postData['frequency'];
+		$duration = $postData['duration'];
+
 		$plan_med_order = $this->session->userdata('plan_med_order');
-		echo json_encode($plan_med_order);
+		$plan_med_order[$index]['mor'] = $mor;
+		$plan_med_order[$index]['name'] = $name;
+		$plan_med_order[$index]['dosage'] = $dosage;
+		$plan_med_order[$index]['prep'] = $prep;
+		$plan_med_order[$index]['route'] = $route;
+		$plan_med_order[$index]['frequency'] = $frequency;
+		$plan_med_order[$index]['duration'] = $duration;
+
+		$this->session->set_userdata('plan_med_order', $plan_med_order);
+		echo json_encode($plan_med_order[$index]);
+	}
+
+	public function delete_med_order()
+	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+
+		$plan_med_order = $this->session->userdata('plan_med_order');
+		array_splice($plan_med_order, $index, 1);
+
+		$this->session->set_userdata('plan_med_order', $plan_med_order);
+		echo json_encode($index);
+	}
+
+	public function diagproc_or_table()
+	{
+		$plan_diagproc_order = $this->session->userdata('plan_diagproc_order');
+		echo json_encode($plan_diagproc_order);
+	}
+
+	public function add_diagproc_order()
+	{
+		$postData = $this->input->post();
+		$mor = $postData['mor'];
+
+		$plan_diagproc_order = $this->session->userdata('plan_diagproc_order');
+		if(isset($plan_diagproc_order)){
+			$c = count($plan_diagproc_order);
+		} else {
+			$c = 0;
+		}
+
+		$startingIndex = $c;
+        $format = "%Y-%m-%d %H:%i:%s";
+
+		if(isset($postData['lab_req'])){
+			$lab_req = $postData['lab_req'];
+			foreach($lab_req as $value){
+				$plan_diagproc_order[$c] = array(
+					"datetime" => mdate($format),
+					"mor" => $mor,
+					"req" => $value,
+					"remarks" => "",
+				);
+				$c = $c + 1;
+			}
+		}
+
+		if(isset($postData['rad_req'])){
+			$rad_req = $postData['rad_req'];
+			foreach($rad_req as $value){
+				$plan_diagproc_order[$c] = array(
+					"datetime" => mdate($format),
+					"mor" => $mor,
+					"req" => $value,
+					"remarks" => "",
+				);
+				$c = $c + 1;
+			}
+		}
+
+		$this->session->set_userdata('plan_diagproc_order', $plan_diagproc_order);
+		echo json_encode(array_slice($plan_diagproc_order, $startingIndex, $c - $startingIndex));
+	}
+
+	public function update_diagproc_order()
+	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+		$diagproc = $postData['diagproc'];
+		$priority = $postData['priority'];
+		$remarks = $postData['remarks'];
+
+		$plan_diagproc_order = $this->session->userdata('plan_diagproc_order');
+		$plan_diagproc_order[$index]['req'] = $diagproc;
+		$plan_diagproc_order[$index]['mor'] = $priority;
+		$plan_diagproc_order[$index]['remarks'] = $remarks;
+
+		$this->session->set_userdata('plan_diagproc_order', $plan_diagproc_order);
+		echo json_encode($plan_diagproc_order[$index]);
+	}
+
+	public function delete_diagproc_order()
+	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+
+		$plan_diagproc_order = $this->session->userdata('plan_diagproc_order');
+		array_splice($plan_diagproc_order, $index, 1);
+
+		$this->session->set_userdata('plan_diagproc_order', $plan_diagproc_order);
+		echo json_encode($index);
+	}
+
+	public function finalize()
+	{
+		$this->session->unset_userdata('plan_gen_order');
+        $this->session->unset_userdata('plan_med_order');
+        $this->session->unset_userdata('plan_diagproc_order');
+
+		$response = array(
+			"message" => 'Success saving'
+		);
+
+		echo json_encode($response);
+	}
+
+	public function delete_gen_order()
+	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+
+		$plan_gen_order = $this->session->userdata('plan_gen_order');
+		array_splice($plan_gen_order, $index, 1);
+
+		$this->session->set_userdata('plan_gen_order', $plan_gen_order);
+		echo json_encode($index);
 	}
 }
