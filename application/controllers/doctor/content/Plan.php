@@ -51,7 +51,13 @@ class Plan extends MY_Controller {
         $this->render_page();
 	}
 
-    public function add_gen_order()
+	public function gen_or_table()
+	{
+		$plan_gen_order = $this->session->userdata('plan_gen_order');
+		echo json_encode($plan_gen_order);
+	}
+
+	public function add_gen_order()
 	{
 		$postData = $this->input->post();
 		$mor = $postData['mor'];
@@ -78,10 +84,33 @@ class Plan extends MY_Controller {
 		echo json_encode($plan_gen_order[$c]);
 	}
 
-	public function gen_or_table()
+	public function update_gen_order()
 	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+		$mor = $postData['mor'];
+		$gen_or_data = $postData['gen_or_data'];
+		$remarks = $postData['remarks'];
+
 		$plan_gen_order = $this->session->userdata('plan_gen_order');
-		echo json_encode($plan_gen_order);
+		$plan_gen_order[$index]['mor'] = $mor;
+		$plan_gen_order[$index]['gen_or_data'] = $gen_or_data;
+		$plan_gen_order[$index]['remarks'] = $remarks;
+
+		$this->session->set_userdata('plan_gen_order', $plan_gen_order);
+		echo json_encode($plan_gen_order[$index]);
+	}
+
+	public function delete_gen_order()
+	{
+		$postData = $this->input->post();
+		$index = $postData['index'];
+
+		$plan_gen_order = $this->session->userdata('plan_gen_order');
+		array_splice($plan_gen_order, $index, 1);
+
+		$this->session->set_userdata('plan_gen_order', $plan_gen_order);
+		echo json_encode($index);
 	}
 
 	public function med_or_table()
@@ -253,17 +282,5 @@ class Plan extends MY_Controller {
 		);
 
 		echo json_encode($response);
-	}
-
-	public function delete_gen_order()
-	{
-		$postData = $this->input->post();
-		$index = $postData['index'];
-
-		$plan_gen_order = $this->session->userdata('plan_gen_order');
-		array_splice($plan_gen_order, $index, 1);
-
-		$this->session->set_userdata('plan_gen_order', $plan_gen_order);
-		echo json_encode($index);
 	}
 }

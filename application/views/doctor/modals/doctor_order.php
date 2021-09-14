@@ -105,6 +105,7 @@
                                 </table>
                             </div>
                         </div>
+
                         <div class="row form-inline">
                             <div class="col-sm-9">
                                 <div class="dropdown-divider"></div>
@@ -488,6 +489,108 @@
 </div>
 <!-- /.modal -->
 
+<div class="modal fade" id="update-gen-order" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update General Order</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <input type="hidden" name="" id="gou-index">
+
+                <div class="form-inline">
+                    <label for=""> Mode of Request: </label>
+                    <select name="" id="gou-priority" class="form-control ml-2">
+                        <option value="Routine">Routine</option>
+                        <option value="STAT">STAT</option>
+                    </select>
+                </div>
+
+                <div class="form-inline mt-2">
+                    <label for=""> Date/Time Ordered: </label>
+                    <input type="text" name="" id="gou-datetime" class="form-control ml-2" readonly>
+                </div>
+
+                <hr>
+
+                <div id="upd-genor-div" class="row mt-2">
+                    <label for="" class="text-left">General Order Data Entry:</label>
+                    <input type="text" name="" id="upd-genor-data" class="form-control w-100" placeholder="General Order Data Entry" value="">
+                    <div class="form-inline col-md-12">
+                        <input type="checkbox" class="form-control" name="" id="upd-spec-ins" value="1">
+                        <label for="" class="ml-1">Special Instruction</label>
+                    </div>
+                </div>
+
+                <div id="upd-diet-div" class="row mt-2">
+                    <label for="" class="col-sm-12">Dietary Orders:</label>
+                    <div class="col-sm-5">
+                        <select name="" id="upd-diet-select" class="form-control  block">
+                            <option value="Low Fat Low Salt">Low Fat Low Salt</option>
+                            <option value="Diet as Tolerated">Diet as Tolerated</option>
+                            <option value="Hypoallergenic Diet">Hypoallergenic Diet</option>
+                            <option value="Muslim Diet">Muslim Diet</option>
+                            <option value="Diabetic Diet">Diabetic Diet</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <input type="text" name="" id="upd-others-diet" placeholder="Please specify here..." style="display:none;" class="form-control  mt-2">
+                    </div>
+                    <!-- <div class="col-sm-4">
+                        <input type="text" name="" id="upd-diet-remarks" placeholder="Remarks" class="form-control">
+                    </div>   -->
+                </div>
+
+
+                <div id="upd-ref-div" class="row mt-4">
+                    <div class="col-sm-12">
+                        <label for="" class="text-left">Referral Orders:</label>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Refer to Department</th>
+                                    <th scope="col">Reason for Referral</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="" id="upd-ref-select" class="form-control  block">
+                                            <option value="Neurology">Neurology</option>
+                                            <option value="Internal Medicine">Internal Medicine</option>
+                                            <option value="Surgery">Surgery</option>
+                                            <option value="Pediatrics">Pediatrics</option>
+                                            <option value="OB Gyne">OB Gyne</option>
+                                            <option value="ORL-HNS">ORL-HNS</option>
+                                            <option value="Ophthalmology">Ophthalmology</option>
+                                            <option value="Anesthesiology">Anesthesiology</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <textarea placeholder="Your reason here..." class="form-control" name="" id="upd-ref-reason" rows="2"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-inline mt-2">
+                    <label for=""> Remarks: </label>
+                    <input type="text" name="" id="gou-remarks" class="form-control ml-2">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between p-1">
+                <button type="submit" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-primary" id="gou-update-btn">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="update-diagproc-order" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -497,24 +600,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
 
                 <input type="hidden" name="" id="dpu-index">
 
                 <div class="form-inline">
+                    <label for=""> Mode of Request: </label>
+                    <select name="" id="dpu-priority" class="form-control ml-2">
+                        <option value="Routine">Routine</option>
+                        <option value="STAT">STAT</option>
+                    </select>
+                </div>
+
+                <div class="form-inline mt-2">
                     <label for=""> Date/Time Ordered: </label>
                     <input type="text" name="" id="dpu-datetime" class="form-control ml-2" readonly>
                 </div>
                 <div class="form-inline mt-2">
                     <label for=""> Diagnostic Procedure: </label>
                     <input type="text" name="" id="dpu-diagproc" class="form-control ml-2">
-                </div>
-                <div class="form-inline mt-2">
-                    <label for=""> Mode of Request: </label>
-                    <select name="" id="dpu-priority" class="form-control ml-2">
-                        <option value="Routine">Routine</option>
-                        <option value="STAT">STAT</option>
-                    </select>
                 </div>
                 <div class="form-inline mt-2">
                     <label for=""> Remarks: </label>

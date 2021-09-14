@@ -238,6 +238,11 @@
             $("#planTable_length").find('label').after(' <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>');
         <?php } ?>
 
+        function clearDataTable(dataTable) {
+            dataTable.clear().draw();
+            dataTable.ajax.reload();
+        }
+
         // General Order Functions - START
 
         $('#gen_or_mor_routine').attr('checked', true);
@@ -262,7 +267,7 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
-                        console.log(data);
+                        // console.log(data);
                         var length = Object.keys(data).length;
                         for (var i = 0; i < length; i++) {
                             genOrderTable.row.add([
@@ -270,7 +275,7 @@
                                 data[i]['gen_or_data'],
                                 data[i]['mor'],
                                 data[i]['remarks'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
                                 '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
@@ -298,15 +303,6 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    var index = genOrderTable.rows().count();
-                    genOrderTable.row.add([
-                        data['datetime'],
-                        data['gen_or_data'],
-                        data['mor'],
-                        data['remarks'],
-                        '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                        '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + index + '">DELETE</button>'
-                    ]).draw(false);
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -315,17 +311,14 @@
                         timer: 1000,
                         width: 400,
                     });
+                    clearDataTable(genOrderTable);
+                    clearDataTable(genOrderSummaryTable);
                     $('#' + clear).val('');
                 },
                 error: function(err) {
                     if (!err) return;
                 }
             });
-        }
-
-        function clearDataTable(dataTable) {
-            dataTable.clear().draw();
-            dataTable.ajax.reload();
         }
 
         $('#add-gen-order-btn').on('click', function(e) {
@@ -370,24 +363,219 @@
             addGenOrder(mor, gen_or_data, remarks, 'referral-reason');
         });
 
-        $("#genOrderTable").on("click", ".gen-order-delete", function(event) {
-            var index = $(this).data('index');
-            // var row = $(this).parents('tr');
+        $('#update-gen-order').on('show.bs.modal', function() {
+            var index = $(event.target).closest('.gen-order-update').data('index');
+            var datetime = $(event.target).closest('tr').find('td:eq(0)').html();
+            var order = $(event.target).closest('tr').find('td:eq(1)').html();
+            var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            var remarks = $(event.target).closest('tr').find('td:eq(3)').html();
+
+            if (order.includes('<b>DIETARY ORDERS: </b>')) {
+                $('#upd-genor-div').hide();
+                $('#upd-diet-div').show();
+                $('#upd-ref-div').hide();
+
+                var string = '<b>DIETARY ORDERS: </b>';
+                var firstIndex = order.indexOf(string) + (string.length + 4);
+                order = order.substring(firstIndex, order.length);
+                $(this).find("#upd-diet-select").val(order);
+
+            } else if (order.includes('<b>REFERRAL ORDER: </b>')) {
+                $('#upd-genor-div').hide();
+                $('#upd-diet-div').hide();
+                $('#upd-ref-div').show();
+
+                var string = '<b>Refer to Department:</b>';
+                var firstIndex = order.indexOf(string) + (string.length + 4);
+                var secondIndex = order.indexOf('<br>', firstIndex);
+                var referral = order.substring(firstIndex, secondIndex).trim();
+                $(this).find("#upd-ref-select").val(referral);
+
+                string = '<b>Reason for Referral: </b>';
+                firstIndex = order.indexOf(string) + (string.length + 4);
+                reason = order.substring(firstIndex, order.length).trim();
+                $(this).find("#upd-ref-reason").val(reason);
+
+                // console.log('1st:' + firstIndex + ' 2nd:' + secondIndex);
+                // console.log(order);
+
+            } else { // means general order
+                $('#upd-genor-div').show();
+                $('#upd-diet-div').hide();
+                $('#upd-ref-div').hide();
+
+                var string = '<b>SPECIAL INSTRUCTION: </b>';
+                if (order.includes(string)) {
+                    var firstIndex = order.indexOf(string) + (string.length + 4);
+                    order = order.substring(firstIndex, order.length).trim();
+                    $(this).find("#upd-genor-data").val(order);
+                    $(this).find("#upd-spec-ins").prop('checked', true);
+                } else {
+                    $(this).find("#upd-genor-data").val(order);
+                    $(this).find("#upd-spec-ins").prop('checked', false);
+                }
+
+            }
+
+            //make your ajax call populate items or what even you need
+            // $(this).find('#orderDetails').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'));
+            $(this).find('#gou-index').val(index);
+            $(this).find('#gou-datetime').val(datetime);
+            // $(this).find('#gou-order').val(order);
+            $(this).find('#gou-priority').val(priority);
+            $(this).find('#gou-remarks').val(remarks);
+        });
+
+        $('#gou-update-btn').on('click', function(e) {
+            var index = $('#gou-index').val();
+            var mor = $('#gou-priority').val();
+
+            var gen_or_data;
+            if ($('#upd-genor-div').is(':visible')) {
+
+                gen_or_data = $('#upd-genor-data').val();
+                if (gen_or_data == null || gen_or_data == "") {
+                    $("#upd-genor-data").addClass('required');
+                    e.preventDefault();
+
+                } else {
+                    $("#upd-genor-data").removeClass('required');
+                    if ($('#upd-spec-ins').is(':checked')) {
+                        gen_or_data = "<b>SPECIAL INSTRUCTION: </b><br>" + gen_or_data;
+                    }
+                }
+
+            } else if ($('#upd-diet-div').is(':visible')) {
+                gen_or_data = $('#dpu-diagproc').val();
+                var diet = $('#upd-diet-select').val();
+                if (diet == "Others") {
+                    diet = diet + ': ' + $('#upd-others-diet').val();
+                }
+                gen_or_data = '<b>DIETARY ORDERS: </b><br>' + diet;
+
+            } else if ($('#upd-ref-div').is(':visible')) {
+                var referral = $('#upd-ref-select').val();
+                var referralReason = $('#upd-ref-reason').val();
+                gen_or_data = '<b>REFERRAL ORDER: </b> <br> <b>Refer to Department:</b><br> ' + referral + '<br><b>Reason for Referral: </b><br>' + referralReason;
+            }
+
+            var remarks = $('#gou-remarks').val();
 
             $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-gen-order',
+                url: '/ncmh_er/doctor/plan/update-gen-order',
                 type: 'POST',
                 data: {
-                    index: index
+                    index: index,
+                    mor: mor,
+                    gen_or_data: gen_or_data,
+                    remarks: remarks,
                 },
                 dataType: 'json',
                 success: function(data) {
+                    $('#update-gen-order').modal('toggle');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Updated',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: 400,
+                    });
                     clearDataTable(genOrderTable);
+                    clearDataTable(genOrderSummaryTable);
                 },
                 error: function(err) {
                     if (!err) return;
                 }
             });
+        });
+
+        function deleteOrder(index, url, orderTable, summaryTable) {
+
+            Swal.fire({
+                title: 'Delete this order?',
+                showDenyButton: true,
+                confirmButtonText: 'No',
+                // showCancelButton: true,                        
+                denyButtonText: `Yes`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire('Saved!', '', 'success');
+                } else if (result.isDenied) {
+                    $.ajax({
+                        url: '/ncmh_er/doctor/plan/' + url,
+                        type: 'POST',
+                        data: {
+                            index: index
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'warning',
+                                title: 'Deleted',
+                                showConfirmButton: false,
+                                timer: 1000,
+                                width: 400,
+                            });
+                            clearDataTable(orderTable);
+                            clearDataTable(summaryTable);
+                        },
+                        error: function(err) {
+                            if (!err) return;
+                        }
+                    });
+                }
+            });
+
+
+        }
+
+        $("#genOrderTable").on("click", ".gen-order-delete", function(event) {
+            var index = $(this).data('index');
+            deleteOrder(index, 'delete-gen-order', genOrderTable, genOrderSummaryTable);
+        });
+
+        genOrderSummaryTable = $('#genOrderSummaryTable').DataTable({
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+            searching: false,
+            paging: false,
+            bInfo: false,
+            ajax: {
+                url: '/ncmh_er/doctor/plan/gen-or-table',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
+                        var length = Object.keys(data).length;
+                        for (var i = 0; i < length; i++) {
+                            genOrderSummaryTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['gen_or_data'],
+                                data[i]['mor'],
+                                data[i]['remarks'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
+                            ]).draw(false);
+                        }
+                    } else {
+                        genOrderSummaryTable.draw(false);
+                    }
+                },
+                error: function(err) {
+                    if (!err) return;
+                }
+            },
+            order: [
+                [0, 'DESC']
+            ],
+        });
+
+        $("#genOrderSummaryTable").on("click", ".gen-order-delete", function(event) {
+            var index = $(this).data('index');
+            deleteOrder(index, 'delete-gen-order', genOrderTable, genOrderSummaryTable);
         });
 
         // DIAGNOSTIC PROCEDURE
@@ -581,30 +769,7 @@
 
         $("#diagProcTable").on("click", ".diagproc-order-delete", function(event) {
             var index = $(this).data('index');
-
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-diagproc-order',
-                type: 'POST',
-                data: {
-                    index: index
-                },
-                dataType: 'json',
-                success: function(data) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'warning',
-                        title: 'Deleted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    clearDataTable(diagProcTable);
-                    clearDataTable(diagProcSummaryTable);
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
+            deleteOrder(index, 'delete-diagproc-order', diagProcTable, diagProcSummaryTable);
         });
 
         diagProcSummaryTable = $('#diagProcSummaryTable').DataTable({
@@ -651,29 +816,7 @@
 
         $("#diagProcSummaryTable").on("click", ".diagproc-order-delete", function(event) {
             var index = $(this).data('index');
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-diagproc-order',
-                type: 'POST',
-                data: {
-                    index: index
-                },
-                dataType: 'json',
-                success: function(data) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'warning',
-                        title: 'Deleted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    clearDataTable(diagProcSummaryTable);
-                    clearDataTable(diagProcTable);
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
+            deleteOrder(index, 'delete-diagproc-order', diagProcTable, diagProcSummaryTable);
         });
 
         // Medication Order START
@@ -793,7 +936,6 @@
             var duration = $(event.target).closest('tr').find('td:eq(4)').html();
             var priority = $(event.target).closest('tr').find('td:eq(5)').html();
 
-            var durationType;
             if (duration.includes('days')) {
                 $('#mouDurationNum').prop('checked', true);
                 $("#mouDurNumDiv").removeClass("d-none");
@@ -801,12 +943,11 @@
                 duration = duration.replace('days', '');
                 duration = duration.trim();
                 $(this).find("#mou-days").val(duration);
-            }
-            else if (duration.includes('From') && duration.includes('to')) {
+            } else if (duration.includes('From') && duration.includes('to')) {
                 $('#mouDurationRange').prop('checked', true);
                 $("#mouDurNumDiv").addClass("d-none");
                 $("#mouDurRangeDiv").show();
-                console.log();
+                // console.log();
                 var firstIndex = duration.indexOf('From') + 5;
                 var secondIndex = firstIndex + 10;
                 var fromDate = duration.substring(firstIndex, secondIndex);
@@ -883,30 +1024,7 @@
 
         $("#medOrderTable").on("click", ".med-order-delete", function(event) {
             var index = $(this).data('index');
-
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-med-order',
-                type: 'POST',
-                data: {
-                    index: index
-                },
-                dataType: 'json',
-                success: function(data) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'warning',
-                        title: 'Deleted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    clearDataTable(medOrderTable);
-                    clearDataTable(medSummaryTable);
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
+            deleteOrder(index, 'delete-med-order', medOrderTable, medSummaryTable);
         });
 
         var medSummaryTable = $('#medSummaryTable').DataTable({
@@ -950,93 +1068,7 @@
 
         $("#medSummaryTable").on("click", ".med-order-delete", function(event) {
             var index = $(this).data('index');
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-med-order',
-                type: 'POST',
-                data: {
-                    index: index
-                },
-                dataType: 'json',
-                success: function(data) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'warning',
-                        title: 'Deleted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    clearDataTable(medSummaryTable);
-                    clearDataTable(medOrderTable);
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
-        });
-
-        // Summary modal
-
-        genOrderSummaryTable = $('#genOrderSummaryTable').DataTable({
-            responsive: true,
-            lengthChange: true,
-            autoWidth: false,
-            searching: false,
-            paging: false,
-            bInfo: false,
-            ajax: {
-                url: '/ncmh_er/doctor/plan/gen-or-table',
-                type: "POST",
-                dataType: 'json',
-                success: function(data) {
-                    if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
-                        var length = Object.keys(data).length;
-                        for (var i = 0; i < length; i++) {
-                            genOrderSummaryTable.row.add([
-                                data[i]['datetime'],
-                                data[i]['gen_or_data'],
-                                data[i]['mor'],
-                                data[i]['remarks'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                                '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
-                            ]).draw(false);
-                        }
-                    } else {
-                        genOrderSummaryTable.draw(false);
-                    }
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            },
-            order: [
-                [0, 'DESC']
-            ],
-        });
-
-        $("#genOrderSummaryTable").on("click", ".gen-order-delete", function(event) {
-            var index = $(this).data('index');
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/delete-gen-order',
-                type: 'POST',
-                data: {
-                    index: index
-                },
-                dataType: 'json',
-                success: function(data) {
-                    clearDataTable(genOrderSummaryTable);
-                    clearDataTable(genOrderTable);
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
-        });
-
-        $('#order-summary-modal').on('shown.bs.modal', function() {
-            clearDataTable(genOrderSummaryTable);
-            // clearDataTable(medSummaryTable);
-            // clearDataTable(diagProcSummaryTable);
+            deleteOrder(index, 'delete-med-order', medOrderTable, medSummaryTable);
         });
 
         $('#finalize-btn').on('click', function() {

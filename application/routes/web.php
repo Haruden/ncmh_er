@@ -34,6 +34,7 @@ $route['doctor/plan/add-diagproc-order'] = 'doctor/content/plan/add_diagproc_ord
 $route['doctor/plan/diagproc-or-table'] = 'doctor/content/plan/diagproc_or_table';
 $route['doctor/plan/finalize'] = 'doctor/content/plan/finalize';
 
+$route['doctor/plan/update-gen-order'] = 'doctor/content/plan/update_gen_order';
 $route['doctor/plan/delete-gen-order'] = 'doctor/content/plan/delete_gen_order';
 $route['doctor/plan/update-med-order'] = 'doctor/content/plan/update_med_order';
 $route['doctor/plan/delete-med-order'] = 'doctor/content/plan/delete_med_order';
