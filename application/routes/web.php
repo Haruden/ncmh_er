@@ -16,6 +16,7 @@ $route['nurse/vital-signs'] = 'nurse/content/vital_signs';
 $route['nurse/nurse-notes'] = 'nurse/content/nurse_notes';
 $route['nurse/er-notes'] = 'nurse/content/er_notes';
 $route['nurse/plan'] = 'nurse/content/plan';
+$route['nurse/end-consult'] = 'nurse/content/end_consult';
 
 // Doctor Routes
 $route['doctor'] = 'doctor/queue';
@@ -25,6 +26,7 @@ $route['doctor/vital-signs'] = 'doctor/content/vital_signs';
 $route['doctor/nurse-notes'] = 'doctor/content/nurse_notes';
 $route['doctor/er-notes'] = 'doctor/content/er_notes';
 $route['doctor/plan'] = 'doctor/content/plan';
+$route['doctor/end-consult'] = 'doctor/content/end_consult';
 
 $route['doctor/plan/add-gen-order'] = 'doctor/content/plan/add_gen_order';
 $route['doctor/plan/gen-or-table'] = 'doctor/content/plan/gen_or_table';

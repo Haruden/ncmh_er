@@ -16,6 +16,19 @@
   z-index: 9999 !important;
 }
 
+.order-card-header {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+.order-datatable tbody td {
+  padding: 10px;
+}
+
+.order-card .card-body {
+  padding: 0;
+}
+
 /*
 @media (max-width: 1920px) {
  	CSS that should be displayed if width is equal to or less than 800px goes here

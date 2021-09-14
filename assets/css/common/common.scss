@@ -16,6 +16,19 @@
     z-index: 9999 !important;
 }
 
+.order-card-header {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.order-datatable tbody td {
+    padding: 10px;
+}
+
+.order-card .card-body {
+    padding: 0;
+}
+
 
 /*
 @media (max-width: 1920px) {
