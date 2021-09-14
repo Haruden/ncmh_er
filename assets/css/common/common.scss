@@ -21,8 +21,9 @@
     background-color: lightgrey;
 }
 
-.order-datatable tbody td {
-    padding: 10px;
+.order-datatable tbody td,
+.order-datatable thead th {
+    padding: 5px;
 }
 
 .order-card .card-body {
