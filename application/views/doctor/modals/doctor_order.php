@@ -28,7 +28,7 @@
                     <div class="tab-pane fade show active m-3" id="nav-doctor-order" role="tabpanel" aria-labelledby="nav-doctor-order-tab">
                         <div class="form-inline font-weight-bold lead">
                             Mode of Request:
-                            <input type="radio" name="gen_or_mor" id="gen_or_mor_stat" class="ml-2 mr-1" value="STAT"> STAT
+                            <input type="radio" name="gen_or_mor" id="gen_or_mor_stat" class="ml-2 mr-1" value="STAT"> <span class="text-danger"> STAT </span>
                             <input type="radio" name="gen_or_mor" id="gen_or_mor_routine" class="ml-2 mr-1" value="Routine"> Routine
                         </div>
 
@@ -232,7 +232,7 @@
                     <div class="tab-pane fade m-3" id="nav-diag-proc" role="tabpanel" aria-labelledby="nav-contact-tab">
                         <div class="form-inline font-weight-bold lead">
                             Mode of Request:
-                            <input type="radio" name="diag-mor" id="diag-mor-stat" class="ml-2 mr-1" value="STAT"> STAT
+                            <input type="radio" name="diag-mor" id="diag-mor-stat" class="ml-2 mr-1" value="STAT"> <span class="text-danger"> STAT </span>
                             <input type="radio" name="diag-mor" id="diag-mor-routine" class="ml-2 mr-1" value="Routine"> Routine
                         </div>
 
@@ -330,7 +330,7 @@
 
                         <div class="form-inline font-weight-bold lead">
                             Mode of Request:
-                            <input type="radio" name="med-mor" id="med-mor-stat" class="ml-2 mr-1" value="STAT"> STAT
+                            <input type="radio" name="med-mor" id="med-mor-stat" class="ml-2 mr-1" value="STAT"> <span class="text-danger"> STAT </span>
                             <input type="radio" name="med-mor" id="med-mor-routine" class="ml-2 mr-1" value="Routine"> Routine
                         </div>
                         <label for="" class="text-left">Medication Order Entry:</label>

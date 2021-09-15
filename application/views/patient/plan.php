@@ -61,7 +61,7 @@
                                                         <td>Jan 24, 2021 <br> 12:10PM</td>
                                                         <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
                                                         <td>Dr. Joeffrey Cruzada (Attending) </td>
-                                                        <td>Routine</td>
+                                                        <td><b class="text-danger">STAT</b></td>
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-12">
@@ -208,8 +208,8 @@
                                                     <tr>
                                                         <td>Jan 24, 2021 <br> 12:10PM</td>
                                                         <td>
-                                                            <b>Refer to Department:</b> Neurology <br>                                                            
-                                                            <b>Reason for Referral:</b> Slurred Speech <br>                                                            
+                                                            <b>Refer to Department:</b> Neurology <br>
+                                                            <b>Reason for Referral:</b> Slurred Speech <br>
                                                             <small><b>Remarks:</b> Notes</small>
                                                         </td>
                                                         <td>Dr. Joeffrey Cruzada (Attending) </td>
@@ -272,7 +272,7 @@
                                                         <td>Jan 24, 2021 <br> 12:10PM</td>
                                                         <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
                                                         <td>Dr. Joeffrey Cruzada (Attending) </td>
-                                                        <td>Routine</td>
+                                                        <td><b class="text-danger">STAT</b></td>
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-12">
@@ -538,7 +538,7 @@
                     <?php } ?>
                     return html;
                 }
-            }]
+            }],
         });
 
         <?php if (auth('role') == 'doctor') { ?>
@@ -576,13 +576,23 @@
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         // console.log(data);
                         var length = Object.keys(data).length;
+                        var morDisplay = "";
+
                         for (var i = 0; i < length; i++) {
+
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
+                            }
+
                             genOrderTable.row.add([
                                 data[i]['datetime'],
                                 data[i]['gen_or_data'],
-                                data[i]['mor'],
+                                // data[i]['mor'],
+                                morDisplay,
                                 data[i]['remarks'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
                                 '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
@@ -595,8 +605,10 @@
                 }
             },
             order: [
+                [2, 'DESC'],
                 [0, 'DESC']
             ],
+
         });
 
         function addGenOrder(mor, gen_or_data, remarks, clear) {
@@ -674,7 +686,8 @@
             var index = $(event.target).closest('.gen-order-update').data('index');
             var datetime = $(event.target).closest('tr').find('td:eq(0)').html();
             var order = $(event.target).closest('tr').find('td:eq(1)').html();
-            var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            // var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            var priority = $(event.target).closest('.gen-order-update').data('mor');
             var remarks = $(event.target).closest('tr').find('td:eq(3)').html();
 
             if (order.includes('<b>DIETARY ORDERS: </b>')) {
@@ -856,13 +869,23 @@
                 success: function(data) {
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
+                        var morDisplay;
+
                         for (var i = 0; i < length; i++) {
+
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
+                            }
+
                             genOrderSummaryTable.row.add([
                                 data[i]['datetime'],
                                 data[i]['gen_or_data'],
-                                data[i]['mor'],
+                                // data[i]['mor'],
+                                morDisplay,
                                 data[i]['remarks'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-primary m-1 btn-update gen-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-gen-order">UPDATE</button>' +
                                 '<button class="btn btn-sm btn-danger m-1 btn-remove gen-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
@@ -875,6 +898,7 @@
                 }
             },
             order: [
+                [2, 'DESC'],
                 [0, 'DESC']
             ],
         });
@@ -900,20 +924,27 @@
                 success: function(data) {
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
-                        for (var i = 0; i < length; i++) {
+                        var morDisplay;
 
-                            for (var i = 0; i < length; i++) {
-                                diagProcTable.row.add([
-                                    data[i]['datetime'],
-                                    data[i]['req'],
-                                    data[i]['mor'],
-                                    data[i]['remarks'],
-                                    '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
-                                    '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
-                                ]).draw(false);
+                        for (var i = 0; i < length; i++) {
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
                             }
 
+                            diagProcTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['req'],
+                                // data[i]['mor'],
+                                morDisplay,
+                                data[i]['remarks'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
+                            ]).draw(false);
                         }
+
+
                     } else {
                         diagProcTable.draw(false);
                     }
@@ -923,6 +954,7 @@
                 }
             },
             order: [
+                [2, 'DESC'],
                 [0, 'DESC']
             ],
         });
@@ -1026,7 +1058,8 @@
             var index = $(event.target).closest('.diagproc-order-update').data('index');
             var datetime = $(event.target).closest('tr').find('td:eq(0)').html();
             var diagproc = $(event.target).closest('tr').find('td:eq(1)').html();
-            var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            // var priority = $(event.target).closest('tr').find('td:eq(2)').html();
+            var priority = $(event.target).closest('.diagproc-order-update').data('mor');
             var remarks = $(event.target).closest('tr').find('td:eq(3)').html();
 
             //make your ajax call populate items or what even you need
@@ -1093,20 +1126,27 @@
 
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
-                        for (var i = 0; i < length; i++) {
+                        var morDisplay;
 
-                            for (var i = 0; i < length; i++) {
-                                diagProcSummaryTable.row.add([
-                                    data[i]['datetime'],
-                                    data[i]['req'],
-                                    data[i]['mor'],
-                                    data[i]['remarks'],
-                                    '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
-                                    '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
-                                ]).draw(false);
+                        for (var i = 0; i < length; i++) {
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
                             }
 
+                            diagProcSummaryTable.row.add([
+                                data[i]['datetime'],
+                                data[i]['req'],
+                                // data[i]['mor'],
+                                morDisplay,
+                                data[i]['remarks'],
+                                '<button class="btn btn-sm btn-primary m-1 btn-update diagproc-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-diagproc-order">UPDATE</button>' +
+                                '<button class="btn btn-sm btn-danger m-1 btn-remove diagproc-order-delete" data-index="' + i + '">DELETE</button>'
+                            ]).draw(false);
                         }
+
+
                     } else {
                         diagProcSummaryTable.draw(false);
                     }
@@ -1116,6 +1156,7 @@
                 }
             },
             order: [
+                [2, 'DESC'],
                 [0, 'DESC']
             ],
         });
@@ -1163,15 +1204,24 @@
                 success: function(data) {
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
+                        var morDisplay;
+
                         for (var i = 0; i < length; i++) {
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
+                            }
+
                             medOrderTable.row.add([
                                 data[i]['datetime'],
                                 data[i]['name'] + ' ' + data[i]['dosage'] + ' ' + data[i]['prep'],
                                 data[i]['route'],
                                 data[i]['frequency'],
                                 data[i]['duration'],
-                                data[i]['mor'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
+                                // data[i]['mor'],
+                                morDisplay,
+                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
                                 '<button class="btn btn-sm btn-danger m-1 btn-remove med-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
@@ -1184,6 +1234,7 @@
                 }
             },
             order: [
+                [5, 'DESC'],
                 [0, 'DESC']
             ],
         });
@@ -1240,7 +1291,8 @@
             var route = $(event.target).closest('tr').find('td:eq(2)').html();
             var frequency = $(event.target).closest('tr').find('td:eq(3)').html();
             var duration = $(event.target).closest('tr').find('td:eq(4)').html();
-            var priority = $(event.target).closest('tr').find('td:eq(5)').html();
+            // var priority = $(event.target).closest('tr').find('td:eq(5)').html();
+            var priority = $(event.target).closest('.med-order-update').data('mor');
 
             if (duration.includes('days')) {
                 $('#mouDurationNum').prop('checked', true);
@@ -1347,15 +1399,24 @@
                 success: function(data) {
                     if (data !== undefined && data !== null && data !== "" && data.length !== 0) {
                         var length = Object.keys(data).length;
+                        var morDisplay;
+
                         for (var i = 0; i < length; i++) {
+                            if (data[i]['mor'] == "STAT") {
+                                morDisplay = '<b class="text-danger">STAT</b>';
+                            } else {
+                                morDisplay = data[i]['mor'];
+                            }
+
                             medSummaryTable.row.add([
                                 data[i]['datetime'],
                                 data[i]['name'] + ' ' + data[i]['dosage'] + ' ' + data[i]['prep'],
                                 data[i]['route'],
                                 data[i]['frequency'],
                                 data[i]['duration'],
-                                data[i]['mor'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
+                                // data[i]['mor'],
+                                morDisplay,
+                                '<button class="btn btn-sm btn-primary m-1 btn-update med-order-update" data-index="' + i + '" data-mor="' + data[i]['mor'] + '" data-toggle="modal" data-target="#update-med-order" data-name="' + data[i]['name'] + '" data-dosage="' + data[i]['dosage'] + '" data-prep="' + data[i]['prep'] + '">UPDATE</button>' +
                                 '<button class="btn btn-sm btn-danger m-1 btn-remove med-order-delete" data-index="' + i + '">DELETE</button>'
                             ]).draw(false);
                         }
@@ -1368,6 +1429,7 @@
                 }
             },
             order: [
+                [5, 'DESC'],
                 [0, 'DESC']
             ],
         });
