@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.w-80 {
+  width: 80%;
+}
+
 .required {
   border: 2px solid red;
 }
@@ -19,6 +23,16 @@
 .order-card-header {
   cursor: pointer;
   background-color: lightgrey;
+}
+
+.diagnosis-card-header {
+  cursor: pointer;
+  background-color: #cfdcee;
+}
+
+.meds-card-header {
+  cursor: pointer;
+  background-color: lightgoldenrodyellow;
 }
 
 .order-datatable tbody td,

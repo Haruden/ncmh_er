@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class End_consult extends MY_Controller
+class Disposition extends MY_Controller
 {
 
 	/**
@@ -26,27 +26,30 @@ class End_consult extends MY_Controller
 
 	public function index()
 	{
-		$this->set_view('patient/end_consult');
+		$this->set_view('patient/disposition');
 		$this->title = "End Consult";
 		$this->page_active = "End Consult";
 		$this->component = true;
 		$this->sidebar_collapse = true;
 
-		$this->css_plugins = [
-			'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
-		// 	'datatables-bs4/css/dataTables.bootstrap4.min.css',
-		// 	'datatables-responsive/css/responsive.bootstrap4.min.css',
-		// 	'datatables-buttons/css/buttons.bootstrap4.min.css',
-		// 	'summernote/summernote-bs4.css',
-		];
 		$this->javascript_plugins = [
 			'moment/moment.min.js',
 			'tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
-			// 'datatables/jquery.dataTables.min.js',
-			// 'datatables-bs4/js/dataTables.bootstrap4.min.js',
-			// 'datatables-responsive/js/dataTables.responsive.min.js',
-			// 'datatables-responsive/js/responsive.bootstrap4.min.js',
+			'datatables/jquery.dataTables.min.js',
+			'datatables-bs4/js/dataTables.bootstrap4.min.js',
+			'datatables-responsive/js/dataTables.responsive.min.js',
+			'datatables-responsive/js/responsive.bootstrap4.min.js',
+			'select2/js/select2.full.min.js',
 			// 'summernote/summernote-bs4.min.js',
+		];
+		$this->css_plugins = [
+			'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+			'datatables-bs4/css/dataTables.bootstrap4.min.css',
+			'datatables-responsive/css/responsive.bootstrap4.min.css',
+			'datatables-buttons/css/buttons.bootstrap4.min.css',
+			'select2/css/select2.min.css',
+			'select2-bootstrap4-theme/select2-bootstrap4.min.css',
+			// 	'summernote/summernote-bs4.css',
 		];
 
 		$data['title'] =  $this->title;

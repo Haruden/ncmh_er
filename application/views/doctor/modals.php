@@ -1,5 +1,6 @@
 <?php $this->load->view('doctor/modals/doctor_order'); ?>
 <?php $this->load->view('doctor/modals/er_notes'); ?>
+<?php $this->load->view('doctor/modals/disposition'); ?>
 
 <!-- Add to Doctor Modal -->
 <div class="modal fade" id="ATD-modal">

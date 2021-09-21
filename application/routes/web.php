@@ -26,7 +26,7 @@ $route['doctor/vital-signs'] = 'doctor/content/vital_signs';
 $route['doctor/nurse-notes'] = 'doctor/content/nurse_notes';
 $route['doctor/er-notes'] = 'doctor/content/er_notes';
 $route['doctor/plan'] = 'doctor/content/plan';
-$route['doctor/end-consult'] = 'doctor/content/end_consult';
+$route['doctor/disposition'] = 'doctor/content/disposition';
 
 $route['doctor/plan/add-gen-order'] = 'doctor/content/plan/add_gen_order';
 $route['doctor/plan/gen-or-table'] = 'doctor/content/plan/gen_or_table';
