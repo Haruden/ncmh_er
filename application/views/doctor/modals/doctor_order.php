@@ -264,16 +264,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row form-inline text-center mb-2">
-                            <div class="col-sm-12">
-                                <a href="<?php echo base_url(); ?>assets/pdf/lab.pdf" target="_blank">
-                                    <button class="btn btn-success">
-                                        <i class="fas fa-folder-plus mr-2"></i>Add Laboratory Test
-                                    </button>
-                                </a>
-                            </div>
-                        </div> -->
-
                         <h5>Diagnostic Procedure Order Summary</h5>
 
                         <table id="diagProcTable" class="table table-striped table-bordered">
@@ -284,29 +274,6 @@
                                 <th>Remarks</th>
                                 <th>Actions</th>
                             </thead>
-                            <!-- <tbody>
-                                <tr>
-                                    <td>1/10/2021 | 1:51 PM</td>
-                                    <td>Complete Blood Count (CBC)</td>
-                                    <td>Routine
-                                    </td>
-                                    <td>To be extracted at 6am<td>
-                                        <button class="btn btn-sm btn-primary m-1">UPDATE</button>
-                                        <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1/10/2021 | 1:51 PM</td>
-                                    <td>Complete Blood Count (CBC)</td>
-                                    <td>STAT
-                                    </td>
-                                    <td>Extract Now</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary m-1">UPDATE</button>
-                                        <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                    </td>
-                                </tr>
-                            </tbody> -->
                             <tfoot>
                                 <th>Date/Time Ordered</th>
                                 <th>Diagnostic Procedure</th>
@@ -1483,7 +1450,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+<!-- proc-cat -->
 
 <!-- Order Summary -->
 <div class="modal fade" id="order-summary-modal" data-backdrop="static">

@@ -894,8 +894,8 @@
                         </select>
                     </div>
 
-                   <!-- To Consider -->
-                   <div class="form-group mb-3">
+                    <!-- To Consider -->
+                    <div class="form-group mb-3">
                         <label for="diag_to_consider">To Consider</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="diag_to_consider" name="diag_to_consider" />
@@ -909,7 +909,7 @@
                         </label>
                         <div class="checkbox">
                             <label><input type="radio" value="Y" name="diag_isPrimary"> Yes</label>
-                            <label><input data-default type="radio" checked="checked" value="N" name="diag_isPrimary" > No</label>
+                            <label><input data-default type="radio" checked="checked" value="N" name="diag_isPrimary"> No</label>
                         </div>
                     </div>
 
@@ -1866,3 +1866,927 @@
         </form>
     </div>
 </div>
+
+<div class="modal history-modal fade" id="discharge_meds_modal" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form id="pharmacological_form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Medication Prescription</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="pharma_parent_id" name="pharma_parent_id">
+                    <!-- Status -->
+                    <div class="form-group mb-3 pharma-status d-none">
+                        <label for="pharma_status">
+                            Status
+                        </label>
+                        <select id="pharma_status" data-placeholder="Select status" name="pharma_status" class="form-control select2bs4-placeholder" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                            <option></option>
+                            <option value="1">On-going same dosage</option>
+                            <option value="2">On-going different dosage</option>
+                            <option value="3">Stopped</option>
+                        </select>
+                    </div>
+
+                    <!-- Medication -->
+                    <div class="form-group mb-3">
+                        <label for="pharma_medication">
+                            <strong class="text-red">*</strong> Medication
+                        </label>
+
+                        <div class="input-group">
+                            <input type="hidden" name="pharma_medication" id="pharma_medication">
+                            <input type="hidden" name="pharma_drug_id" id="pharma_drug_id">
+                            <input type="text" class="form-control" id="pharma_description" />
+                            <!-- <div class="input-group-append">
+                                <button class="btn btn-search-medication btn-info" type="button" data-toggle="modal" data-target="#drug_medication_modal"><i class='fas fa-search'></i></button>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Dosage -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="pharma_quantity">
+                                    <strong class="text-red">*</strong> Administer Quantity
+                                </label>
+                                <input type="number" class="form-control mb-2 mr-sm-2 calculate" id="pharma_quantity" name="pharma_quantity" placeholder="Quantity" min="1">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="pharma_frequency">
+                                    <strong class="text-red">*</strong>Frequency
+                                </label>
+                                <select id="pharma_frequency" data-placeholder="Select frequency" name="pharma_frequency" class="form-control select2bs4-placeholder calculate" style="width: 100%;" data-minimum-results-for-search="Infinity">
+                                    <option data-multiplier="1" value="QDAY" data-select2-id="14">Daily</option>
+                                    <option data-multiplier="2" value="BID" data-select2-id="15">Twice Daily</option>
+                                    <option data-multiplier="3" value="TID" data-select2-id="16">Three times a day</option>
+                                    <option data-multiplier="4" value="QID" data-select2-id="17">Four times a day</option>
+                                    <option data-multiplier="12" value="Q2" data-select2-id="18">Every 2 hours</option>
+                                    <option data-multiplier="8" value="Q3" data-select2-id="19">Every 3 hours</option>
+                                    <option data-multiplier="6" value="Q4" data-select2-id="20">Every 4 hours</option>
+                                    <option data-multiplier="4" value="Q6" data-select2-id="21">Every 6 hours</option>
+                                    <option data-multiplier="3" value="Q8" data-select2-id="22">Every 8 hours</option>
+                                    <option data-multiplier="2" value="Q12" data-select2-id="23">Every 12 hours</option>
+                                    <option data-multiplier="1" value="AC BK" data-select2-id="24">Before breakfast</option>
+                                    <option data-multiplier="3" value="AC" data-select2-id="25">Before meals</option>
+                                    <option data-multiplier="3" value="C MEALS" data-select2-id="26">With meals</option>
+                                    <option data-multiplier="3" value="PC" data-select2-id="27">After meals</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dosage -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="pharma_duration">
+                                    <strong class="text-red">*</strong> Duration (in day/s)
+                                </label>
+                                <input type="number" class="form-control mb-2 mr-sm-2 calculate" id="pharma_duration" name="pharma_duration" placeholder="Duration" min="1">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="dispense_quantity">
+                                    Dispense Quantity
+                                </label>
+                                <input type="number" class="form-control mb-2 mr-sm-2" id="dispense_quantity" name="dispense_quantity" placeholder="Dispense Quantity" min="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Remarks  -->
+                    <div class="form-group mb-3">
+                        <label for="pharma_remarks">
+                            Remarks
+                        </label>
+                        <textarea class="form-control mb-2 mr-sm-2" id="pharma_remarks" name="pharma_remarks"></textarea>
+                    </div>
+
+                    <!-- Drug Formulary  -->
+                    <div class="form-group mb-3">
+                        <div class="icheck-primary d-inline">
+                            <input type="checkbox" value="1" id="pharma_drug_formulary" name="pharma_drug_formulary">
+                            <label for="pharma_drug_formulary">From drug formulary</label>
+                        </div>
+                    </div>
+
+                    <!-- Reason for stopping  -->
+                    <div class="form-group mb-3 stop-reason" hidden>
+                        <label for="pharma_stop_reason">
+                            <strong class="text-red">*</strong> Reason for stopping
+                        </label>
+                        <textarea class="form-control mb-2 mr-sm-2" id="pharma_stop_reason" name="pharma_stop_reason"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal history-modal fade" id="discharge_proc_modal" data-backdrop="static">
+    <div class="modal-dialog modal-xl" role="document">
+        <form id="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Procedure Prescription</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group mb-2">
+                        <div class="form-inline mb-2">
+                            <div class="col-4 d-flex justify-content-left">
+                                <label> Diagnostic Procedure Order Data Entry: </label>
+                            </div>
+                            <div class="col-5">
+                                <hr>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-sm btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#discharge_proc_cat">
+                                    <i class="fas fa-book-medical mr-2"></i>View Procedure Catalog
+                                </button>
+                            </div>
+                        </div>
+                        <input type="text" placeholder="Diagnostic Procedure Order Data Entry" class="form-control" name="diagproc-text" id="diagproc-text" />
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-9">
+                            <hr>
+                        </div>
+                        <div class="col-3">
+                            <button id="add-diagproc-btn" class="btn btn-sm btn-success w-100">
+                                <i class="fas fa-folder-plus mr-2"></i> Add Diagnostic Procedure Order
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="discharge_proc_cat" data-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Diagnostic Procedure Order</h5>
+                <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#discharge_proc_modal" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a style="width: 49%;" href="#nav-lab-proc" class="nav-item nav-link text-center active" id="nav-lab-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-lab-proc" aria-selected="true">
+                            <i class="fas fa-vial mr-2"></i>Laboratory Procedures
+                        </a>
+                        <a style="width: 49%;" href="#nav-rad-proc" class="nav-item nav-link text-center" id="nav-rad-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-rad-proc" aria-selected="true">
+                            <i class="fas fa-radiation-alt mr-2"></i>Radiologic Procedures
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active m-3" id="nav-lab-proc" role="tabpanel" aria-labelledby="nav-lab-proc-tab">
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-3">
+                                <!-- HEMATOLOGY -->
+                                <label>HEMATOLOGY</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0001" id="NCMHLAB0001" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0001">
+                                        CBC
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0002" id="NCMHLAB0002" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0002">
+                                        Platelet count
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0003" id="NCMHLAB0003" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0003">
+                                        Hemoglobin &amp; Hematocrit only
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0004" id="NCMHLAB0004" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0004">
+                                        RBC
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0005" id="NCMHLAB0005" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0005">
+                                        WBC w/ Differential Count
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0006" id="NCMHLAB0006" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0006">
+                                        Blood Indices
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0007" id="NCMHLAB0007" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0007">
+                                        ESR
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0008" id="NCMHLAB0008" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0008">
+                                        Clotting Time
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0009" id="NCMHLAB0009" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0009">
+                                        Bleeding Time
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0010" id="NCMHLAB0010" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0010">
+                                        Malarial Smear
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0011" id="NCMHLAB0011" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0011">
+                                        L.E. Preparation
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0012" id="NCMHLAB0012" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0012">
+                                        Peripheral Smear
+                                    </label>
+                                </div>
+                                <br>
+
+                                <!-- SEROLOGY -->
+                                <label>SEROLOGY</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0013" id="NCMHLAB0013" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0013">
+                                        HBsAg/ Hepatitis B s antigen
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0014" id="NCMHLAB0014" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0014">
+                                        HIV
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0015" id="NCMHLAB0015" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0015">
+                                        Syphilis Test RPR / Anti Treponema Pallidum
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0016" id="NCMHLAB0016" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0016">
+                                        Anti HAV
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0017" id="NCMHLAB0017" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0017">
+                                        Anti HBS
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0018" id="NCMHLAB0018" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0018">
+                                        Anti HCV
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0019" id="NCMHLAB0019" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0019">
+                                        Salmonella IgM,IgG
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0020" id="NCMHLAB0020" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0020">
+                                        Dengue NS1
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0021" id="NCMHLAB0021" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0021">
+                                        Dengue IgM, IgG
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <!-- Blood Bank -->
+                                <label>BLOOD BANK</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0022" id="NCMHLAB0022" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0022">
+                                        Blood Typing [ABO &amp; Rh]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0023" id="NCMHLAB0023" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0023">
+                                        Crossmatching
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0024" id="NCMHLAB0024" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0024">
+                                        Coomb's Test Direct
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0025" id="NCMHLAB0025" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0025">
+                                        Coomb's Test Indirect
+                                    </label>
+                                </div>
+                                <br>
+
+                                <!-- CHEMISTRY -->
+                                <label>CHEMISTRY</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0026" id="NCMHLAB0026" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0026">
+                                        FBS
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0027" id="NCMHLAB0027" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0027">
+                                        RBS
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0028" id="NCMHLAB0028" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0028">
+                                        BUN/ Blood Urea Nitrogen
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0029" id="NCMHLAB0029" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0029">
+                                        Creatinine
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0030" id="NCMHLAB0030" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0030">
+                                        Blood Uric Acid
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0031" id="NCMHLAB0031" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0031">
+                                        Total Cholesterol
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0032" id="NCMHLAB0032" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0032">
+                                        Triglycerides
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0033" id="NCMHLAB0033" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0033">
+                                        HDL
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0034" id="NCMHLAB0034" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0034">
+                                        LDL
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0035" id="NCMHLAB0035" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0035">
+                                        Alkaline Phosphatase
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0036" id="NCMHLAB0036" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0036">
+                                        SGPT/ ALT
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0037" id="NCMHLAB0037" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0037">
+                                        SGOT/ AST
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0038" id="NCMHLAB0038" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0038">
+                                        Total Bilirubin
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0039" id="NCMHLAB0039" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0039">
+                                        Indirect &amp; Direct Bilirubin
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0040" id="NCMHLAB0040" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0040">
+                                        Total Protein
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0041" id="NCMHLAB0041" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0041">
+                                        Albumin
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0042" id="NCMHLAB0042" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0042">
+                                        Globulin
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0043" id="NCMHLAB0043" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0043">
+                                        OGTT
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0044" id="NCMHLAB0044" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0044">
+                                        OGCT
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0045" id="NCMHLAB0045" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0045">
+                                        Hemoglobin A1c (Hba1c)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+
+                                <!-- ELETROLYTES -->
+                                <label>ELETROLYTES</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0046" id="NCMHLAB0046" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0046">
+                                        Sodium/ Na
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0047" id="NCMHLAB0047" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0047">
+                                        Potassium/ K
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0048" id="NCMHLAB0048" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0048">
+                                        Lithium/ Li
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0049" id="NCMHLAB0049" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0049">
+                                        Chloride
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0050" id="NCMHLAB0050" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0050">
+                                        Total Calcium
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0051" id="NCMHLAB0051" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0051">
+                                        Phosphorous (Inorganic Phosphate)
+                                    </label>
+                                </div>
+                                <br>
+                                <!-- CARDIAC MARKERS -->
+                                <label>CARDIAC MARKERS</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0052" id="NCMHLAB0052" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0052">
+                                        Troponin [Qualitative]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0053" id="NCMHLAB0053" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0053">
+                                        CK-MB [Qualitative]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0054" id="NCMHLAB0054" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0054">
+                                        CK-Total [Qualitative]
+                                    </label>
+                                </div>
+                                <br>
+                                <!-- MICROSCOPY -->
+                                <label>MICROSCOPY</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0055" id="NCMHLAB0055" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0055">
+                                        Routine Urinalysis
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0056" id="NCMHLAB0056" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0056">
+                                        Routine Fecalysis/ Stool Exam
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0057" id="NCMHLAB0057" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0057">
+                                        Scotch tape Method
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0058" id="NCMHLAB0058" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0058">
+                                        Pregnancy Test
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0059" id="NCMHLAB0059" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0059">
+                                        Vaginal Smear for Spermatozoa
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0060" id="NCMHLAB0060" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0060">
+                                        Semen Analysis
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0061" id="NCMHLAB0061" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0061">
+                                        Fecal Occult Blood (FOBT)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+
+                                <!-- MICROBIOLOGY -->
+                                <label>MICROBIOLOGY</label>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0062" id="NCMHLAB0062" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0062">
+                                        Gram Stain
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0062"><input placeholder="Source" type="text" name="txt-NCMHLAB0062" class="form-control text-scr" data-id="NCMHLAB0062"></div>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0063" id="NCMHLAB0063" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0063">
+                                        AFB Stain
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0063"><input placeholder="Source" type="text" name="txt-NCMHLAB0063" class="form-control text-scr" data-id="NCMHLAB0063"></div>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0064" id="NCMHLAB0064" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0064">
+                                        KOH
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0064"><input placeholder="Source" type="text" name="txt-NCMHLAB0064" class="form-control text-scr" data-id="NCMHLAB0064"></div>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0065" id="NCMHLAB0065" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0065">
+                                        Culture &amp; Sensitivity
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0065">
+                                        <div class="form-check"><input class="form-check-input" name="chk-NCMHLAB0065[]" type="checkbox" value="Blood">&nbsp;<label class="thin-label">Blood</label></div>
+                                        <div class="form-check"><input class="form-check-input" name="chk-NCMHLAB0065[]" type="checkbox" value="Urine">&nbsp;<label class="thin-label">Urine</label></div>
+                                        <div class="form-check"><input class="form-check-input" name="chk-NCMHLAB0065[]" type="checkbox" value="Stool">&nbsp;<label class="thin-label">Stool</label></div>
+                                        <div class="form-check"><input class="form-check-input" name="chk-NCMHLAB0065[]" type="checkbox" value="Wound">&nbsp;<label class="thin-label">Wound</label></div>
+                                        <div class="form-check"><input class="form-check-input" name="chk-NCMHLAB0065[]" type="checkbox" value="Rectal" swab="">&nbsp;<label class="thin-label">Rectal Swab</label></div><input placeholder="Others - please specify" type="text" name="txt-NCMHLAB0065" class="form-control text-scr" data-id="NCMHLAB0065">
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0066" id="NCMHLAB0066" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0066">
+                                        PCR for M.Tuberculosis
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0066"></div>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="with_src" value="NCMHLAB0067" id="NCMHLAB0067" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0067">
+                                        Environmental Swabbing
+                                    </label>
+                                    <div class="pl-4 d-none" id="src_data-NCMHLAB0067"></div>
+                                </div> <br>
+                                <!-- MISCELLANEOUS -->
+                                <label>MISCELLANEOUS</label>
+
+                                <!-- Body Fluid Analysis (Cell Count, Sugar, Protein) -->
+                                <div>
+                                    <label class="thin-label">Body Fluid Analysis<br>(Cell Count, Sugar, Protein)</label>
+                                    <div class="pl-4">
+                                        <input type="checkbox" value="NCMHLAB0068" id="&quot;NCMHLAB0068&quot;" name="lab_req">
+                                        <label class="thin-label" for="NCMHLAB0068">CSF</label>
+                                    </div>
+                                    <div class="pl-4">
+                                        <input type="checkbox" value="NCMHLAB0069" id="&quot;NCMHLAB0069&quot;" name="lab_req">
+                                        <label class="thin-label" for="NCMHLAB0069">Plueral Fluid</label>
+                                    </div>
+                                </div>
+
+                                <!-- 24-HR Urine Chemistry  -->
+                                <div>
+                                    <label class="thin-label">24-HR Urine Chemistry</label>
+                                    <div class="pl-4">
+                                        <input type="checkbox" value="NCMHLAB0070" id="&quot;NCMHLAB0070&quot;" name="lab_req">
+                                        <label class="thin-label" for="NCMHLAB0070">Gloucose</label>
+                                    </div>
+                                    <div class="pl-4">
+                                        <input type="checkbox" value="NCMHLAB0071" id="&quot;NCMHLAB0071&quot;" name="lab_req">
+                                        <label class="thin-label" for="NCMHLAB0071">Protein</label>
+                                    </div>
+                                    <div class="pl-4">
+                                        <input type="checkbox" value="NCMHLAB0072" id="&quot;NCMHLAB0072&quot;" name="lab_req">
+                                        <label class="thin-label" for="NCMHLAB0072">ECC-Creatine Clearance</label>
+                                    </div>
+                                </div>
+
+                                <!-- DRUG TESTING -->
+                                <label>DRUG TESTING</label>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0073" id="NCMHLAB0073" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0073">
+                                        Metamphetamine/ Shabu
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" value="NCMHLAB0074" id="NCMHLAB0074" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0074">
+                                        THC/ Marijuana
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-12">
+                                <!-- Package -->
+                                <label>OPD PACKAGES</label>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0029,NCMHLAB0028,NCMHLAB0030" value="NCMHLAB0075" id="NCMHLAB0075" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0075">
+                                        OPD 1/ Kidney Profile [Creat, BUN,BUA]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0031,NCMHLAB0032,NCMHLAB0033,NCMHLAB0034" value="NCMHLAB0076" id="NCMHLAB0076" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0076">
+                                        OPD 2/ Lipid Profile [Choles, Trigly, HDL, LDL]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0035,NCMHLAB0036,NCMHLAB0037,NCMHLAB0038,NCMHLAB0039,NCMHLAB0040,NCMHLAB0041,NCMHLAB0042" value="NCMHLAB0077" id="NCMHLAB0077" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0077">
+                                        OPD 3/ Liver Profile [SGPT, SGOT, TP &amp; A/G, Total Bili,B1&amp;B2, Alk. Phos]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0029,NCMHLAB0028,NCMHLAB0030,NCMHLAB0026" value="NCMHLAB0078" id="NCMHLAB0078" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0078">
+                                        OPD 4 [FBS + Kidney Profile]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0031,NCMHLAB0032,NCMHLAB0033,NCMHLAB0034,NCMHLAB0026" value="NCMHLAB0079" id="NCMHLAB0079" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0079">
+                                        OPD 5 [FBS + Lipid Profile]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0029,NCMHLAB0028,NCMHLAB0030,NCMHLAB0031,NCMHLAB0032,NCMHLAB0033,NCMHLAB0034,NCMHLAB0035,NCMHLAB0036,NCMHLAB0037,NCMHLAB0038,NCMHLAB0039,NCMHLAB0040,NCMHLAB0041,NCMHLAB0042,NCMHLAB0026" value="NCMHLAB0080" id="NCMHLAB0080" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0080">
+                                        OPD 5 [FBS + kidney, Lipid &amp; Liver Profile]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0001,NCMHLAB0055,NCMHLAB0056" value="NCMHLAB0081" id="NCMHLAB0081" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0081">
+                                        OPD 7 [CBC + Urinalysis + Fecalysis]
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0001,NCMHLAB0002,NCMHLAB0028,NCMHLAB0029,NCMHLAB0050,NCMHLAB0046,NCMHLAB0047,NCMHLAB0041,NCMHLAB0051,NCMHLAB0036,NCMHLAB0030,NCMHLAB0013,NCMHLAB0017,NCMHLAB0018,NCMHLAB0015,NCMHLAB0014,NCMHLAB0022" value="NCMHLAB0082" id="NCMHLAB0082" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0082">
+                                        HD Package 1 (CBC with Platelet, BUN, Creatinine, Total Ca, Na, K, Albumin,Phosphorous (Inorganic Phosphate), SGPT/ALT, Uric Acid, HBsAg, Anti-HBS, Anti-HCV, RPR/TPPA(Syphilis), HIV (Screening) Blood Typing (gel Technique)
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0001,NCMHLAB0029,NCMHLAB0046,NCMHLAB0047,NCMHLAB0028,NCMHLAB0041,NCMHLAB0050,NCMHLAB0051,NCMHLAB0036,NCMHLAB0055" value="NCMHLAB0083" id="NCMHLAB0083" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0083">
+                                        HD Package 2 (CBC, Creatinine, Na, K, BUN (Pre-Dialysis), BUN (Post-Dialysis) Albumin, Total Ca, Phosphorous (Inorganic Phosphate), SGPT/ALT, Uric Acid)
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="lab_req_pack" type="checkbox" data-group="NCMHLAB0013,NCMHLAB0017,NCMHLAB0018" value="NCMHLAB0084" id="NCMHLAB0084" name="lab_req">
+                                    <label class="thin-label" for="NCMHLAB0084">
+                                        HD Package 3 (HBsAg, Anti-HBs, Anti-HCV)
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade m-3" id="nav-rad-proc" role="tabpanel" aria-labelledby="nav-rad-proc-tab">
+
+                        <!-- Radiologic X-ray exam -->
+                        <div>
+                            <label>X-RAY EXAMINATIONS</label>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0085" id="NCMHLAB0085" name="rad_req"><label class="thin-label" for="NCMHLAB0085">Abdomen (Supine/Upright)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0086" id="NCMHLAB0086" name="rad_req"><label class="thin-label" for="NCMHLAB0086">Abdomen (Supine Cross-Table Lateral)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0087" id="NCMHLAB0087" name="rad_req"><label class="thin-label" for="NCMHLAB0087">Ankle AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0088" id="NCMHLAB0088" name="rad_req"><label class="thin-label" for="NCMHLAB0088">Arm AP/L</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0089" id="NCMHLAB0089" name="rad_req"><label class="thin-label" for="NCMHLAB0089">Cervical AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0090" id="NCMHLAB0090" name="rad_req"><label class="thin-label" for="NCMHLAB0090">Chest PA (Adult)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0091" id="NCMHLAB0091" name="rad_req"><label class="thin-label" for="NCMHLAB0091">Chest AP/L (Pedia)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0092" id="NCMHLAB0092" name="rad_req"><label class="thin-label" for="NCMHLAB0092">Chest (Supine)</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0093" id="NCMHLAB0093" name="rad_req"><label class="thin-label" for="NCMHLAB0093">Chest (Apicolordotic View)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0094" id="NCMHLAB0094" name="rad_req"><label class="thin-label" for="NCMHLAB0094">Clavicle AP</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0095" id="NCMHLAB0095" name="rad_req"><label class="thin-label" for="NCMHLAB0095">Elbow AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0096" id="NCMHLAB0096" name="rad_req"><label class="thin-label" for="NCMHLAB0096">Foot AP/L,O</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0097" id="NCMHLAB0097" name="rad_req"><label class="thin-label" for="NCMHLAB0097">Forearm AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0098" id="NCMHLAB0098" name="rad_req"><label class="thin-label" for="NCMHLAB0098">Hand PA/L,O</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0099" id="NCMHLAB0099" name="rad_req"><label class="thin-label" for="NCMHLAB0099">Hips AP</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0100" id="NCMHLAB0100" name="rad_req"><label class="thin-label" for="NCMHLAB0100">Knee AP/L</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0101" id="NCMHLAB0101" name="rad_req"><label class="thin-label" for="NCMHLAB0101">Leg APL/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0102" id="NCMHLAB0102" name="rad_req"><label class="thin-label" for="NCMHLAB0102">Lumbosacral AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0103" id="NCMHLAB0103" name="rad_req"><label class="thin-label" for="NCMHLAB0103">Mandible AP/O</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0104" id="NCMHLAB0104" name="rad_req"><label class="thin-label" for="NCMHLAB0104">Mastoid Series</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0105" id="NCMHLAB0105" name="rad_req"><label class="thin-label" for="NCMHLAB0105">Nasal Bone (STL)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0106" id="NCMHLAB0106" name="rad_req"><label class="thin-label" for="NCMHLAB0106">Paranasal Sinuses</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0107" id="NCMHLAB0107" name="rad_req"><label class="thin-label" for="NCMHLAB0107">Plain KUB</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0108" id="NCMHLAB0108" name="rad_req"><label class="thin-label" for="NCMHLAB0108">Pelvis AP</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0109" id="NCMHLAB0109" name="rad_req"><label class="thin-label" for="NCMHLAB0109">Scoilosis Series</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0110" id="NCMHLAB0110" name="rad_req"><label class="thin-label" for="NCMHLAB0110">Shoulder AP</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0111" id="NCMHLAB0111" name="rad_req"><label class="thin-label" for="NCMHLAB0111">Skeletal Survey</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0112" id="NCMHLAB0112" name="rad_req"><label class="thin-label" for="NCMHLAB0112">Skull PA/L</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0113" id="NCMHLAB0113" name="rad_req"><label class="thin-label" for="NCMHLAB0113">Skull Series (PA, Laterals, Towne's)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0114" id="NCMHLAB0114" name="rad_req"><label class="thin-label" for="NCMHLAB0114">TMJ (open/Close Mouth View)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0115" id="NCMHLAB0115" name="rad_req"><label class="thin-label" for="NCMHLAB0115">Thigh AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0116" id="NCMHLAB0116" name="rad_req"><label class="thin-label" for="NCMHLAB0116">Thoracic Cage PA</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0117" id="NCMHLAB0117" name="rad_req"><label class="thin-label" for="NCMHLAB0117">Thoracic Spine AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0118" id="NCMHLAB0118" name="rad_req"><label class="thin-label" for="NCMHLAB0118">Thiracolumbar AP/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0119" id="NCMHLAB0119" name="rad_req"><label class="thin-label" for="NCMHLAB0119">Wrist PA/L</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0120" id="NCMHLAB0120" name="rad_req"><label class="thin-label" for="NCMHLAB0120">Zygoma Submentovertex (SMV)</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5"><input type="checkbox" class="with_others" value="NCMHLAB0121" id="NCMHLAB0121" name="rad_req"><label class="thin-label" for="NCMHLAB0121">Others</label><input type="text" placeholder="Others - please specify" class="form-control d-none" id="others_NCMHLAB0121" name="others_NCMHLAB0121"></div>
+                            </div>
+                        </div>
+
+                        <!-- Radiologic X-ray special procedure -->
+                        <div class="mt-3">
+                            <label>X-RAY SPECIAL PROCEDURE</label>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0122" id="NCMHLAB0122" name="rad_req"><label class="thin-label" for="NCMHLAB0122">Barium Enema</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0123" id="NCMHLAB0123" name="rad_req"><label class="thin-label" for="NCMHLAB0123">Cystourethrogram</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0124" id="NCMHLAB0124" name="rad_req"><label class="thin-label" for="NCMHLAB0124">Distal Colonogram</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0125" id="NCMHLAB0125" name="rad_req"><label class="thin-label" for="NCMHLAB0125">Esophagogram</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0126" id="NCMHLAB0126" name="rad_req"><label class="thin-label" for="NCMHLAB0126">Intraop Choloangiogram</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0127" id="NCMHLAB0127" name="rad_req"><label class="thin-label" for="NCMHLAB0127">Small Bowel Series</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0128" id="NCMHLAB0128" name="rad_req"><label class="thin-label" for="NCMHLAB0128">T-Tube Cholangiogram</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0129" id="NCMHLAB0129" name="rad_req"><label class="thin-label" for="NCMHLAB0129">Upper GI Series</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0130" id="NCMHLAB0130" name="rad_req"><label class="thin-label" for="NCMHLAB0130">Intravenous Pyelography (IVP)</label></div>
+                                <div class="col-md-5"><input type="checkbox" class="with_others" value="NCMHLAB0131" id="NCMHLAB0131" name="rad_req"><label class="thin-label" for="NCMHLAB0131">Others</label><input type="text" placeholder="Others - please specify" class="form-control d-none" id="others_NCMHLAB0131" name="others_NCMHLAB0131"></div>
+                            </div>
+                        </div>
+
+                        <!-- Radiologic Ultrasound Examinations -->
+                        <div class="mt-3">
+                            <label>ULTRASOUND EXAMINATIONS</label>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0132" id="NCMHLAB0132" name="rad_req"><label class="thin-label" for="NCMHLAB0132">Biophysical Scoring (BPS)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0133" id="NCMHLAB0133" name="rad_req"><label class="thin-label" for="NCMHLAB0133">Breast</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0134" id="NCMHLAB0134" name="rad_req"><label class="thin-label" for="NCMHLAB0134">Chest</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0135" id="NCMHLAB0135" name="rad_req"><label class="thin-label" for="NCMHLAB0135">Cranial</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0136" id="NCMHLAB0136" name="rad_req"><label class="thin-label" for="NCMHLAB0136">Upper Abdomen</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0137" id="NCMHLAB0137" name="rad_req"><label class="thin-label" for="NCMHLAB0137">Hepatobliary Tree</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0138" id="NCMHLAB0138" name="rad_req"><label class="thin-label" for="NCMHLAB0138">Inguino-Scrotal</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0139" id="NCMHLAB0139" name="rad_req"><label class="thin-label" for="NCMHLAB0139">KUB</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0140" id="NCMHLAB0140" name="rad_req"><label class="thin-label" for="NCMHLAB0140">KUB with Prostate</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0141" id="NCMHLAB0141" name="rad_req"><label class="thin-label" for="NCMHLAB0141">Pelvic (Transabdominal)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0142" id="NCMHLAB0142" name="rad_req"><label class="thin-label" for="NCMHLAB0142">Pelvic (Transvaginal)</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="with_others" value="NCMHLAB0143" id="NCMHLAB0143" name="rad_req"><label class="thin-label" for="NCMHLAB0143">Soft Tissue</label><input type="text" class="form-control d-none" id="specify_NCMHLAB0143" name="specify_NCMHLAB0143"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0144" id="NCMHLAB0144" name="rad_req"><label class="thin-label" for="NCMHLAB0144">Thyroid</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0145" id="NCMHLAB0145" name="rad_req"><label class="thin-label" for="NCMHLAB0145">Lower Abdomen</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0146" id="NCMHLAB0146" name="rad_req"><label class="thin-label" for="NCMHLAB0146">Whole Abdomen</label></div>
+                                <div class="col-md-3"><input type="checkbox" class="with_others" value="NCMHLAB0147" id="NCMHLAB0147" name="rad_req"><label class="thin-label" for="NCMHLAB0147">Single Organ Examination</label><input type="text" class="form-control d-none" id="specify_NCMHLAB0147" name="specify_NCMHLAB0147"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"><input type="checkbox" class="" value="NCMHLAB0148" id="NCMHLAB0148" name="rad_req"><label class="thin-label" for="NCMHLAB0148">Focused Assessment Sonography Trauma</label></div>
+                                <div class="col-md-5"><input type="checkbox" class="with_others" value="NCMHLAB0149" id="NCMHLAB0149" name="rad_req"><label class="thin-label" for="NCMHLAB0149">Others</label><input type="text" placeholder="Others - please specify" class="form-control d-none" id="others_NCMHLAB0149" name="others_NCMHLAB0149"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>OTHERS</label>
+                                    <input type="text" name="" id="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between p-1">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" data-toggle="modal" href="#discharge_proc_modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" id="submit-diagproc-btn" data-dismiss="modal" data-toggle="modal" href="#discharge_proc_modal">Submit</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- discharge_proc_cat -->

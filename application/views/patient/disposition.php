@@ -15,47 +15,7 @@
                 <div class="col-md-10">
                     <h3>Patient Disposition</h3>
                     <div class="card">
-                        <!-- <div class="col-sm-12 p-3 text-center" style="margin-bottom:-15px !important;">
-                        <button data-toggle="modal" data-target="#addVitalsModal" class="btn btn-success addVitalsModal mr-2">Add Vitals <i class="ml-1 fas fa-plus"></i></button>
-                        <button data-toggle="modal" data-target="#add-other-vitals-modal" class="btn btn-success open-other-vitals-modal">Add Other Vitals <i class="ml-1 fas fa-plus"></i></button>
-                    </div> -->
-
                         <div class="card-body">
-                            <!-- <div class="tab-content">
-                                <div class="active tab-pane" id="nurses_notes">
-                                    <div class="dataTables_wrapper dt-bootstrap4">
-                                        <table id="nurseNotesTable" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Date/Time</th>
-                                                    <th>Focus</th>
-                                                    <th>Data</th>
-                                                    <th>Action</th>
-                                                    <th>Response</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Jan 24, 2021 <br> 12:10PM <br><small><i class="small text-muted">Encoded by: <br> Dr. Cruzada </i></small></td>
-                                                    <td>Focus notes</td>
-                                                    <td>Data notes</td>
-                                                    <td>Action notes</td>
-                                                    <td>Response notes</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Date/Time</th>
-                                                    <th>Focus</th>
-                                                    <th>Data</th>
-                                                    <th>Action</th>
-                                                    <th>Response</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="form-inline">
                                 <label for="">Disposition:</label>
@@ -149,103 +109,118 @@
 
                             <hr>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <div>
-                                    <h4>Prescription</h4>
+                                <div class=" d-flex justify-content-between mb-2">
+                                                        <div>
+                                                            <h4>Prescription</h4>
+                                                        </div>
+                                                        <div>
+                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_meds_modal"> Add Medication Prescription <i class="ml-1 fas fa-plus"></i></button>
+                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_proc_modal"> Add Procedure Prescription <i class="ml-1 fas fa-plus"></i></button>
+                                                            <button class="btn btn-primary btn-sm"> Print Prescription <i class="fas fa-print"></i> </button>
+                                                        </div>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary btn-sm"> Add Medication Prescription <i class="ml-1 fas fa-plus"></i></button>
-                                    <button class="btn btn-primary btn-sm "> Add Procedure Prescription <i class="ml-1 fas fa-plus"></i></button>
-                                    <button class="btn btn-primary btn-sm "> Print Prescription <i class="fas fa-print"></i> </button>
-                                </div>
-                            </div>
 
-                            <div class="card order-card">
-                                <div class="card-header p-2 pr-3 meds-card-header">
-                                    <span>Medication Prescriptions</span>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
+
+                                <div class="card order-card">
+                                    <div class="card-header p-2 pr-3 meds-card-header">
+                                        <span>Medication Prescriptions</span>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                        <table id="" class="table table-bordered table-striped order-datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Medication</th>
+                                                    <th>Directions</th>
+                                                    <th>Frequency</th>
+                                                    <th>Duration</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Paracetamol 500 mg tablet</td>
+                                                    <td>Take 1 tablet as needed.</td>
+                                                    <td>every 4 hours</td>
+                                                    <td>3 days</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary m-1">UPDATE</button>
+                                                        <button class="btn btn-sm btn-danger m-1">DELETE</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Paracetamol 500 mg tablet</td>
+                                                    <td>Take 1 tablet as needed.</td>
+                                                    <td>every 4 hours</td>
+                                                    <td>3 days</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary m-1">UPDATE</button>
+                                                        <button class="btn btn-sm btn-danger m-1">DELETE</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
-                                <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
-                                    <table id="" class="table table-bordered table-striped order-datatable">
-                                        <thead>
-                                            <tr>
-                                                <th><input type="checkbox" name="" id=""></th>
-                                                <th>Medication</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="checkbox" name="" id=""></td>
-                                                <td>0.9% SODIUM CHLORIDE 1.00 litter bottle intravenous</td>
-                                                <td>On-going same dosage</td>
-                                                <td><button class="btn btn-default btn-sm">Update</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" name="" id=""></td>
-                                                <td>Ibuprofen</td>
-                                                <td>On-going same dosage</td>
-                                                <td><button class="btn btn-default btn-sm">Update</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                <div class="card order-card">
+                                    <div class="card-header p-2 pr-3 meds-card-header">
+                                        <span>Procedure Prescriptions</span>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
-                            <div class="card order-card">
-                                <div class="card-header p-2 pr-3 meds-card-header">
-                                    <span>Procedure Prescriptions</span>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
+                                    <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                        <table id="" class="table table-bordered table-striped order-datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Diagnostic Procedure</th>
+                                                    <th>Remarks</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Complete Blood Count</td>
+                                                    <td>notes</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary m-1">UPDATE</button>
+                                                        <button class="btn btn-sm btn-danger m-1">DELETE</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
-                                <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
-                                    <table id="" class="table table-bordered table-striped order-datatable">
-                                        <thead>
-                                            <tr>
-                                                <th><input type="checkbox" name="" id=""></th>
-                                                <th>Medication</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="checkbox" name="" id=""></td>
-                                                <td>0.9% SODIUM CHLORIDE 1.00 litter bottle intravenous</td>
-                                                <td>On-going same dosage</td>
-                                                <td><button class="btn btn-default btn-sm">Update</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" name="" id=""></td>
-                                                <td>Ibuprofen</td>
-                                                <td>On-going same dosage</td>
-                                                <td><button class="btn btn-default btn-sm">Update</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                <button class="btn btn-primary btn-sm">Print Charge Slip</button>
+                                <button class="btn btn-success btn-sm" id="end-consult-btn">End Consult</button>
 
-                            <button class="btn btn-primary btn-sm">Print Charge Slip</button>
-                            <button class="btn btn-success btn-sm" id="end-consult-btn">End Consult</button>
+                            </div>
+                            <!-- card-body -->
+
                         </div>
-                    </div>
+                        <!-- card-body -->
 
+                    </div>
+                    <!-- card -->
                 </div>
-                <!-- /.col -->
+                <!-- col-md-10 -->
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+            <!-- row -->
+        </div>
+        <!-- containter-fluid -->
+
     </section>
+
 </div>
+<!-- content-wrapper -->
 
 <script>
     $(function() {
