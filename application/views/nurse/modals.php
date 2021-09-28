@@ -9,7 +9,7 @@
                 </button>
             </div>
 
-            <div class="modal-body p-2" style="height:575px">
+            <div class="modal-body p-2">
 
                 <div class="row">
                     <div class="col-sm-1">
@@ -85,6 +85,10 @@
                     <button class="btn btn-default btn-sm" style="width: 50%;">Scan Right Thumb</button>
                 </div>
 
+                <div class="row mt-4 px-4">
+                    <span class="mr-2">Notes:</span> 
+                    <textarea name="" id="id_marks_notes" rows="5"></textarea>
+                </div>
 
             </div>
             <div class="modal-footer justify-content-between">

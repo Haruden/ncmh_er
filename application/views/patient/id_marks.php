@@ -185,10 +185,31 @@
 <script>
     $(document).ready(function() {
 
+        $('#id_marks_notes').summernote({
+            placeholder: this.placeholder,
+            dialogsInBody: true,
+            spellCheck: true,
+            minHeight: 100,
+            minWidth: 1000,
+            width: 1000,
+            maxHeight: null,
+            focus: true,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font'],
+                ['fontsize', ['fontsize']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen']],
+            ]
+        });
+
         $("#modal-marks").on('shown.bs.modal', function() {
 
             // SETTING ALL VARIABLES
             // Source: https://codepen.io/yananas/pen/rwvZvY
+
+            // Add circle and arrows
 
             var isMouseDown = false;
             var canvas = document.createElement('canvas');
