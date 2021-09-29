@@ -40,7 +40,7 @@ class Disposition extends MY_Controller
 			'datatables-responsive/js/dataTables.responsive.min.js',
 			'datatables-responsive/js/responsive.bootstrap4.min.js',
 			'select2/js/select2.full.min.js',
-			// 'summernote/summernote-bs4.min.js',
+			'summernote/summernote-bs4.min.js',
 		];
 		$this->css_plugins = [
 			'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
@@ -49,7 +49,10 @@ class Disposition extends MY_Controller
 			'datatables-buttons/css/buttons.bootstrap4.min.css',
 			'select2/css/select2.min.css',
 			'select2-bootstrap4-theme/select2-bootstrap4.min.css',
-			// 	'summernote/summernote-bs4.css',
+			'summernote/summernote-bs4.css',
+		];
+		$this->custom_javascript = [
+			'doctor/disposition.js'
 		];
 
 		$data['title'] =  $this->title;
