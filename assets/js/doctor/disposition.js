@@ -75,6 +75,22 @@ $(function() {
         }
     });
 
+    $("#admitNotesTable").DataTable({
+        language: {
+            searchPlaceholder: "Search notes"
+        },
+        "responsive": true,
+        "autoWidth": false,
+        "ordering": false,
+        "searching": false,
+        "paging": false,
+        "bInfo": false
+    });
+
+    $("#er-notes-add").on('show.bs.modal', function() {
+        $('#erNotesModalTitle').html('Add Admission Notes');
+    });
+
     $('.diagnosis-card-header').on('click', function() {
         $(this).find(".btn-tool")[0].click();
     });

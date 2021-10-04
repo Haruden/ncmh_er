@@ -30,7 +30,7 @@
         </a>
     </li>
     <li class="nav-item mb-2">
-        <a class="nav-link <?php echo $title === 'End Consult' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/disposition'); ?>">
+        <a class="nav-link <?php echo $title === 'Disposition' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/disposition'); ?>">
             Disposition
         </a>
     </li>

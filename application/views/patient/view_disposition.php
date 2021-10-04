@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="d-flex justify-content-between">
+                            <!-- <div class="d-flex justify-content-between">
                                 <div class="form-inline">
                                     <label for="">Disposition:</label>
                                     <select name="disposition" id="disposition" class="form-control ml-2">
@@ -30,9 +30,10 @@
                                         <option value="Absconded">Absconded</option>
                                     </select>
                                 </div>
-                                <!-- <div>
-                                    <button class="btn btn-info btn-sm ml-2">Print Charge Slip</button>
-                                </div> -->
+                            </div> -->
+
+                            <div>
+                                <button class="btn btn-info btn-sm ml-2">Print Charge Slip</button>
                             </div>
                             <hr>
 
@@ -284,10 +285,10 @@
                                     <div>
                                         <h4>Discharge Diagnosis</h4>
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_pdiagnosis_modal"> Add Psychiatric Diagnosis <i class="ml-1 fas fa-plus"></i></button>
                                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_mdiagnosis_modal"> Add Medical Diagnosis <i class="ml-1 fas fa-plus"></i></button>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="card order-card">
@@ -308,7 +309,7 @@
                                                     <th>Is Primary</th>
                                                     <th>Condition</th>
                                                     <th>Condition Note</th>
-                                                    <th>Actions</th>
+                                                    <!-- <th>Actions</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -318,7 +319,7 @@
                                                     <td>No</td>
                                                     <td>Improved</td>
                                                     <td>Test</td>
-                                                    <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#discharge_pdiagnosis_modal">Update</button></td>
+                                                    <!-- <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#discharge_pdiagnosis_modal">Update</button></td> -->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -341,7 +342,7 @@
                                                     <th>Co-morbid Diagnosis</th>
                                                     <th>To Consider</th>
                                                     <th>Condition Note</th>
-                                                    <th>Actions</th>
+                                                    <!-- <th>Actions</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -349,7 +350,7 @@
                                                     <td>Some Medical Diagnosis</td>
                                                     <td>Consider</td>
                                                     <td>Notes</td>
-                                                    <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#discharge_mdiagnosis_modal"">Update</button></td>
+                                                    <!-- <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#discharge_mdiagnosis_modal"">Update</button></td> -->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -447,9 +448,9 @@
                                         <h4>Prescription</h4>
                                     </div>
                                     <div>
-                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_meds_modal"> Add Medication Prescription <i class="ml-1 fas fa-plus"></i></button>
+                                        <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_meds_modal"> Add Medication Prescription <i class="ml-1 fas fa-plus"></i></button>
                                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#discharge_proc_modal"> Add Procedure Prescription <i class="ml-1 fas fa-plus"></i></button>
-                                        <button class="btn btn-primary btn-sm"> Print Prescription <i class="fas fa-print"></i> </button>
+                                        <button class="btn btn-primary btn-sm"> Print Prescription <i class="fas fa-print"></i> </button> -->
                                     </div>
                                 </div>
 
@@ -470,7 +471,7 @@
                                                     <th>Directions</th>
                                                     <th>Frequency</th>
                                                     <th>Duration</th>
-                                                    <th>Actions</th>
+                                                    <!-- <th>Actions</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -479,20 +480,20 @@
                                                     <td>Take 1 tablet as needed.</td>
                                                     <td>every 4 hours</td>
                                                     <td>3 days</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <button class="btn btn-sm btn-primary m-1">UPDATE</button>
                                                         <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 <tr>
                                                     <td>Paracetamol 500 mg tablet</td>
                                                     <td>Take 1 tablet as needed.</td>
                                                     <td>every 4 hours</td>
                                                     <td>3 days</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <button class="btn btn-sm btn-primary m-1">UPDATE</button>
                                                         <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -514,17 +515,17 @@
                                                 <tr>
                                                     <th>Diagnostic Procedure</th>
                                                     <th>Remarks</th>
-                                                    <th>Actions</th>
+                                                    <!-- <th>Actions</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Complete Blood Count</td>
                                                     <td>notes</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <button class="btn btn-sm btn-primary m-1">UPDATE</button>
                                                         <button class="btn btn-sm btn-danger m-1">DELETE</button>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -538,7 +539,7 @@
                             <div id="homIns_div" class="discharge-option option-div" style="display:none;">
                                 <div>
                                     <b>Home Instruction:</b> <br>
-                                    <textarea name="" id="" cols="30" rows="10" class="dispo-summernote"></textarea>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet lacus eleifend, semper urna id, facilisis leo. Morbi gravida nec ante at auctor. Sed euismod augue lacus, vel dignissim neque scelerisque et. Vivamus feugiat tempor odio, nec lacinia ligula laoreet feugiat. Nulla imperdiet velit a massa aliquam, sit amet mattis purus faucibus. Etiam laoreet semper tellus, ac sagittis tortor tristique ac. Suspendisse rutrum ex eget orci ornare ultrices. Fusce accumsan libero ut nulla euismod mollis. Nulla vestibulum euismod urna, nec cursus lorem blandit non. Phasellus vulputate lacus eget ligula feugiat aliquam. Cras cursus nisi vitae ipsum fermentum ultrices.</div>
                                 </div>
                                 <hr>
                             </div>
@@ -557,34 +558,34 @@
                                 <h4>Follow-up</h4>
 
                                 <div class="form-inline mb-2">
-                                    <label>Duration: </label>
-                                    <input type="radio" id="durationNum" class="form-control ml-2 mr-1" name="ffup_duration" value="Number"> Number
-                                    <input type="radio" id="durationRange" class="form-control ml-2 mr-1" name="ffup_duration" value="Range"> Range
+                                    <label>Date: </label>
+                                    <div class="ml-2">Oct 5, 2021</div>
 
-                                    <div id="ffupNumDiv" class="form-inline ml-2" style="display: none;">
+                                    <!-- <div id="ffupNumDiv" class="form-inline ml-2" style="display: none;">
                                         <input type="number" class="form-control mx-1 w-40" id="med-days" name="med-days" />
                                         <label>Days</label>
                                     </div>
                                     <div id="ffupRangeDiv" class="form-inline ml-2" style="display: none;">
                                         <input type="date" class="form-control mx-1" id="med-range-from" name="med-range-from" />
-                                        <!-- To: <input type="date" class="form-control ml-1 w-40" id="med-range-to" name="med-range-to" /> -->
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="form-inline mb-2">
                                     <label for="">Department/Service: </label>
-                                    <input type="text" name="" id="" class="form-control ml-2">
+                                    <div class="ml-2">Some department</div>
                                 </div>
 
                                 <div class="form-inline mb-2">
                                     <label for="">Doctor: </label>
-                                    <input type="text" name="" id="" class="form-control ml-2">
+                                    <div class="ml-2">Dr. Chris</div>
                                 </div>
 
                                 <div>
                                     <b>Refer to Emergency Room When:</b> <br>
-                                    <textarea name="" id="" cols="30" rows="10" class="dispo-summernote"></textarea>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet lacus eleifend, semper urna id, facilisis leo. Morbi gravida nec ante at auctor. Sed euismod augue lacus, vel dignissim neque scelerisque et. Vivamus feugiat tempor odio, nec lacinia ligula laoreet feugiat. Nulla imperdiet velit a massa aliquam, sit amet mattis purus faucibus. Etiam laoreet semper tellus, ac sagittis tortor tristique ac. Suspendisse rutrum ex eget orci ornare ultrices. Fusce accumsan libero ut nulla euismod mollis. Nulla vestibulum euismod urna, nec cursus lorem blandit non. Phasellus vulputate lacus eget ligula feugiat aliquam. Cras cursus nisi vitae ipsum fermentum ultrices.</div>
                                 </div>
+
+                                <hr>
 
                             </div>
 
@@ -980,10 +981,10 @@
                             <div class="discharge-option absconded-option expired-option transfer-option option-div row" style="display: none;">
                                 <div class="d-flex justify-content-between" style="width:100%;">
                                     <div>
-                                        <button class="btn btn-success btn-sm end-consult-btn">Discharge Patient</button>
-                                        <button class="btn btn-primary btn-sm">Save Draft</button>
+                                        <button class="btn btn-success btn-sm end-consult-btn">Process Discharge</button>
+                                        <button class="btn btn-info btn-sm">Print Charge Slip</button>
                                     </div>                                   
-                                    <button class="btn btn-danger btn-sm">Cancel</button>         
+                                    <!-- <button class="btn btn-danger btn-sm">Cancel</button>          -->
                                 </div>                   
                             </div>
 
@@ -1013,5 +1014,3 @@
 
 </div>
 <!-- content-wrapper -->
-
-<!-- JS as assets/js/doctor/disposition.js -->

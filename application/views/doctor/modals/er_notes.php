@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">ER Notes</h4>
+                <h4 class="modal-title" id="erNotesModalTitle">ER Notes</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -988,3 +988,82 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<script>
+
+    var er_notes_sec = {
+        "er_notes_subj": 0,
+        "er_notes_obj": 0
+    };
+
+    function rm_er_notes_sec(input) {
+        document.getElementById(input + '_div').remove();
+        er_notes_sec[input] = er_notes_sec[input] - 1;
+    };
+
+    $(function(){
+
+        $(".add_er_notes_sec").on('click', function() {
+            console.log(er_notes_sec[this.id]);
+            if (er_notes_sec[this.id] == 0) {
+                er_notes_sec[this.id] = +1;
+
+                var html = '<div id="' + this.id + '_div' + '">';
+                html += '<div class="d-flex justify-content-between mb-1">';
+                var label;
+                switch (this.id) {
+                    case "er_notes_subj":
+                        label = 'Subjective Notes';
+                        break;
+                    case "er_notes_obj":
+                        label = 'Objective Notes';
+                        break;
+                }
+                html += '<span>' + label + '</span>';
+                html += '<button class="btn btn-sm btn-danger" onclick="rm_er_notes_sec(\'' + this.id + '\')">Remove ' + label + '</button>';
+                html += '</div>';
+                html += '<textarea id="' + this.id + '_ta' + '" class="form-control summernote"></textarea>';
+                html += '</div>';
+                $("#er_notes").append(html);
+
+                $('#' + this.id + '_ta').summernote({
+                    placeholder: this.placeholder,
+                    dialogsInBody: true,
+                    spellCheck: true,
+                    minHeight: 90,
+                    minWidth: 430,
+                    maxHeight: null,
+                    focus: true,
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font'],
+                        ['fontsize', ['fontsize']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['view', ['fullscreen']],
+                    ]
+                });
+            }
+        });
+
+        $('#summernote1, #summernote').each(function() {
+            $(this).summernote({
+                placeholder: this.placeholder,
+                dialogsInBody: true,
+                spellCheck: true,
+                minHeight: 90,
+                minWidth: 430,
+                maxHeight: null,
+                focus: true,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font'],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['view', ['fullscreen']],
+                ]
+            });
+        });
+    });
+</script>

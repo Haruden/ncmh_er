@@ -44,6 +44,11 @@
   padding: 0;
 }
 
+.er-expired-tx {
+  resize: none;
+  border: none;
+}
+
 /*
 @media (max-width: 1920px) {
  	CSS that should be displayed if width is equal to or less than 800px goes here

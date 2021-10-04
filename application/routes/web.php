@@ -16,7 +16,7 @@ $route['nurse/vital-signs'] = 'nurse/content/vital_signs';
 $route['nurse/nurse-notes'] = 'nurse/content/nurse_notes';
 $route['nurse/er-notes'] = 'nurse/content/er_notes';
 $route['nurse/plan'] = 'nurse/content/plan';
-$route['nurse/end-consult'] = 'nurse/content/end_consult';
+$route['nurse/disposition'] = 'nurse/content/disposition';
 
 // Doctor Routes
 $route['doctor'] = 'doctor/queue';
