@@ -2063,17 +2063,17 @@
             <div class="modal-body">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a style="width: 49%;" href="#nav-lab-proc" class="nav-item nav-link text-center active" id="nav-lab-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-lab-proc" aria-selected="true">
+                        <a style="width: 49%;" href="#nav-lab-proc-dispo" class="nav-item nav-link text-center active" id="nav-lab-proc-dispo-tab" data-toggle="tab" role="tab" aria-controls="nav-lab-proc-dispo" aria-selected="true">
                             <i class="fas fa-vial mr-2"></i>Laboratory Procedures
                         </a>
-                        <a style="width: 49%;" href="#nav-rad-proc" class="nav-item nav-link text-center" id="nav-rad-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-rad-proc" aria-selected="true">
+                        <a style="width: 49%;" href="#nav-rad-proc-dispo" class="nav-item nav-link text-center" id="nav-rad-proc-dispo-tab" data-toggle="tab" role="tab" aria-controls="nav-rad-proc-dispo" aria-selected="true">
                             <i class="fas fa-radiation-alt mr-2"></i>Radiologic Procedures
                         </a>
                     </div>
                 </nav>
 
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active m-3" id="nav-lab-proc" role="tabpanel" aria-labelledby="nav-lab-proc-tab">
+                    <div class="tab-pane fade show active m-3" id="nav-lab-proc-dispo" role="tabpanel" aria-labelledby="nav-lab-proc-dispo-tab">
 
                         <div class="form-group row">
 
@@ -2648,7 +2648,7 @@
 
                     </div>
 
-                    <div class="tab-pane fade m-3" id="nav-rad-proc" role="tabpanel" aria-labelledby="nav-rad-proc-tab">
+                    <div class="tab-pane fade m-3" id="nav-rad-proc-dispo" role="tabpanel" aria-labelledby="nav-rad-proc-dispo-tab">
 
                         <!-- Radiologic X-ray exam -->
                         <div>

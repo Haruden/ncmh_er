@@ -557,9 +557,8 @@
                                 <h4>Follow-up</h4>
 
                                 <div class="form-inline mb-2">
-                                    <label>Duration: </label>
-                                    <input type="radio" id="durationNum" class="form-control ml-2 mr-1" name="ffup_duration" value="Number"> Number
-                                    <input type="radio" id="durationRange" class="form-control ml-2 mr-1" name="ffup_duration" value="Range"> Range
+                                    <input type="radio" id="durationNum" class="form-control ml-2 mr-1" name="ffup_duration" value="Number"> Duration
+                                    <input type="radio" id="durationRange" class="form-control ml-2 mr-1" name="ffup_duration" value="Range"> Date
 
                                     <div id="ffupNumDiv" class="form-inline ml-2" style="display: none;">
                                         <input type="number" class="form-control mx-1 w-40" id="med-days" name="med-days" />
