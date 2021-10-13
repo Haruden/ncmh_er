@@ -722,6 +722,110 @@
             </div>
 
             <div class="modal-body">
+
+                <label>Filter: </label>
+                <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                    <span class="btn bg-olive">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked=""> All
+                    </span>
+                    <span class="btn bg-olive">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Dental
+                    </span>
+                    <span class="btn bg-olive active">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Laboratory
+                    </span>
+                    <span class="btn bg-olive active">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Examination
+                        <!-- NPEXA -->
+                    </span>
+                    <span class="btn bg-olive active">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Operation
+                    </span>
+                    <span class="btn bg-olive active">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Procedure
+                    </span>
+                    <span class="btn bg-olive active">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Radiology
+                    </span>
+                </div>
+
+                <div class="dataTables_wrapper dt-bootstrap4">
+                    <table id="diagProcDatatable" class="table table-striped">
+                        <thead>
+                            <th></th>
+                            <th>Type</th>
+                            <th>Name</th>                            
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>DENTAL</td>
+                                <td>Temporary Filling (per cavite) (charity)</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>DENTAL</td>
+                                <td>Temporary Filling (per cavite) (pay)</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>LABOR</td>
+                                <td>Glucose (Pay)</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>DENTAL</td>
+                                <td>Glucose (Charity)</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>LABOR</td>
+                                <td>BUN (Pay)</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id="" class=""></td>
+                                <td>DENTAL</td>
+                                <td>BUN (Charity)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a style="width: 49%;" href="#nav-lab-proc" class="nav-item nav-link text-center active" id="nav-lab-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-lab-proc" aria-selected="true">
+                            <i class="fas fa-vial mr-2"></i>Laboratory Procedures
+                        </a>
+                        <a style="width: 49%;" href="#nav-rad-proc" class="nav-item nav-link text-center" id="nav-rad-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-rad-proc" aria-selected="true">
+                            <i class="fas fa-radiation-alt mr-2"></i>Radiologic Procedures
+                        </a>
+                    </div>
+                </nav> -->
+            </div>
+
+            <div class="modal-footer justify-content-between p-1">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" data-toggle="modal" href="#add-doctor-order">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" id="submit-diagproc-btn" data-dismiss="modal" data-toggle="modal" href="#add-doctor-order">Submit</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- proc-cat -->
+
+<div class="modal fade" id="proc-cat-old" data-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Diagnostic Procedure Order</h5>
+                <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#add-doctor-order" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a style="width: 49%;" href="#nav-lab-proc" class="nav-item nav-link text-center active" id="nav-lab-proc-tab" data-toggle="tab" role="tab" aria-controls="nav-lab-proc" aria-selected="true">
@@ -1551,6 +1655,8 @@
     var patient_id = urlParams.get('patient_id');
 
     $(function() {
+
+        $('#diagProcDatatable').dataTable();
 
         $('.order-card-header').on('click', function() {
             $(this).find(".btn-tool")[0].click();
