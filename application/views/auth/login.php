@@ -3,10 +3,10 @@
     <div class="login-box p-3">
         <div class="login-logo">
             <div class="row justify-content-center">
-                <img src="<?php echo base_url('assets/img/ncmh_logo.png'); ?>" style="width: 150px;" />
+                <img src="<?php echo base_url('assets/img/atis-circle.png'); ?>" style="width: 150px;" />
             </div>
             <div class="row justify-content-center">
-                <span> <b>NCMH</b> Emergency Room </span>
+                <span> <b>ATIS</b> Emergency Room </span>
             </div>
         </div>
         <!-- /.login-logo -->

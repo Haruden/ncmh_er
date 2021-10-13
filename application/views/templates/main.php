@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shorcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/public/favicon.ico">
+    <link rel="shorcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/public/afavicon.ico">
     <title>ER - <?= $title; ?> </title>
 
     <!-- Tell the browser to be responsive to screen width -->
