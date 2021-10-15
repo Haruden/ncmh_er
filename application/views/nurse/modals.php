@@ -80,10 +80,10 @@
 
                 </div>
 
-                <div class="row mt-4 px-4">
+                <!-- <div class="row mt-4 px-4">
                     <button class="btn btn-default btn-sm" style="width: 50%;">Scan Left Thumb</button>
                     <button class="btn btn-default btn-sm" style="width: 50%;">Scan Right Thumb</button>
-                </div>
+                </div> -->
 
                 <div class="row mt-4 px-4">
                     <span class="mr-2">Notes:</span> 
@@ -371,4 +371,71 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal
+<!-- /.modal -->
+
+<!-- Cancel Patient Admission -->
+<div class="modal fade" id="nurseCancelModal" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form id="nurseCancelModalForm" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancel ER Visit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Code (hidden) -->
+                    <input type="hidden" id="code" name="code">
+
+                    <!-- Date_ -->
+                    <div class="form-group mb-3">
+                        <label for="date_">
+                            <strong class="text-red">*</strong>Date
+                        </label>
+                        <div class="input-group date" data-target-input="nearest">
+                            <input type="text" readonly id="date_" name="date_" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Time_ -->
+                    <div class="form-group mb-3">
+                        <label for="time_">
+                            <strong class="text-red">*</strong>Time
+                        </label>
+                        <div class="input-group date" data-target-input="nearest">
+                            <input type="text" id="time_" readonly name="time_" class="form-control datetimepicker-input">
+                        </div>
+                    </div>
+
+                    <!--Details -->
+                    <div class="form-group mb-3">
+                        <label for="details">
+                            <strong class="text-red">*</strong>Details
+                        </label>
+                        <textarea class="form-control mb-2 mr-sm-2" id="details" name="details"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function getCurrentTime() {
+
+        var currentDate = moment(new Date).format('YYYY/MM/DD');
+
+        $('#nurseCancelModal').on('shown.bs.modal', function(){
+            $('#date_').val(currentDate);
+            $('#time_').val(moment(new Date).format('hh:mm a'));
+            setInterval(function(){ 
+                $('#time_').val(moment(new Date).format('hh:mm a'));
+            }, 1000);
+        });
+    });
+</script>

@@ -15,6 +15,6 @@
         <a class="dropdown-item" href="<?php echo base_url('doctor/plan'); ?>">Plan</a>
         <a class="dropdown-item" href="<?php echo base_url('doctor/disposition'); ?>">Disposition</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Cancel Admission</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#doctorCancelModal">Cancel ER Visit</a>
     </div>
 </div>

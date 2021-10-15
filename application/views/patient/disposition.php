@@ -45,65 +45,76 @@
                                 </div>
 
                                 <div class="row mt-2">
-                                    <div class="col-6 border border-dark">CAUSES OF DEATH</div>
-                                    <div class="col-6 border border-dark">Interval Between Onset & Death</div>
+                                    <div class="col-6"> <h5>Causes of Death</h5> </div>
+                                    <div class="col-6"> <h5>Interval Between Onset & Death</h5> </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-2 border border-dark p-3">Immediate Cause</div>
-                                    <div class="col-4 border border-dark form-inline">
+                                    <div class="col-2 p-3">Immediate Cause</div>
+                                    <div class="col-4 form-inline">
                                         <span>a)</span> 
-                                        <textarea name="" id="" cols="" rows="2" style="width:90%;" class="form-control er-expired-tx"></textarea>
+                                        <textarea name="" id="" cols="" rows="2" style="width:90%;" class="form-control ml-2"></textarea>
                                     </div>
-                                    <div class="col-6 border border-dark p-0">
-                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-2 border border-dark p-3">Antecedent Cause</div>
-                                    <div class="col-4 border border-dark form-inline">
-                                        <span>b)</span> 
-                                        <textarea name="" id="" cols="" rows="2" style="width:90%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                    <div class="col-6 border border-dark p-0">
-                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-2 border border-dark p-3">Underlying Cause</div>
-                                    <div class="col-4 border border-dark form-inline">
-                                        <span>c)</span> 
-                                        <textarea name="" id="" cols="" rows="2" style="width:90%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                    <div class="col-6 border border-dark p-0">
-                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-2 border border-dark p-3">Other dignificant conditions contributing to death</div>
-                                    <div class="col-4 border border-dark form-inline p-0">
-                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control er-expired-tx"></textarea>
-                                    </div>
-                                    <div class="col-6 border border-dark p-0">
-                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control er-expired-tx"></textarea>
+                                    <div class="col-6 p-0">
+                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control ml-2"></textarea>
+                                        <!-- class for no borders: er-expired-tx -->
                                     </div>
                                 </div>
 
                                 <div class="row mt-2">
-                                    <div class="col-6 form-inline">
-                                        If attended, State Duration: <input type="text" name="" id="" class="form-control ml-2">
+                                    <!-- <div class="col-2 border border-dark p-3">Antecedent Cause</div> -->
+                                    <div class="col-2 p-3">Antecedent Cause</div>
+                                    <div class="col-4 form-inline">
+                                        <span>b)</span> 
+                                        <textarea name="" id="" cols="" rows="2" style="width:90%" class="form-control ml-2"></textarea>
                                     </div>
-                                    <div class="col-6 form-inline">
+                                    <div class="col-6 p-0">
+                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control ml-2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-2 p-3">Underlying Cause</div>
+                                    <div class="col-4 form-inline">
+                                        <span>c)</span> 
+                                        <textarea name="" id="" cols="" rows="2" style="width:90%" class="form-control ml-2"></textarea>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control ml-2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-2">Other dignificant conditions contributing to death</div>
+                                    <div class="col-4">
+                                        <textarea name="" id="" cols="" rows="2" style="width:90%" class="form-control ml-3"></textarea>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <textarea name="" id="" cols="" rows="2" style="width:100%" class="form-control ml-2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-2">
+                                        If attended, State Duration: 
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" name="" id="" class="form-control ml-3" style="width:90%">
+                                    </div>
+                                    <div class="col-1">
                                         Autopsy (Yes/No): 
-                                        <select name="" id="" class="form-control ml-2">
+                                    </div>
+                                    <div class="col-5">
+                                        <select name="" id="" class="form-control" style="width:20%">
                                             <option value=""></option>
                                             <option value="">YES</option>
                                             <option value="">NO</option>
                                         </select>
-                                    </div>
+                                    </div>  
+                                </div>
+
+                                <div class="row mt-2">
+                                    
                                 </div>
 
                                 <!-- <div class="form-inline mt-2">

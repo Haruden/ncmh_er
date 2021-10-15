@@ -10,8 +10,22 @@
                 </div>
                 <div class="modal-body">
 
+                    <div>
+                        <label for="">
+                            <strong id="diag_diagnosis_req" class="text-red">*</strong>Type of Diagnosis:
+                        </label>
+                        <select name="" id="" class="form-control"> 
+                            <option value="">Clinical</option>
+                            <option value="">Admitting</option>
+                            <option value="">Final</option>
+                            <option value="">Interim</option>
+                            <option value="">Other</option>
+                            <option value="">Working</option>
+                        </select>
+                    </div>
+
                     <!-- ICD10 Diagnosis -->
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3 mt-2">
                         <label for="diag_diagnosis">
                             <strong id="diag_diagnosis_req" class="text-red">*</strong>Diagnosis (ICD 10)
                         </label>
@@ -956,6 +970,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
+                    <div class="mb-2">
+                        <label for="">
+                            <strong id="diag_diagnosis_req" class="text-red">*</strong>Type of Diagnosis:
+                        </label>
+                        <select name="" id="" class="form-control"> 
+                            <option value="">Clinical</option>
+                            <option value="">Admitting</option>
+                            <option value="">Final</option>
+                            <option value="">Interim</option>
+                            <option value="">Other</option>
+                            <option value="">Working</option>
+                        </select>
+                    </div>
 
                     <!-- ICD10 Diagnosis -->
                     <div class="form-group mb-3">
