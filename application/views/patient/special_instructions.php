@@ -24,13 +24,13 @@
                                         <div class="float-right" style="display: inline-block;">
                                             <div class="btn btn-group btn-group-toggle" data-toggle="buttons">
                                                 <label class="btn btn-sm btn-default">
-                                                   <input type="radio" name="options" id="option1" autocomplete="off">ACTIVE
+                                                   <input type="radio" name="options_active" id="option1" autocomplete="off">ACTIVE
                                                 </label>
                                                 <label class="btn btn-sm btn-default">
-                                                    <input type="radio" name="options" id="option2" autocomplete="off">DONE
+                                                    <input type="radio" name="options_done" id="option2" autocomplete="off">DONE
                                                 </label>
                                                 <label class="btn btn-sm btn-default">
-                                                    <input type="radio" name="options" id="option3" autocomplete="off">ALL
+                                                    <input type="radio" name="options_all" id="option3" autocomplete="off">ALL
                                                 </label>
                                             </div>
                                         </div>
@@ -62,6 +62,7 @@
                                                     <td>Sample instruction here.</td>
                                                     <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
                                                     <td><button type="button" class="btn btn-xs btn-block btn-success disabled">ACTIVE</button></td>
+                                                    <!-- <td><span class="badge badge-success center">ACTIVE</span></td> -->
                                                     <td>    
                                                         <div class="input-group-prepend">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
@@ -187,11 +188,12 @@
 
 <script>
 
-    var table;
+    var table_alldata
+    var filteredTable;
 
     $(function() {
     
-        table = $('#special_instructions_Table').DataTable({
+        table_alldata = $('#special_instructions_Table').DataTable({
             language: {
                 searchPlaceholder: "Search Instruction"
             },
@@ -207,6 +209,33 @@
             "responsive": true,
             "autoWidth": false,
             order: [[ 1, 'asc' ]]
+            
+        });
+
+        $('#option1').on('click', function () {
+
+            var status = 'ACTIVE';
+
+            var filteredData_ACTIVE = table_alldata
+            .column( 3 )
+            .data()
+            .filter(function(value, index){
+
+                var table_status = document.querySelectorAll("td");
+
+                table_status.foreach(function(el){
+
+                    if(el.textContent === status){
+                        return true;
+                    } else  return false;
+                });
+
+            });
+
+            filteredTable = table_alldata;
+            // filteredTable.clear();
+            // filteredTable.rows.add(filteredData_ACTIVE);
+            filteredTable.draw();
         });
 
     });
