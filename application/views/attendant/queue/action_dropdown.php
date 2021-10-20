@@ -11,7 +11,7 @@
     <button type="button" class="btn border-0 shadow-sm btn-primary bg-gradient-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
     <div class="dropdown-menu button-dropdown">
         <a type="button" id="assign_er_doctor_btn" class="dropdown-item" >Assign ER Doctor</a>
-        <a type="button" id="" class="dropdown-item" href="<?php echo base_url('attendant/details'); ?>">Patient Details</a>
+        <a type="button" id="" class="dropdown-item" href="<?php echo base_url('attendant/add-patient'); ?>">Patient Details</a>
         <div class="dropdown-divider"></div>
         <a type="button" id="" data-toggle="modal" data-target="#attendantCancelModal" class="dropdown-item">Cancel ER Visit</a>
     </div>

@@ -7,6 +7,7 @@ $route['auth/logout'] = 'auth/login/logout';
 
 // Attendant Routes
 $route['attendant'] = 'attendant/queue';
+$route['attendant/add-patient'] = 'attendant/content/add_patient';
 
 // Nurse Routes
 $route['nurse'] = 'nurse/queue';
