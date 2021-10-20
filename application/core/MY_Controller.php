@@ -25,6 +25,7 @@ class MY_Controller extends MY_Middleware
     PUBLIC $css_plugins = array();
     PUBLIC $custom_javascript = array();
     PUBLIC $custom_css = array();
+    PUBLIC $javascript_vars = array();
     
 
     PUBLIC $sidebar_collapse = false;
@@ -54,6 +55,7 @@ class MY_Controller extends MY_Middleware
         // $this->load->helper("template");
 
         $page['custom_javascript'] = $this->custom_javascript;
+        $page['javascript_vars'] = $this->javascript_vars;
         $page['custom_css'] = $this->custom_css;
         $page['javascript_plugins'] = $this->javascript_plugins;
         $page['css_plugins'] = $this->css_plugins;

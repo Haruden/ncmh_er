@@ -14,20 +14,327 @@
 
                 <div class="col-md-10">
                     <div class="card">
-                        <!-- <div class="col-sm-12 p-2 text-center"  style="margin-bottom:-15px !important;">
-                        <button class="btn btn-md btn-success mr-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>
-                    </div> -->
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="active tab-pane" id="doctors_orders">
+
+                                    <?php if (auth('role') == 'doctor') { ?>
+                                        <div class="row mb-2">
+                                            <button class="btn btn-sm btn-success mr-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order <i class="ml-1 fas fa-plus"></i></button>
+                                        </div>
+                                        <hr>
+                                    <?php } ?>
+
                                     <div>
-                                        <h4>SPECIAL INSTRUCTION</h4>
+                                        <h5>SPECIAL INSTRUCTION</h5>
                                         <textarea class="form-control" rows="2" placeholder="Special Instructions Here" disabled></textarea>
                                     </div>
                                     <br>
 
+                                    <h5>Doctor's Order Details</h5>
+
+                                    <!-- General Orders -->
+                                    <div class="card order-card">
+
+                                        <div class="card-header p-2 pr-3 order-card-header">
+                                            <span>General Orders (2)</span>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                            <table id="genOrderDatatable" class="table table-bordered table-striped order-datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Date/Time</th>
+                                                        <th>Order</th>
+                                                        <th>Ordering Physician</th>
+                                                        <th>Priority</th>
+                                                        <th width="130">Status</th>
+                                                        <th width="110">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td><b class="text-danger">STAT</b></td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td>Routine</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Dietary Orders -->
+                                    <div class="card order-card">
+
+                                        <div class="card-header p-2 pr-3 order-card-header">
+                                            <span>Dietary Orders (1)</span>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                            <table id="" class="table table-bordered table-striped order-datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Date/Time</th>
+                                                        <th>Order</th>
+                                                        <th>Ordering Physician</th>
+                                                        <th>Priority</th>
+                                                        <th width="130">Status</th>
+                                                        <th width="110">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>Low Salt Low Fat</br><small><b>Remarks:</b> Preferrably Fish</small></td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td>Routine</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Referral Orders -->
+                                    <div class="card order-card">
+
+                                        <div class="card-header p-2 pr-3 order-card-header">
+                                            <span>Referral Orders (1)</span>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                            <table id="" class="table table-bordered table-striped order-datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Date/Time</th>
+                                                        <th>Order</th>
+                                                        <th>Ordering Physician</th>
+                                                        <th>Priority</th>
+                                                        <th width="130">Status</th>
+                                                        <th width="110">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>
+                                                            <b>Refer to Department:</b> Neurology <br>
+                                                            <b>Reason for Referral:</b> Slurred Speech <br>
+                                                            <small><b>Remarks:</b> Notes</small>
+                                                        </td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td>Routine</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Diagnostic Orders -->
+                                    <div class="card order-card">
+
+                                        <div class="card-header p-2 pr-3 order-card-header">
+                                            <span>Diagnostic Orders (2)</span>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body dataTables_wrapper dt-bootstrap4" style="display: block;">
+                                            <table id="" class="table table-bordered table-striped order-datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Date/Time</th>
+                                                        <th>Order</th>
+                                                        <th>Ordering Physician</th>
+                                                        <th>Priority</th>
+                                                        <th width="130">Status</th>
+                                                        <th width="110">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td><b class="text-danger">STAT</b></td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Jan 24, 2021 <br> 12:10PM</td>
+                                                        <td>Doctor's notes will be posted here</br><small><b>Remarks:</b> Data notes</small></td>
+                                                        <td>Dr. Joeffrey Cruzada (Attending) </td>
+                                                        <td>Routine</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button type="button" class="btn btn-sm btn-block btn-warning dropdown-toggle btn_status" data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#modal-do_status">
+                                                                        Pending
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                        <a class="dropdown-item">Carried</a>
+                                                                        <a class=" dropdown-item">Administered</a>
+                                                                        <a class="dropdown-item">Request Made</a>
+                                                                        <a class="dropdown-item">Endorsed</a>
+                                                                        <a class="dropdown-item">Discontinued</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item">Separated link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-default">View Details</button>
+                                                            <br>
+                                                            <small class="upd-or-sm"><a href="#">Update Order</a> </small>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
                                     <!-- Table row -->
-                                    <div class="dataTables_wrapper dt-bootstrap4">
+                                    <!-- <div class="dataTables_wrapper dt-bootstrap4">
                                         <table id="planTable" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
@@ -63,9 +370,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <!-- Content rendered in javascript -->
-                                                    </td>
+                                                    <td></td>
                                                 </tr>
 
                                                 <tr>
@@ -94,9 +399,7 @@
                                                             <small><i class="small text-muted btn-block">Updated by: Burr Herber, RN </br> Jan 10, 2021 - 12:02 PM</i></small>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <!-- Content rendered in javascript -->
-                                                    </td>
+                                                    <td></td>
                                                 </tr>
 
                                                 <tr>
@@ -126,9 +429,7 @@
                                                             <small><i class="small text-muted btn-block">Updated by: Burr Herber, RN </br> Jan 10, 2021 - 12:02 PM</i></small>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <!-- Content rendered in javascript -->
-                                                    </td>
+                                                    <td></td>
                                                 </tr>
 
                                                 <tr>
@@ -154,18 +455,16 @@
 
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <!-- Content rendered in javascript -->
-                                                    </td>
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div> <!-- End of Table -->
+                                    </div> -->
 
-                                    <hr>
+                                    <!-- <hr>
                                     <div class="mt-3 d-flex justify-content-center">
-                                        <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add-doctor-order">Add Order</button> -->
-                                    </div>
+                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add-doctor-order">Add Order</button>
+                                    </div> -->
 
                                 </div> <!-- End of tab pane -->
                             </div> <!-- End of tab content -->
@@ -177,312 +476,3 @@
     </section>
     <!-- /.content -->
 </div>
-
-<script>
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var patient_id = urlParams.get('patient_id');
-
-    $(function() {
-
-        // Common
-
-        $('.tabNext').click(function() {
-            $('.nav-tabs > .active').next('a').trigger('click');
-        });
-
-        $('.tabPrevious').click(function() {
-            $('.nav-tabs > .active').prev('a').trigger('click');
-        });
-
-        $('.btn-update').click(function() {
-            $(this).closest('tr').find('input,select,textarea').prop('disabled', false);
-        });
-
-        $('.btn-remove').click(function() {
-            $(this).closest('tr').remove();
-        });
-
-        if (patient_id != "" && Number(patient_id) > 0) {
-            setTimeout(function() {
-                $('#add-doctor-order').modal('show');
-            }, 500);
-        }
-
-        <?php if (auth('role') == 'doctor') { ?>
-            $(".btn_status").attr("disabled", true);
-        <?php } ?>
-
-        $("#planTable").DataTable({
-            language: {
-                searchPlaceholder: "Search order"
-            },
-            "responsive": true,
-            "autoWidth": false,
-            "aoColumnDefs": [{
-                "aTargets": [3],
-                "mData": null,
-                "mRender": function() {
-                    var html = '<button type="button" class="btn btn-block  btn-success btn-sm" aria-haspopup="true" aria-expanded="false"> View Details </button>';
-                    <?php if (auth('role') == 'doctor') { ?>
-                        html += '<div class="col-sm-12">';
-                        html += '<a href="#updateorder" class="text-primary"><small>Update Order</small></a>';
-                        html += '</div>';
-                    <?php } ?>
-                    return html;
-                }
-            }]
-        });
-
-        <?php if (auth('role') == 'doctor') { ?>
-            $("#planTable_length").find('label').after(' <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#add-doctor-order">Add Doctor Order  <i class="ml-1 fas fa-plus"></i></button>');
-        <?php } ?>
-
-        // General Order Functions - START
-
-        $('#gen_or_mor_routine').attr('checked', true);
-
-        $("#diet-select").on("change", function() {
-            if ($(this).val() == "Others") {
-                $('#others-diet').slideDown();
-            } else {
-                $('#others-diet').slideUp();
-            }
-        });
-
-        var genOrderTable = $('#genOrderTable').DataTable({
-            responsive: true,
-            lengthChange: true,
-            autoWidth: false,
-            searching: false,
-            paging: false,
-            ajax: {
-                url: '/ncmh_er/doctor/plan/gen-or-table',
-                type: "POST",
-                dataType: 'json',
-                success: function(data) {
-                    if (data !== undefined && data !== null && data !== "") {
-                        var length = Object.keys(data).length;
-                        for (var i = 0; i < length; i++) {
-                            genOrderTable.row.add([
-                                data[i]['datetime'],
-                                data[i]['gen_or_data'],
-                                data[i]['mor'],
-                                data[i]['remarks'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                                '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
-                            ]).draw(false);
-                        }
-                    } else {
-                        genOrderTable.draw(false);
-                    }
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            },
-            order: [
-                [0, 'DESC']
-            ],
-        });
-
-        function addGenOrder(mor, gen_or_data, remarks, clear) {
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/add-gen-order',
-                type: 'POST',
-                data: {
-                    mor: mor,
-                    gen_or_data: gen_or_data,
-                    remarks: remarks,
-                },
-                dataType: 'json',
-                success: function(data) {
-                    genOrderTable.row.add([
-                        data['datetime'],
-                        data['gen_or_data'],
-                        data['mor'],
-                        data['remarks'],
-                        '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                        '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
-                    ]).draw(false);
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Submitted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    $('#' + clear).val('');
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
-        }
-
-        $('#add-gen-order-btn').on('click', function(e) {
-            var gen_or_data = $('#gen_or_data').val();
-
-            if (gen_or_data == null || gen_or_data == "") {
-                $("#gen_or_data").addClass('required');
-                e.preventDefault();
-
-            } else {
-                $("#gen_or_data").removeClass('required');
-                var mor = $('input[name="gen_or_mor"]:checked').val();
-                if ($('#spec_ins').is(':checked')) {
-                    gen_or_data = "<b>SPECIAL INSTRUCTION: </b><br>" + gen_or_data;
-                }
-                var remarks = null;
-                addGenOrder(mor, gen_or_data, remarks, 'gen_or_data');
-            }
-        });
-
-        $("#gen_or_data").keyup(function() {
-            $("#gen_or_data").removeClass('required');
-        });
-
-        $('#add-diet-btn').on('click', function() {
-            var mor = $('input[name="gen_or_mor"]:checked').val();
-            var diet = $('#diet-select').val();
-            if (diet == "Others") {
-                diet = diet + ': ' + $('#others-diet').val();
-            }
-            var gen_or_data = '<b>DIETARY ORDERS: </b><br>' + diet;
-            var remarks = $('#diet-remarks').val();
-            addGenOrder(mor, gen_or_data, remarks, 'diet-remarks');
-        });
-
-        $('#add-referral-btn').on('click', function() {
-            var mor = $('input[name="gen_or_mor"]:checked').val();
-            var referral = $('#referral-select').val();
-            var referralReason = $('#referral-reason').val();
-            var gen_or_data = '<b>REFERRAL ORDER: </b> <br> <b>Refer to Department:</b><br> ' + referral + '<br><b>Reason for Referral: </b><br>' + referralReason;
-            var remarks = null;
-            addGenOrder(mor, gen_or_data, remarks, 'referral-reason');
-        });
-
-        $('#add-diet-btn').on('click', function() {
-            var mor = $('input[name="gen_or_mor"]:checked').val();
-            var diet = $('#diet-select').val();
-            if (diet == "Others") {
-                diet = diet + ': ' + $('#others-diet').val();
-            }
-            var gen_or_data = '<b>DIETARY ORDERS: </b><br>' + diet;
-            var remarks = $('#diet-remarks').val();
-            addGenOrder(mor, gen_or_data, remarks, 'diet-remarks');
-        });
-
-        // General Order Functions - END
-
-        // Medication Order START
-
-        $('#med-mor-routine').attr('checked', true);
-
-        $('#durationRange').attr('checked', true);
-
-        $('input[name="med-duration"]').change(function() {
-            if (this.id === "durationNum") {
-                $("#durNumDiv").removeClass("d-none");
-                $("#durRangeDiv").hide();
-            } else {
-                $("#durNumDiv").addClass("d-none");
-                $("#durRangeDiv").show();
-            }
-        });
-
-        var medOrderTable = $('#medOrderTable').DataTable({
-            responsive: true,
-            lengthChange: true,
-            autoWidth: false,
-            searching: false,
-            paging: false,
-            ajax: {
-                url: '/ncmh_er/doctor/plan/med-or-table',
-                type: "POST",
-                dataType: 'json',
-                success: function(data) {
-                    if (data !== undefined && data !== null && data !== "") {
-                        var length = Object.keys(data).length;
-                        for (var i = 0; i < length; i++) {
-                            medOrderTable.row.add([
-                                data[i]['datetime'],
-                                data[i]['name'] + ' ' + data[i]['dosage'] + ' ' + data[i]['prep'],
-                                data[i]['route'],
-                                data[i]['frequency'],
-                                data[i]['duration'],
-                                data[i]['mor'],
-                                '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                                '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
-                            ]).draw(false);
-                        }
-                    } else {
-                        medOrderTable.draw(false);
-                    }
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            },
-            order: [
-                [0, 'DESC']
-            ],
-        });
-
-        $('#add-med-btn').on('click', function() {
-            var mor = $('input[name="med-mor"]:checked').val();
-            var name = $('#med-name').val();
-            var dosage = $('#med-dosage').val();
-            var prep = $('#med-prep').val();
-            var route = $('#med-route').val();
-            var frequency = $('#med-frequency').val();
-            var duration = $('input[name="med-duration"]:checked').val();
-            if (duration == 'Number') {
-                duration = $('#med-days').val() + ' days';
-            } else if (duration == 'Range') {
-                duration = 'From ' + $('#med-range-from').val() + ' to ' + $('#med-range-to').val();
-            }
-
-            $.ajax({
-                url: '/ncmh_er/doctor/plan/add-med-order',
-                type: 'POST',
-                data: {
-                    mor: mor,
-                    name: name,
-                    dosage: dosage,
-                    prep: prep,
-                    route: route,
-                    frequency: frequency,
-                    duration: duration
-                },
-                dataType: 'json',
-                success: function(data) {
-                    medOrderTable.row.add([
-                        data['datetime'],
-                        data['name'] + ' ' + data['dosage'] + ' ' + data['prep'],
-                        data['route'],
-                        data['frequency'],
-                        data['duration'],
-                        data['mor'],
-                        '<button class="btn btn-sm btn-primary m-1 btn-update">UPDATE</button>' +
-                        '<button class="btn btn-sm btn-danger m-1 btn-remove">DELETE</button>'
-                    ]).draw(false);
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Submitted',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: 400,
-                    });
-                    $('#' + clear).val('');
-                },
-                error: function(err) {
-                    if (!err) return;
-                }
-            });
-        });
-
-    });
-</script>

@@ -2,12 +2,51 @@
     width: 100%;
 }
 
+.w-80 {
+    width: 80%;
+}
+
 .required {
     border: 2px solid red;
 }
 
 .button-dropdown {
     z-index: 9999 !important;
+}
+
+#update-diagproc-order,
+#update-med-order,
+#update-gen-order {
+    z-index: 9999 !important;
+}
+
+.order-card-header {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.diagnosis-card-header {
+    cursor: pointer;
+    background-color: rgb(207, 220, 238);
+}
+
+.meds-card-header {
+    cursor: pointer;
+    background-color: lightgoldenrodyellow;
+}
+
+.order-datatable tbody td,
+.order-datatable thead th {
+    padding: 5px;
+}
+
+.order-card .card-body {
+    padding: 0;
+}
+
+.er-expired-tx {
+    resize: none;
+    border: none;
 }
 
 

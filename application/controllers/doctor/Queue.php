@@ -28,6 +28,7 @@ class Queue extends MY_Controller
     {
         $this->session->unset_userdata('plan_gen_order');
         $this->session->unset_userdata('plan_med_order');
+        $this->session->unset_userdata('plan_diagproc_order');
 
         $this->set_view('patient/queue');
         $this->title = "ER Queue";

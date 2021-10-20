@@ -30,8 +30,12 @@ class Patient_marks extends MY_Controller {
         $this->component = true;
         $this->sidebar_collapse = true;
 
+		$this->css_plugins = [
+			'summernote/summernote-bs4.css',
+		];
 		$this->javascript_plugins = [
-            'moment/moment.min.js',
+			'moment/moment.min.js',
+			'summernote/summernote-bs4.min.js',
 		];
 
         $data['title'] =  $this->title;

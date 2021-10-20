@@ -16,13 +16,15 @@ var _ALLFIELDS = [];
                 element.closest('.form-group').append(error);
             },
             highlight: function(element, errorClass, validClass) {
+                // $(element.form).find("label[for=" + element.id + "] .required").empty();
+                // $(element.form).find("label[for=" + element.id + "]").append('<span class="required text-danger"> *</span>');
                 $(element).addClass('is-invalid');
             },
             unhighlight: function(element, errorClass, validClass) {
+                // $(element.form).find("label[for=" + element.id + "] .required").empty();
                 $(element).removeClass('is-invalid');
             },
             normalizer: function(value) {
-                // Extra validation that trims the value of every element
                 return $.trim(value);
             }
         },
@@ -326,6 +328,11 @@ var _ALLFIELDS = [];
             var successMsg = opts.successMsg || 'Everything went well.';
             var errorMsg = opts.errorMsg || 'There was a problem while processing your request.';
 
+            if (opts.modal) {
+                $('#' + opts.modal + ' .close').click();
+                // $('#' + opts.modal).remove();
+            }
+
             APP.UI.showLoader(processingMsg);
 
             var requestOpts = {
@@ -354,15 +361,17 @@ var _ALLFIELDS = [];
                 }
 
                 var response;
+
                 try {
                     response = (typeof _response === 'string') ? JSON.parse(_response) : _response;
+                    APP.UI.setSessionAlert(JSON.stringify(successMsgAlert));
                 } catch (error) {
                     return APP.UI.alert(successMsgAlert);
                 }
 
-                if (response.message) {
-                    successMsgAlert.msg = response.message;
-                    return APP.UI.alert(successMsgAlert);
+                if (response.success && !response.redirect) {
+                    successMsgAlert.msg = response.success
+                    APP.UI.alert(successMsgAlert);
                 }
 
                 if (response.redirect) {
@@ -380,15 +389,15 @@ var _ALLFIELDS = [];
                 try {
                     response = (typeof xhr.responseText === 'string') ? JSON.parse(xhr.responseText) : xhr.responseText;
                 } catch (error) {
-                    return APP.UI.alert({ msg: errorMsg });
+                    return APP.UI.alert({ type: 'error', msg: errorMsg });
                 }
 
-                errorMsg = response.error_msg || errorMsg;
+                errorMsg = response.error || errorMsg;
                 if (xhr.status === 400 && response.errors && response.errors.length) {
                     APP.UI.showErrorMessages(response.errors, 'Please see error messages below');
                 }
 
-                APP.UI.alert({ msg: errorMsg });
+                APP.UI.alert({ type: 'error', msg: errorMsg });
             });
         },
 
@@ -413,13 +422,12 @@ var _ALLFIELDS = [];
             }
             var $form = $('#' + formId);
 
-            $form.trigger('reset');
-            $form.validate().resetForm();
-            $form.find('input[type="text"]').val('');
-            $form.find(':checkbox, :radio').prop('checked', false);
-            $form.find(':checkbox[data-default], :radio[data-default]').prop('checked', true);
-            $form.find('textarea').val('');
-            $('.modal select').val(null).trigger('change');
+            $form.trigger('reset').validate().resetForm();
+            // $form.find('input[type="text"]').val('');
+            // $form.find(':checkbox, :radio').prop('checked', false);
+            // $form.find(':checkbox[data-default], :radio[data-default]').prop('checked', true);
+            // $form.find('textarea').val('');
+            // $('.modal select').val(null).trigger('change');
             $('.is-invalid').removeClass('is-invalid');
         },
 
@@ -527,7 +535,6 @@ var _ALLFIELDS = [];
                 });
             });
         }
-
     };
 
     $(document).ready(function() {

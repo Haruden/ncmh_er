@@ -4,7 +4,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-2">
     <!-- Brand Logo -->
     <a href="<?php echo base_url(auth('role').'/queue');?>" class="brand-link border-0 shadow mb-2 sidebar-dark-primary align-middle">
-        <img src="<?php echo base_url(); ?>assets/img/ncmh_logo_x32.png" alt="National Center for Mental Health" class="brand-image img-circle">
+        <img src="<?php echo base_url(); ?>assets/img/atis-circlex32.png" alt="National Center for Mental Health" class="brand-image img-circle">
         <span class="brand-text text-light" style="font-weight: 200;">ER</span>
     </a>
 

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shorcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/public/favicon.ico">
+    <link rel="shorcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/public/afavicon.ico">
     <title>ER - <?= $title; ?> </title>
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -61,7 +61,7 @@
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('assets/dist/js/adminlte.js'); ?>"></script>
     <!-- Sweetalert -->
-    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.js') ?>"></script>
     <!-- Templates -->
     <script src="<?php echo base_url('assets/js/templates/navbar.js') ?>"></script>
     <!-- Plugins -->
@@ -73,13 +73,22 @@
 
     <!-- App JS -->
     <script src="<?php echo base_url('assets/js/app.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/ui.js') ?>"></script>
 
     <!-- Helpers JS -->
     <script src="<?php echo base_url('assets/js/helpers/forms.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/ui.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/helpers/storage.js') ?>"></script>
     <!-- <script src="<?php echo base_url('assets/js/helpers/textarea.js') ?>"></script> -->
     <script src="<?php echo base_url('assets/js/helpers/time.js') ?>"></script>
+
+    <!-- Javascript Vars -->
+    <?php if($javascript_vars): ?>
+        <script type="text/javascript">
+        <?php foreach ($javascript_vars as $var_name => $var_val):?>
+                <?php echo 'var '.$var_name.'='.(is_array($var_val) ? json_encode($var_val). ';' : '"'. $var_val. '";'); ?>
+        <?php endforeach;?>
+        </script>
+    <?php endif; ?>
 
     <!-- Custom Javascript-->
     <?php if ($custom_javascript) : ?>

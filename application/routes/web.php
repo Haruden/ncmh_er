@@ -7,6 +7,7 @@ $route['auth/logout'] = 'auth/login/logout';
 
 // Attendant Routes
 $route['attendant'] = 'attendant/queue';
+$route['attendant/add-patient'] = 'attendant/content/add_patient';
 
 // Nurse Routes
 $route['nurse'] = 'nurse/queue';
@@ -16,6 +17,7 @@ $route['nurse/vital-signs'] = 'nurse/content/vital_signs';
 $route['nurse/nurse-notes'] = 'nurse/content/nurse_notes';
 $route['nurse/er-notes'] = 'nurse/content/er_notes';
 $route['nurse/plan'] = 'nurse/content/plan';
+$route['nurse/disposition'] = 'nurse/content/disposition';
 
 // Doctor Routes
 $route['doctor'] = 'doctor/queue';
@@ -25,11 +27,22 @@ $route['doctor/vital-signs'] = 'doctor/content/vital_signs';
 $route['doctor/nurse-notes'] = 'doctor/content/nurse_notes';
 $route['doctor/er-notes'] = 'doctor/content/er_notes';
 $route['doctor/plan'] = 'doctor/content/plan';
+$route['doctor/disposition'] = 'doctor/content/disposition';
+
 $route['doctor/plan/add-gen-order'] = 'doctor/content/plan/add_gen_order';
 $route['doctor/plan/gen-or-table'] = 'doctor/content/plan/gen_or_table';
 $route['doctor/plan/add-med-order'] = 'doctor/content/plan/add_med_order';
 $route['doctor/plan/med-or-table'] = 'doctor/content/plan/med_or_table';
-$route['doctor/special-instructions'] = 'doctor/content/special_instructions';
+$route['doctor/plan/add-diagproc-order'] = 'doctor/content/plan/add_diagproc_order';
+$route['doctor/plan/diagproc-or-table'] = 'doctor/content/plan/diagproc_or_table';
+$route['doctor/plan/finalize'] = 'doctor/content/plan/finalize';
+
+$route['doctor/plan/update-gen-order'] = 'doctor/content/plan/update_gen_order';
+$route['doctor/plan/delete-gen-order'] = 'doctor/content/plan/delete_gen_order';
+$route['doctor/plan/update-med-order'] = 'doctor/content/plan/update_med_order';
+$route['doctor/plan/delete-med-order'] = 'doctor/content/plan/delete_med_order';
+$route['doctor/plan/update-diagproc-order'] = 'doctor/content/plan/update_diagproc_order';
+$route['doctor/plan/delete-diagproc-order'] = 'doctor/content/plan/delete_diagproc_order';
 
 // # Doctor Routes
 // $route['doctor/queue'] = 'doctor/queue';

@@ -145,7 +145,7 @@
         });
 
         <?php if (auth('role') == 'attendant') { ?>
-            $("#queueTable_length").find('label').after('<button class="btn btn-success btn-sm ml-3">Add Patient<i class="ml-1 fas fa-plus"></i></button>');
+            $("#queueTable_length").find('label').after('<a type="button" class="btn btn-success btn-sm ml-3" href="<?php echo base_url('attendant/add-patient');?>">Add Patient<i class="ml-1 fas fa-plus"></i></a>');
         <?php } ?>
     });
 </script>
