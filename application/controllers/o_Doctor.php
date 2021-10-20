@@ -67,6 +67,9 @@ class Doctor extends CI_Controller {
             'inputmask/jquery.inputmask.min.js',
             'bootstrap-slider/bootstrap-slider.min.js',
 			'sweetalert2/sweetalert2.min.js',
+			'datatables/jquery.dataTables.min.js',
+			'datatables-select/js/dataTables.select.min.js',
+			'jquery/jquery-3.5.1.js',
         ];
 
         $this->css_plugins = [
@@ -76,7 +79,11 @@ class Doctor extends CI_Controller {
             'select2-bootstrap4-theme/select2-bootstrap4.min.css',
             'bootstrap-slider/css/bootstrap-slider.min.css',
 			'sweetalert2/sweetalert2.min.css',
+			'datatables-select/css/select.bootstrap4.min.css',
         ];
+
+		//wait po
+
 		$data['js_plugins'] = $this->js_plugins == [] ? null :  $this->js_plugins;
 		$data['css_plugins'] = $this->css_plugins == [] ? null :  $this->css_plugins;
 
@@ -123,4 +130,12 @@ class Doctor extends CI_Controller {
         $this->view_patient('nurse_notes');
 	}
 
+	public function special_instructions()
+	{
+		$data['title'] = "Special Instructions";
+		$data['role'] = $this->session->userdata('role');
+
+        $this->load->view('templates/header', $data);
+        $this->view_patient('special_instructions');
+	}
 }

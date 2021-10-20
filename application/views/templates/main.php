@@ -41,6 +41,8 @@
 
     <!-- jQuery -->
     <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
+    <!-- jQuery v3.5.1 -->
+    <script src="<?php echo base_url('assets/plugins/jquery/jquery-3.5.1.js'); ?>"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="<?php echo base_url('assets/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
     <!-- jQuery Validation -->
