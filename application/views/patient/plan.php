@@ -49,10 +49,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="20">
-                                                        <!-- <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox">
+                                                        <div class="form-check">
+                                                            <input id="check-all" class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </th>
                                                     <th>Instruction</th>
                                                     <th width="140">Date/Time Instructed</th>
@@ -63,10 +63,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <!-- <div class="form-check">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </td>
                                                     <td>Sample instruction 1.</td>
                                                     <td>Jan 1, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
@@ -85,10 +85,10 @@
 
                                                 <tr>
                                                     <td>
-                                                        <!-- <div class="form-check">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </td>
                                                     <td>Sample instruction 2.</td>
                                                     <td>Jan 2, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
@@ -106,10 +106,10 @@
 
                                                 <tr>
                                                     <td>
-                                                        <!-- <div class="form-check">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </td>
                                                     <td>Sample instruction 3.</td>
                                                     <td>Jan 3, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
@@ -127,10 +127,10 @@
 
                                                 <tr>
                                                     <td>
-                                                        <!-- <div class="form-check">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </td>
                                                     <td>Sample instruction 4.</td>
                                                     <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
@@ -148,10 +148,10 @@
 
                                                 <tr>
                                                     <td>
-                                                        <!-- <div class="form-check">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox">
                                                             <label class="form-check-label"></label>
-                                                        </div> -->
+                                                        </div>
                                                     </td>
                                                     <td>Sample instruction 5.</td>
                                                     <td>Jan 24, 2021 | 12:10PM <br><small><i class="small text-muted">Ordered by: Dr. Cruzada </i></small></td>
@@ -184,6 +184,8 @@
                                         <textarea class="form-control" rows="2" placeholder="Special Instructions Here" disabled></textarea>
                                     </div>
                                     <br> -->
+
+                                    <hr>
 
                                     <h5>Doctor's Order Details</h5>
 
@@ -667,7 +669,7 @@
 
         $('input[name="options"]').on('change', function() {
             var filter = $(this).val();
-            console.log('filter:' + filter);
+            // console.log('filter:' + filter);
 
             if (filter == "ALL") {
                 table_alldata
@@ -680,7 +682,14 @@
                     .search(filter)
                     .draw();
             }
+        });
 
+        $('#check-all').on('change', function(){
+           if($(this).prop('checked')){
+                $('.form-check-input').prop('checked', true);
+           } else {
+                $('.form-check-input').prop('checked', false);
+           }
         });
 
         // $("#special_instructions_Table_paginate").find('#special_instructions_Table_previous').before(
