@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Not being used
 class Special_instructions extends MY_Controller {
 
 	/**
