@@ -9,12 +9,12 @@ $config['menus'] = [
                 'icon' => 'fas fa-list-ol',
                 'route' => 'attendant/queue'
             ],
-            // [
-            //     'type' => 'link',
-            //     'name' => 'InPatient List',
-            //     'icon' => 'fas fa-users',
-            //     'route' => 'record/patient-list'
-            // ],
+            [
+                'type' => 'link',
+                'name' => 'Patient Search',
+                'icon' => 'fas fa-users',
+                'route' => 'attendant/patient-search'
+            ],
             // [
             //     'type' => 'link',
             //     'name' => 'Reports <sup><small>DISABLED</small></sup>',

@@ -49,80 +49,59 @@
                             <table id="queueTable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Queue #</th>
                                         <th>Patient Name</th>
                                         <th>Sex</th>
                                         <th>Birthdate</th>
-                                        <th>Origin</th>
-                                        <th>Remarks</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
                                         <td>Dahildahil, Roy, Onin</td>
                                         <td>Male</td>
                                         <td>Dec 19, 1994 <br> Age: 27 </td>
-                                        <td>Outpatient Department <br> <b>Duration:</b> 2 hrs 30 mins</td>
-                                        <td>Vagrant</td>
                                         <td>
-                                            <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
+                                            <?php $this->load->view(auth('role') . '/queue/list_dropdown'); ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>2</td>
                                         <td>Santos, Juan, Velaso</td>
                                         <td>Male</td>
                                         <td>Dec 23, 1996 <br> Age: 24 </td>
-                                        <td>ER Direct <br> <b>Duration:</b> 1 hr 30 mins</td>
-                                        <td></td>
                                         <td>
-                                            <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
+                                            <?php $this->load->view(auth('role') . '/queue/list_dropdown'); ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
                                         <td>Vasquez, Alfredo, Duran</td>
                                         <td>Male</td>
                                         <td>Nov 10, 1993<br> Age: 27 </td>
-                                        <td>Outpatient Department <br> <b>Duration:</b> 1 hr 45 mins</td>
-                                        <td></td>
                                         <td>
-                                            <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
+                                            <?php $this->load->view(auth('role') . '/queue/list_dropdown'); ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>4</td>
                                         <td>Tolentino, Gloria, Macapagal</td>
                                         <td>Femaile</td>
                                         <td>Nov 1, 1993<br> Age: 27 </td>
-                                        <td>Outpatient Department <br> <b>Duration:</b> 3 hrs</td>
-                                        <td></td>
                                         <td>
-                                            <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
+                                            <?php $this->load->view(auth('role') . '/queue/list_dropdown'); ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>5</td>
                                         <td>Aquino, Ninoy, Abalos</td>
                                         <td>Male</td>
                                         <td>Dec 19, 1996<br> Age: 22 </td>
-                                        <td>Outpatient Department <br> <b>Duration:</b> 24 mins</td>
-                                        <td></td>
                                         <td>
-                                            <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
+                                            <?php $this->load->view(auth('role') . '/queue/list_dropdown'); ?>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Queue #</th>
                                         <th>Patient Name</th>
                                         <th>Sex</th>
                                         <th>Birthdate</th>
-                                        <th>Origin</th>
-                                        <th>Remarks</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -148,10 +127,10 @@
             $("#queueTable_length").find('label').after('<a type="button" class="btn btn-success btn-sm ml-3" href="<?php echo base_url('attendant/add-patient'); ?>">Add Patient<i class="ml-1 fas fa-plus"></i></a>');
         <?php } ?>
 
-        $('.assign-er-doctor-btn').on('click', function() {
+        $('.add-to-queue-btn').on('click', function() {
             Swal.fire({
                 title: 'Confirmation',
-                text: "Assign Patient to ER Doctor?",
+                text: "Add Patient to ER Queue?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -163,7 +142,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Assigned',
+                        title: 'Added',
                         showConfirmButton: false,
                         timer: 1000
                     });
