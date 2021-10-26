@@ -64,7 +64,7 @@
                                         <td>Dahildahil, Roy, Onin</td>
                                         <td>Male</td>
                                         <td>Dec 19, 1994 <br> Age: 27 </td>
-                                        <td>Outpatient Department</td>
+                                        <td>Outpatient Department <br> <b>Duration:</b> 2 hrs 30 mins</td>
                                         <td>Vagrant</td>
                                         <td>
                                             <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
@@ -75,7 +75,7 @@
                                         <td>Santos, Juan, Velaso</td>
                                         <td>Male</td>
                                         <td>Dec 23, 1996 <br> Age: 24 </td>
-                                        <td>ER Direct</td>
+                                        <td>ER Direct <br> <b>Duration:</b> 1 hr 30 mins</td>
                                         <td></td>
                                         <td>
                                             <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
@@ -86,7 +86,7 @@
                                         <td>Vasquez, Alfredo, Duran</td>
                                         <td>Male</td>
                                         <td>Nov 10, 1993<br> Age: 27 </td>
-                                        <td>Outpatient Department</td>
+                                        <td>Outpatient Department <br> <b>Duration:</b> 1 hr 45 mins</td>
                                         <td></td>
                                         <td>
                                             <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
@@ -97,7 +97,7 @@
                                         <td>Tolentino, Gloria, Macapagal</td>
                                         <td>Femaile</td>
                                         <td>Nov 1, 1993<br> Age: 27 </td>
-                                        <td>Outpatient Department</td>
+                                        <td>Outpatient Department <br> <b>Duration:</b> 3 hrs</td>
                                         <td></td>
                                         <td>
                                             <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>
@@ -108,7 +108,7 @@
                                         <td>Aquino, Ninoy, Abalos</td>
                                         <td>Male</td>
                                         <td>Dec 19, 1996<br> Age: 22 </td>
-                                        <td>Outpatient Department</td>
+                                        <td>Outpatient Department <br> <b>Duration:</b> 24 mins</td>
                                         <td></td>
                                         <td>
                                             <?php $this->load->view(auth('role') . '/queue/action_dropdown'); ?>

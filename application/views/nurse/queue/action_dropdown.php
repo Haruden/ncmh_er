@@ -18,6 +18,7 @@
         <a class="dropdown-item" href="<?php echo base_url('nurse/patient-id-marks'); ?>">Patient ID Marks</a>
         <a class="dropdown-item" href="<?php echo base_url('nurse/vital-signs'); ?>">Vital Signs</a>        
         <a class="dropdown-item" href="<?php echo base_url('nurse/nurse-notes'); ?>">Nurse's Notes</a>
+        <a class="dropdown-item" href="<?php echo base_url('nurse/medication'); ?>">Medication</a>
         <a class="dropdown-item" href="<?php echo base_url('nurse/disposition'); ?>">Disposition</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" data-toggle="modal" data-target="#nurseCancelModal">Cancel ER Visit</a>

@@ -1,5 +1,14 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
+<style>
+    a.nav-link.active {
+        color: black;
+    }
+    a.nav-link {
+        color: white;
+    }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
@@ -14,7 +23,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="/records/admission">Admission</a></li>
-                        <li class="breadcrumb-item active">Encode Data</li>
+                        <li class="breadcrumb-item active">Add Patient</li>
                     </ol>
                 </div>
             </div>
@@ -26,9 +35,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-default">
-                        <div class="card-body">
-                            <div class="row">
-                                <ul class="nav nav-tabs" role="tablist" style="width:100%">
+                        <div class="card-body p-0">
+                            <div class="row px-2">
+                                <ul class="nav nav-tabs navbar-secondary" role="tablist" style="width:100%; border-radius:5px 5px 0px 0px;">
                                     <li class="nav-item" style="width:50%">
                                         <a class="nav-link active" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Regular</a>
                                     </li>
@@ -200,7 +209,7 @@
                                                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                                                 </div>
                                                                                 <!-- COMMENT: get this attr value and force declare to this html tag -->
-                                                                                <input type="text" class="form-control datetimepicker-input" data-target="#date_of_birth" id="date_of_birth" name="date_of_birth">
+                                                                                <input type="text" class="form-control datetimepicker-input" placeholder="dd/mm/yyyy" data-target="#date_of_birth" id="date_of_birth" name="date_of_birth">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -4894,7 +4903,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                                    <div class="form-group-container">
+                                    <div class="form-group-container p-3">
                                         <!-- Patient Details -->
                                         <form id="express_form" class="content active" role="tabpanel" aria-labelledby="patient_details-trigger">
 
@@ -4984,7 +4993,7 @@
                                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                                 </div>
                                                                 <!-- COMMENT: get this attr value and force declare to this html tag -->
-                                                                <input type="text" class="form-control datetimepicker-input" data-target="#date_of_birth" id="ex_date_of_birth" name="date_of_birth">
+                                                                <input type="text" class="form-control datetimepicker-input" data-target="#date_of_birth" id="ex_date_of_birth" name="date_of_birth" placeholder="dd/mm/yyyy">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Not being used
-class Special_instructions extends MY_Controller {
+class Medication extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,9 +24,9 @@ class Special_instructions extends MY_Controller {
 
 	public function index()
 	{
-        $this->set_view('patient/special_instructions');
-        $this->title = "Special Instructions";
-        $this->page_active = "Special Instructions";
+        $this->set_view('patient/medication');
+        $this->title = "Medication";
+        $this->page_active = "Medication";
         $this->component = true;
         $this->sidebar_collapse = true;
 
@@ -37,7 +36,6 @@ class Special_instructions extends MY_Controller {
 			'datatables-responsive/css/responsive.bootstrap4.min.css',
 			'datatables-buttons/css/buttons.bootstrap4.min.css',
 			'summernote/summernote-bs4.css',
-			'datatables-select/css/select.bootstrap4.min.css',
 		];
 		$this->javascript_plugins = [
 			'moment/moment.min.js',
@@ -47,11 +45,10 @@ class Special_instructions extends MY_Controller {
 			'datatables-responsive/js/dataTables.responsive.min.js',
 			'datatables-responsive/js/responsive.bootstrap4.min.js',
 			'summernote/summernote-bs4.min.js',
-			'datatables-select/js/dataTables.select.min.js',
 		];
 
         $data['title'] =  $this->title;
-		
+
         $this->build_content($data);
         $this->render_page();
 	}

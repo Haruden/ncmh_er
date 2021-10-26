@@ -20,6 +20,11 @@
         </a>
     </li>
     <li class="nav-item mb-2">
+        <a class="nav-link <?php echo $title === 'Medication' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/medication'); ?>">
+            Medication
+        </a>
+    </li>
+    <li class="nav-item mb-2">
         <a class="nav-link <?php echo $title === 'ER Notes' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/er-notes'); ?>">
             ER Notes
         </a>
@@ -29,11 +34,6 @@
             Plan
         </a>
     </li>
-    <!-- <li class="nav-item mb-2">
-        <a class="nav-link <?php echo $title === 'Special Instructions' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/special-instructions'); ?>">
-            Special Instructions
-        </a>
-    </li> -->
     <li class="nav-item mb-2">
         <a class="nav-link <?php echo $title === 'Disposition' ? 'active bg-secondary shadow font-weight-normal' : null ?>" href="<?php echo base_url(auth('role') . '/disposition'); ?>">
             Disposition

@@ -1,3 +1,5 @@
+<?php $this->load->view('nurse/modals/medication'); ?>
+
 <!-- Identifying Marks Modal -->
 <div class="modal fade" id="modal-marks">
     <div class="modal-dialog modal-xl">
