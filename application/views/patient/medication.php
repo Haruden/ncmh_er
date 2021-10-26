@@ -76,14 +76,14 @@
                                                                 Action
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</a></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</button></li>
                                                                 <div class="dropdown-divider"></div>
                                                                 <li class="dropdown-item">
-                                                                    <button class="btn btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
+                                                                    <button class="btn btn-sm btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
                                                                         View Details
                                                                     </button>
                                                                 </li>
@@ -112,14 +112,14 @@
                                                                 Action
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</a></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</button></li>
                                                                 <div class="dropdown-divider"></div>
                                                                 <li class="dropdown-item">
-                                                                    <button class="btn btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
+                                                                    <button class="btn btn-sm btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
                                                                         View Details
                                                                     </button>
                                                                 </li>
@@ -148,14 +148,14 @@
                                                                 Action
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</a></li>
-                                                                <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</a></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</button></li>
+                                                                <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</button></li>
                                                                 <div class="dropdown-divider"></div>
                                                                 <li class="dropdown-item">
-                                                                    <button class="btn btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
+                                                                    <button class="btn btn-sm btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">
                                                                         View Details
                                                                     </button>
                                                                 </li>
@@ -237,17 +237,19 @@
 
         <?php if (auth('role') == 'nurse') { ?>
             var html = '<button type="button" class="btn btn-primary btn-sm dropdown-toggle ml-3" data-toggle="dropdown" aria-expanded="false"> Bulk Action </button>';
-            html += '<ul class="dropdown-menu dropdown-options" style="">';
-            html += '    <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</a></li>';
-            html += '    <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</a></li>';
-            html += '    <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</a></li>';
-            html += '    <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</a></li>';
-            html += '    <li class="dropdown-item"><a data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</a></li>';
-            html += '    <div class="dropdown-divider"></div>';
-            html += '    <li class="dropdown-item">';
-            html += '       <button class="btn btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal"> View Details </button>';
-            html += '    </li>';
-            html += '</ul>';
+            html += ' <ul class="dropdown-menu dropdown-options" x-placement="bottom-start">';
+            html += '   <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Carry Out">Carry Out</button></li>';
+            html += '   <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Administer">Administer</button></li>';
+            html += '   <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Hold">Hold</button></li>';
+            html += '   <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Shift">Shifted</button></li>';
+            html += '   <li class="dropdown-item"><button class="btn btn-sm btn-block btn-default" data-toggle="modal" data-target="#modal-action" data-title="Discontinue">Discontinued</button></li>';
+            html += '   <div class="dropdown-divider"></div>';
+            html += '   <li class="dropdown-item">';
+            html += '       <button class="btn btn-sm btn-block btn-default" data-toggle="modal" aria-haspopup="true" data-target="#administration-record-modal">';
+            html += '   View Details';
+            html += '   </button>';
+            html += '   </li>';
+            html += '   </ul>';
             $("#example1_length").find('label').after(html);
         <?php } ?>
 
